@@ -1,0 +1,154 @@
+{% extends "adminUI/header.html" %}
+{% block title %}Rooms{% endblock %}
+    {% block head1 %}
+    {% load static %}
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+     <link rel="stylesheet" href="{% static 'css/students.css' %}" >
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    {% endblock %}
+    {% block body %}
+
+<style>
+body{
+    overflow-x: hidden;
+}
+#addtext span{
+    font-size: 20px !important;
+}
+button#add{
+    margin-top: 23px !important;
+    width: 22% !important;
+}
+  @media only screen and (min-width:1200px) and (max-width:1440px){
+      button#add{
+    width: 26% !important;
+}
+  }
+  @media only screen and (max-width:1200px){
+      button#add{
+    width: 29% !important;
+}
+  }
+</style>
+    <div class="main">
+
+        <div id = addtext>
+            <span>{{title}}</span>
+            <hr style="width: 96%;">
+            {% if role != 'Teacher' %}
+            <button id="add" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" name="button" style="float: left; padding:0 20px !important; width:auto; font-size: 16px;">
+            <a href="/addrooms/" id = "add" style="padding: 0 20px !important"><i class="fa fa-plus"></i>{{table.add_btn.add_room}}</a>
+            </button>
+            {% endif %}
+        </div>
+        <div class="table" id = tabletext style=" margin-top: 148px !important">
+
+            <table  width=80% height=80% class='table1'>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>{{table.room_name}}</th>
+                        <th>{{table.address}}</th>
+                        <th>{{table.seats_nuber}}</th>
+                        <th>{{table.computers}}</th>
+                        <th>{{table.specifications}}</th>
+                        <th>{{table.comment_room}}</th>
+                        {% if role != 'Teacher' %}
+                        <th>{{table.action}}</th>
+                        {% endif %}
+<style>
+ .table thead th {
+    vertical-align: baseline;
+    border-bottom: 2px solid #dee2e6;
+    padding-top: 22px;  }   
+    .table td {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        vertical-align: baseline;
+    }                      
+</style>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in room %}
+                        <tr class="tr_colors">
+                            <td></td>
+                            <td>{{i.name}}</td>
+                            <td>{{i.adres}}</td>  
+                            <td>{{i.number_of_seats}}</td>  
+                            <td>{{i.computers}}</td>  
+                            <td>{{i.specifications}}</td> 
+                            <td>{{i.comments}}</td>   
+                            {% if role != 'Teacher' %}
+                            <td>
+                                <button onclick="edit('{{i.id}}')"  class = 'Edit'>
+                                    <img src = "{% static 'edit.svg' %}" style="    width: 20px; height: 20px;">&nbsp;
+                                    <a id="edit_rooms{{i.id}}" href="/edit_rooms/{{i.id}}/">
+                                    </a></button> 
+                                    <button onclick= "del('{{i.id}}')" class="Archieve">
+                                        <a onclick="del({{i.id}})" >
+                                        <i style=" width: 20px; height: 0; padding: 0;" id="delete_" class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </button>
+                            </td>
+
+                        {% endif %}
+                        </tr>
+                        {% endfor %}
+                </tbody>
+                <style>
+                    .tr_colors:nth-child(odd)
+                    {       
+                        background:white;
+                    }   
+                    .tr_colors:nth-child(even)
+                    {
+                        background:#f6fbff;
+                    }  
+                    *{
+                        font-size: open sans;
+                    }                   
+                </style>
+            </table>
+            <form action="/addteacher/" method="POST" style="display: none;">
+                {% csrf_token %}
+                <input type="submit" name = "students" id = "addform">
+            </form>
+            <form action="/edit/" method="POST" style="display: none;">
+                {% csrf_token %}
+                <input type="text" name = "edit" id = "editinput">
+                <input type="submit" name = "students" id = "editform">
+            </form>
+            <form action="" method="POST" style="display: none;">
+                {% csrf_token %}
+                <input type="submit" name = "students" id = "delform">
+            </form>
+        </div>
+    </div>
+    <script src="https://use.fontawesome.com/5134f0e799.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        function edit(id){
+            let edit=document.getElementById('edit_rooms'+id).click()
+            
+        }
+        function del(id){
+                 $.ajax({
+                  method: "POST",
+                  url: "/edit_rooms/"+id+"/",
+                  dataType: 'json',
+                  data:{'del':id},
+                  cache : false,
+                    }).done (function(res){
+                        location.reload();
+
+                    });
+        }
+    </script>
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,68 @@
+{
+    "en":{
+            "title":"Schedule",
+          "sub_ject": "Subject",
+          "lesson_name":"Lesson Name",
+          "teach":"Teacher",
+          "stud":"Students",
+          "today_btn":"Go Today",
+          "month":{
+            "January":"January",
+            "February":"February",
+            "March":"March",
+            "April":"April",
+            "May":"May",
+            "June":"June",
+            "July":"July",
+            "August":"August",
+            "September":"September",
+            "October":"October",
+            "November":"November",
+            "December":"December"
+          }
+    },
+    "ru":{
+        "title":"График",
+          "sub_ject": "Предметы",
+          "lesson_name":"Название урока",
+          "teach":"Преподаватель",
+          "stud":"Студенты",
+          "today_btn":"Go Today",
+          "month":{
+            "January":"Январь",
+            "February":"Февраль",
+            "March":"Март",
+            "April":"Апрель",
+            "May":"Май",
+            "June":"Июнь",
+            "July":"Июль",
+            "August":"Август",
+            "September":"Сентябрь",
+            "October":"Октябрь",
+            "November":"Ноябрь",
+            "December":"Декабрь"
+          }
+      },
+    "arm":{	
+    "title":"Ժամանակացույց",
+          "sub_ject": "Առարկա",
+          "lesson_name":"Դասի անվանումը",
+          "teach":"Ուսուցիչ",
+          "stud":"Ուսանողներ",
+          "today_btn":"Այսօր",
+          "month":{
+            "January":"Հունվար",
+            "February":"Փետրվար",
+            "March":"Մարտ",
+            "April":"Ապրիլ",
+            "May":"Մայիս",
+            "June":"Հունիս",
+            "July":"Հուլիս",
+            "August":"Օգոստոս",
+            "September":"Սեպտեմբեր",
+            "October":"Հոկտեմբեր",
+            "November":"Նոյեմբեր",
+            "December":"Դեկտեմբեր"
+          }
+    }
+  }

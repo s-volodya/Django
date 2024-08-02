@@ -1,0 +1,232 @@
+{% extends "adminUI/header.html" %}
+{% block title %}Shedule{% endblock %}
+    {% block head1 %}
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>document.getElementsByTagName("html")[0].className += " js";</script>
+    <link rel="stylesheet" href="{% static 'css/shedul.css' %}" >
+
+
+    {% endblock %}
+
+
+
+{% block body %}
+
+<style>
+  body{
+    font-size: 11px;
+  }
+  #schedule__ul{
+    position: relative !important;
+    z-index: -8 !important;
+  }
+  #schedule__ul li span{
+    font-size: 14px !important;
+  }
+ 
+
+
+/* @media only screen and (max-width: 1440px){
+    .cd-main-header {
+    margin-left: 27%;
+    margin-top: -27px;
+  }
+  .cd-schedule {
+    margin-left: 247px !important;
+  }
+
+}
+
+@media only screen and (min-width: 64rem) and ( max-width: 80rem){
+    #schedule__ul li span{
+    margin-left: 59px !important;
+}
+}
+
+@media only screen and (min-width: 1441px){
+  #schedule__ul li span{
+  margin-left: 16px !important;
+}
+} */
+
+</style>
+
+<header class="cd-main-header text-center flex flex-column flex-center">
+ 
+<form method="GET">
+  {% csrf_token %}
+    <h1 class="text-xl">{{title}}          {{data_trasnlete}}</h1>
+      <button  class="btn btn-primary" style="margin:0;display:inline;float:left" onclick="next('last','{{tuday}}')"><</button> <h3 style="margin:0;display:inline">{{data_trasnlete}}</h3> <button  class="btn btn-primary" style="margin:0;display:inline;float:right" onclick="next('next','{{tuday}}')">></button>
+      {% if tuday != tuday_real %}
+      <br>
+      <button  class="btn btn-primary"  onclick="next('tuday','{{tuday_real}}')" >{{today_btn}}</button>
+        {% endif %}
+      <input  name='days' id="day_shaedul"  value="{{tuday}}" type="hidden">
+      <input   name='method' id='method_button' type="hidden" >
+    </form>
+
+
+   
+  </header>
+  <div class="cd-schedule cd-schedule--loading margin-top-lg margin-bottom-lg js-cd-schedule">
+    <div class="cd-schedule__timeline">
+      <ul id="schedule__ul" style=" position: relative !important; z-index: -8 !important;">
+        <li><span>09:00</span></li>
+        <li><span>09:30</span></li>
+        <li><span>10:00</span></li>
+        <li><span>10:30</span></li>
+        <li><span>11:00</span></li>
+        <li><span>11:30</span></li>
+        <li><span>12:00</span></li>
+        <li><span>12:30</span></li>
+        <li><span>13:00</span></li>
+        <li><span>13:30</span></li>
+        <li><span>14:00</span></li>
+        <li><span>14:30</span></li>
+        <li><span>15:00</span></li>
+        <li><span>15:30</span></li>
+        <li><span>16:00</span></li>
+        <li><span>16:30</span></li>
+        <li><span>17:00</span></li>
+        <li><span>17:30</span></li>
+        <li><span>18:00</span></li>
+        <li><span>18:30</span></li>
+        <li><span>19:00</span></li>
+        <li><span>19:30</span></li>
+        <li><span>20:00</span></li>
+        <li><span>20:30</span></li>
+        <li><span>21:00</span></li>
+        <li><span>21:30</span></li>
+        <li><span>22:00</span></li>
+        <li><span>22:30</span></li>
+        <li><span>23:00</span></li>
+        <li><span>23:30</span></li>
+        <li><span>00:00</span></li>
+      </ul>
+    </div> <!-- .cd-schedule__timeline -->
+
+
+  
+    <div class="cd-schedule__events">
+      <ul>
+
+        {% for i in room %}
+
+        <li class="cd-schedule__group">
+          <div class="cd-schedule__top-info"><span>{{i.name}}</span></div>
+
+
+         
+          <ul>
+            {% for j in romm_grop %}
+            {% if j.room == i.id %}
+            <li class="cd-schedule__event click">
+              <a data-start="{{j.start_time}}" data-end="{{j.end_time}}" data-content="event-abs-circuit" data-event="event-{{j.color}}" href="#0">
+                <em class="cd-schedule__name">
+                  <p>{{sub_ject}}:{{j.description.language.component_name}}</p>
+                  <p>{{lesson_name}}:{{j.description.name}}</p>
+                  <p>{{teach}} : {{j.groupa.teacher.first_name}} {{j.groupa.teacher.last_name}}</p>
+                </em>
+                
+                <ol class = "about" style=" color:white;">
+                  <li class = "myFirstItem"><p>{{stud}} :</p></li>
+
+                {% for k in student %}
+   
+   
+            
+                     {% if j.groupa.id == k.group_id %}
+                              <li class = "myFirstItem"> <a href="/students/{{k.id}}/" target="_blank">{{k.first_name}} {{k.last_name}}</a> </li>
+        
+                   {% endif %}
+                {% endfor %}
+
+              </ol>
+                <ol class="aboutArea" hidden>
+                  <br>
+                  {{j.leson.lesons_name}}:{{j.description.Description}}
+                </ol>
+
+              </a>
+            </li>
+  
+
+          {% endif %} 
+
+          {% endfor %}
+          </ul>
+
+
+
+        </li>
+        {% endfor %}
+  
+      </ul>
+    </div>
+  
+    <div class="cd-schedule-modal">
+      <header class="cd-schedule-modal__header">
+        <div class="cd-schedule-modal__content">
+          <span class="cd-schedule-modal__date"></span>
+          <h3 class="cd-schedule-modal__name"></h3>
+          
+          <ol class = "myItem" style="color:white;">
+          </ol>
+        </div>
+  
+        <div class="cd-schedule-modal__header-bg"></div>
+      </header>
+  
+      <div class="cd-schedule-modal__body">
+        <div class="cd-schedule-modal__event-infoo">
+          <ol class = "myBodyItem" style = "color: black;display: block;position: absolute; z-index: 5;">
+          </ol>
+        </div>
+        <div class="cd-schedule-modal__body-bg"></div>
+      </div>
+  
+      <a href="#0" class="cd-schedule-modal__close text-replace" style="z-index: 10;"">Close</a>
+    </div>
+  
+    <div class="cd-schedule__cover-layer"></div>
+  </div> <!-- .cd-schedule -->
+
+  <script src="{% static 'js/util.js' %}"></script> <!-- util functions included in the CodyHouse framework -->
+  <script src="{% static 'js/main.js' %}"></script>
+  <script>
+    function next(parm,days){
+
+      $('#day_shaedul').val(days)
+      $('#method_button').val(parm)
+      // location.reload()
+
+    }
+ </script>
+<!-- _________________________________________POPOXUTYUNNER_____________________________________________ -->
+<style>
+  /* *{
+	font-size: 11px !important;
+} */
+    @media (min-width: 80rem){
+.js .cd-schedule__timeline li span {
+    display: inline-block;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 0.83333em;
+    font-size: var(--text-sm);
+    margin-left: 70px;
+    margin-top: 15px;
+}
+    }
+    form {
+      margin-top: 80px;
+    }
+</style>
+<!-- _____________________________________________________________________________________________________ -->
+
+
+
+
+{% endblock %}

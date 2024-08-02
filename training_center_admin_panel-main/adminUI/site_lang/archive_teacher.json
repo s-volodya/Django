@@ -1,0 +1,47 @@
+{
+    "en":{
+            "title":"Archive Details:Teacher",
+          "table":{
+          "name":"Name",
+          "surname": "Surname",
+          "phone_number":"Phone Number",
+          "email":"E-mail",
+          "current_language":"Current Language",
+          "view":"View",
+          "action":"Action",
+          "act_btn":{
+              "restore":"Restore"
+          }
+          }
+    },
+    "ru":
+      {"title":"Детали архива: Преподаватель",
+      "table":{
+          "name":"Имя",
+          "surname": "Фамиля",
+          "phone_number":"Номер телефона",
+          "email":"Эл. почта",
+          "current_language":"Текущий язык",
+          "view":"Просмотр",
+          "action":"Действие",
+          "act_btn":{
+              "restore":"Восстановить"
+          }
+          }
+      },
+    "arm":{	
+        "title":"Արխիվի մանրամասներ․ Ուսուցիչ",
+      "table":{
+          "name":"Անուն",
+          "surname": "Ազգանուն",
+          "phone_number":"Հեռախոսահամար",
+          "email":"Էլ․ հասցե",
+          "current_language":"Ընթացիկ լեզու",
+          "view":"Դիտել",
+          "action":"Գործողություն",
+          "act_btn":{
+              "restore":"Վերականգնել"
+          }
+          }
+    }
+  }

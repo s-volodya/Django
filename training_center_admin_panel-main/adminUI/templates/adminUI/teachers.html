@@ -1,0 +1,148 @@
+    {% extends "adminUI/header.html" %}
+    {% block title %}Teachers{% endblock %}
+    {% block head1 %}
+    {% load static %}
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+     <link rel="stylesheet" href="{% static 'css/students.css' %}" >
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="{% static 'css/teachers.css' %}" >
+    {% endblock %}
+
+<style>
+    body{
+        overflow-x:hidden;
+    }
+    *{
+	font-size: 18px !important;
+}
+</style>
+{% block body %}
+    <div class="main">
+        <div id=helper_text>
+
+        </div>
+
+        <div id = addtext>
+            <span>{{title}}</span>
+            <hr style="width: 115% !important; margin-left: -10px;">
+            {% if role != 'Teacher' %}
+                <button onclick="add()" id = "add" style="float: left; margin-top: 13px; width: 22% !important;padding:0 20px !important"><i class="fa fa-plus" ></i> {{add_button}}</button>
+            {% endif %}
+   
+        </div>
+        <div class="table" id = tabletext>
+            <hr style="width: 80% !important;">
+            <table >
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>{{table.name}}</th>
+                        <th>{{table.surname}}</th>
+                        <th>{{table.email}}</th>
+                        <th>{{table.phone_number}}</th>
+                        <th>{{table.current_language}}</th>
+                        <th>{{table.view}}</th>
+                        {% if role != 'Teacher' %}
+                        <th>{{table.action}}</th>
+                        {% endif %}
+                   
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in usersdata %}
+                     
+                        <tr>
+                            <td></td>
+                            <td>{{i.1}}</td>
+                            <td>{{i.2}}</td>  
+                            <td>{{i.5}}</td>  
+                            <td>{{i.6}}</td>  
+                            <td>{{i.7}}</td>   
+                            <td> <a href='{{i.0}}/'><img src = "{% static 'eye-open.svg' %}"></a></td>
+                            {% if role != 'Teacher' %}
+                
+                            <td><button onclick= edit({{i.0}}) class = Edit>
+                                <a id='edit_teacher_{{i.0}}' href="edit/{{i.0}}/" style="display: none;">
+                                </a><img src = "{% static 'edit.svg' %}" style="    width: 20px; height: 20px;">&nbsp;</button> 
+                                <button onclick= "del('{{i.id}}')" class="Archieve">
+                                    <a onclick="del({{i.id}})" >
+                                    <i style=" width: 20px; height: 0; padding: 0;" id="delete_" class="fas fa-trash-alt"></i>
+                                        </a>
+                                    </button>     
+                           </td>
+
+                            {% endif %}
+
+                        </tr>
+                      
+                    {% endfor %}
+                </tbody>
+                <style>
+                    tbody tr:nth-child(odd)
+                    {       
+                        background:white;
+                    }   
+                    tbody tr:nth-child(even)
+                    {
+                        background:#f6fbff;
+                    }
+                    *{
+                        font-family: Open sans;
+                    }  
+                    .table thead th {
+                        vertical-align: baseline;
+                    }
+                    .table td, .table th {
+                        padding: .75rem;
+                        vertical-align: top;
+                        border-top: 1px solid #dee2e6;
+                        padding-top: 23px ;
+                    }                  
+                </style>
+            </table>
+            <form action="/addteacher/" method="GET" style="display: none;">
+                {% csrf_token %}
+                <input type="submit" name = "students" id = "addform">
+            </form>
+
+
+        </div>
+    </div>
+    <script src="https://use.fontawesome.com/5134f0e799.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        function add()
+        {
+            document.getElementById('addform').click();
+        }
+       function edit(id){
+           document.getElementById('edit_teacher_'+id).click();
+       }
+    
+        function del(id)
+        {if (confirm("Delete !")){
+        $.ajax({
+        method: "POST",
+        url: "/teachers/",
+        dataType: 'json',
+        data:{'id':id,'delete':'ok'},
+        }).done(function(res){
+            location.reload();
+
+        })
+    }
+
+        }
+        setTimeout(() => {
+        if (localStorage["info"]){
+            console.log('mtaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasssss')
+    info('teacher_list','You can add students info by clicking this button ')
+}
+    }, 500);
+
+    </script>
+{% endblock %}
+</body>
+</html>

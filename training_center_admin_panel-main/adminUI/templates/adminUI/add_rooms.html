@@ -1,0 +1,68 @@
+{% extends "adminUI/header.html" %}
+{% block title %}Add Rooms{% endblock %}
+    {% block head1 %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/add_romms.css' %}" >
+    {% endblock %}
+
+
+{% block body %}
+<h5 class='add_roms' style="margin-top: 10%;margin-left: 21%;font-size: 20px;"><a href='/rooms/' style="color:#424242">
+  <svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" fill="currentColor" class="bi bi-chevron-left" 
+    viewBox="0 0 16 16" style="font-weight: bold; color: #424242;margin-top:-6px"> 
+    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+  </svg>
+</a> {{title}}</h5>
+<hr style="width: 1200px; margin-left: 21%;">
+<form method="POST" style="margin-left: 357px;" onsubmit="return validate()">
+    {% csrf_token %}
+<label class='label_input'  >{{room_name}}</label><br>
+<input type="text" class='input' name='name' required value="{{room.name}}">
+<br><br><br>
+<label class='label_input'>{{address}}</label><br>
+<input type="text"  class='input' name='adress' required value="{{room.adres}}">
+<br><br><br>
+<label class='label_input' >{{seats_nuber}}</label><br>
+<input type="text"  class='input' name='nuber_of_seats' required value="{{room.number_of_seats}}">
+<br><br><br>
+<label class='label_input'>{{computers}}</label><br>
+<input type="text"  class='input' name='compoters' required value="{{room.computers}}">
+<br><br><br>
+<label class='label_input'>{{specifications}}</label><br>
+<textarea class='input_fultext' required name='specefik' >{{room.specifications}}</textarea>
+<br><br><br>
+<label class='label_input'>{{comment_room}}</label><br>
+<textarea class='input_fultext' required name='comments'>{{room.comments}}</textarea>
+<br><br><br>
+<button class='button_add' type="submit" required style="border:none; outline: none; margin-left: 43px; text-align: center;   margin-bottom: 50px; padding: 10px 50px;">{{add_btn.add_room}}</button>
+</form>
+
+<script>
+    function validate(){
+        let name = document.getElementsByName('name').value()
+        console.log(name)
+        if (name.length!=0){
+            return false
+        }
+
+    }
+</script>
+<style>
+    *{
+        font-family: open sans;
+        font-weight: 600;
+        font-size: 14px;
+        font-stretch: normal;
+        font-style: normal;
+        letter-spacing: normal;        
+    }
+    .input {
+        height: 48px;
+        padding-left: 22px;
+    }
+    .label_input {
+        width: 129px;
+    }
+</style>
+
+{% endblock %}

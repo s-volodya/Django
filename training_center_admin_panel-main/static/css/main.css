@@ -1,0 +1,209 @@
+        .navbar-brand {
+             color:#FFFFFF;
+             display:block;
+             font-size: 18px !important;
+        }
+        .navbar:before{
+            content: none;
+        }
+        .navbar:after{
+            content: none;
+        }
+        .navbar {
+            position: relative;
+            min-height: 50px;
+            margin-bottom: 0px;
+            border: 1px solid transparent;
+            height: auto;
+        }
+        .img15{
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 100px;
+            border: 3px solid #532057;
+            box-shadow: 0 0 7px #666;
+        }
+        
+.aside{
+    float:left;
+    background:#161515;
+    width: 273px;
+    height: 400vh;
+    color: #fff;
+    border-right: 5px solid #4d4d4d;
+
+
+
+}
+.ul1 {list-style:none;
+    padding-inline-start: 0px;
+   color:wihte;}
+
+    .ul1 > a {
+    color: white;
+             }
+
+    .color_teg_a > a {
+    color: white;
+             }  
+        .subjects_id> a {
+    color: white;
+             }           
+     a{
+        color: black;
+     }               
+
+.dropdown-toggle::after{
+    margin-left: 180px
+
+}
+
+element.style {
+    margin: 10px;
+    margin-left: 40px
+}
+
+.subjects_id {
+    margin: 10px;
+    margin-left: 63px;
+    color: white;
+}
+
+button#add{
+    float: right;
+    margin-top: 42px;
+    margin-right: 52px;
+    background-color: #356f30;
+  height: 42px;
+  border-radius: 4px;
+  width: auto !important;
+  padding: 10px 1px !important;
+  width: 20% !important;
+    float: left; margin-top: -5px; padding: 0 20px !important;    margin-bottom: 27px; margin-right: 88%;
+}
+
+.subjects_name{
+    float:left;
+    margin-top: 51px;
+    margin-left: 44px;
+    font-size: 18px;
+}
+.linia{
+    margin-top: 100px;
+}
+
+.subjects_fayl{
+    margin:auto;
+}
+#mainConut{
+    margin-top: 20px;
+    margin-left: 44px;
+}
+.subjects_name1{
+    margin-left: 44px;
+
+}
+.section_id{
+    margin: 10px;
+    margin-left: 258px;
+}
+.span_name{
+    margin-left: 45px;
+}
+
+a.dropdown-toggle3{
+    margin-left: 30px;
+
+}
+
+#table {
+ counter-reset: serial-number; /* Set the serial number counter to 0 */
+}
+#table td:first-child:before {
+ counter-increment: serial-number; /* Increment the serial number counter */
+ content: counter(serial-number); /* Display the counter */
+}
+
+
+#add_lesons {
+  width: 90px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: #357127;
+  font-size: 14px;
+}
+#edit_ {
+    width: 40px;
+    height: 38px;
+    padding: 8px 5.6px 10px 10.2px;
+    font-size: 21px !important;
+  border-radius: 4px;
+  background-color: #2586d1;
+  color: white;
+}
+#delete_{
+    width: 40px;
+    height: 38px;
+    padding: 9px 8.6px 10px 12.2px;
+    border-radius: 4px;
+    font-size: 21px !important;
+  background-color: #df6378;
+  color: white;
+
+}
+
+
+[title~=edit_i] {
+    width: 43px;
+  height: 32px;
+  padding: 9px 5.6px 7px 14.2px;
+  border-radius: 4px;
+  background-color: #2586d1;
+  color: white;
+}
+
+[title~=delete_i] {
+    width: 43px;
+  height: 32px;
+  padding: 9px 5.6px 7px 14.2px;
+  border-radius: 4px;
+  background-color: #df6378;
+  color: white;
+
+
+}
+
+
+
+.action{
+    float: right;
+    display: block;
+}
+.add_nev_sections_class{
+    float: left;
+    display: block;
+    color: green;
+
+}
+.section_class_name{
+    height: 0px;
+}
+
+html {
+    box-sizing: border-box;
+    font-size: 11px;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.img_logo{
+    display: inline-block;
+    width: 9%;
+   
+
+}
+#lesons_colaspitd{
+    margin-left: 14%;
+}
+#lesons_select{
+    margin-left: 11%;
+}

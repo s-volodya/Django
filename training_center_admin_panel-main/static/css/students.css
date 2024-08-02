@@ -1,0 +1,274 @@
+ .header{
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 64px;
+            background: #532057 no-repeat padding-box;
+            opacity: 1;
+            position: absolute;
+            z-index: 2;
+        }
+        #headertext{
+            margin-top: 20px;
+            margin-left: 65px;
+            width: 130px;
+            height: 24px;
+            text-align: left;
+            line-height: 24px;
+            font-size: 18px;
+            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 0.43px;
+            color: #FFFFFF;
+            text-transform: uppercase;
+            opacity: 1;
+        }
+
+        .sidebartext{
+            position: relative;
+            top: 14px;
+            left: 65px;
+            width: 72px;
+            height: 22px;
+            text-align: left;
+            font-size: 16px;
+            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 0px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+        .sidebartext1{
+            position: relative;
+            top: 14px;
+            left: 95px;
+            width: 72px;
+            height: 22px;
+            text-align: left;
+            font-size: 16px;
+            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 0px;
+            color: #ffffff;
+            text-transform: uppercase;
+        }
+        #maintext{
+            margin-top: 108px;
+            margin-left: 316px;
+            width: 197px;
+            height: 33px;
+            text-align: left;
+            font-size: 24px;
+            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 0px;
+            color: #424242;
+            opacity: 1;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        #addtext{
+            margin-top: 108px;
+            margin-left: 350px;
+            height: 33px;
+            text-align: left;
+            font-size: 24px;
+            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 0px;
+            color: #424242;
+            opacity: 1;
+        }
+        .main{
+            width: 110%;
+            height: 100%;
+        }
+        #add{
+            top: 186px;
+            left: 350px;
+            width: auto ;
+            height: 47px;
+            background: #357127 0% 0% no-repeat padding-box;
+            border-radius: 4px;
+            border: 0;
+            opacity: 1;
+            color: #FFFFFF;
+            font-size: 16px;
+            font-family: 'Open Sans', sans-serif;
+            padding: 0 20px !important;
+        }
+        #tabletext{
+            margin-left: 349px !important;
+            margin-top: 113px;
+            /* height: 33px; */
+            text-align: left;
+            font-size:  24px;
+            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 0px;
+            color: #424242;
+            opacity: 1;
+        }
+        thead tr{
+            width: 1560px;
+            height: 68px;
+            background: #E8E8E8 0% 0% no-repeat padding-box;
+            opacity: 1;
+        }
+        th{
+            text-align: center;
+            font-size: 16px;
+            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 0px;
+            color: #424242;
+            opacity: 1;
+            padding: 30px;
+        }
+        table{
+            width: 79%;
+            height: 100%;
+            
+            border-spacing: 0px;
+        }
+        tbody tr{
+            width: 1533px;
+            height: 32px;
+            text-align: center;
+            font-size: 14px;
+            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 0px;
+            color: #424242;
+        }
+        .Edit{
+            width: auto;
+            height: 32px;
+            background: #2586D1 0% 0% no-repeat padding-box;
+            border-radius: 4px;
+            border: none;
+            opacity: 1;
+            font-size: 14px;
+            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 0px;
+            color: #FFFFFF;
+        }
+        .Archieve{
+            width: auto;
+            height: 32px;
+            background: #DF6378 0% 0% no-repeat padding-box;
+            border-radius: 4px;
+            border: none;
+            opacity: 1;
+            font-size: 14px;
+            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 0px;
+            color: #FFFFFF;
+        }
+        a{
+            color: inherit;
+            text-decoration: inherit;
+        }
+        td
+        {
+            border: 1px solid #E8E8E8;
+        }
+        #header_studnet span{
+            font-size: 20px !important;
+        }
+        tbody td
+        {
+            border-bottom: none;
+            font-size: 15px !important;
+        }
+        tbody td button
+        {
+            font-size: 14px !important;
+        }
+        tbody td a
+        {
+            font-size: 15px !important;
+        }
+        .table {
+            counter-reset: serial-number;  /* Set the serial number counter to 0 */
+          }
+          
+          .table td:first-child:before {
+            counter-increment: serial-number;  /* Increment the serial number counter */
+            content: counter(serial-number);  /* Display the counter */
+          }
+          .students_tabletext_table{
+            width: 91%;
+            padding: 0;
+            margin: 0;
+            margin-bottom: auto;
+        }
+        #students_tabletext_table_id{
+            width: 90%;
+        }
+        button#add{
+            margin-top: 45px;
+            width: 16% !important;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #add{
+                height: 84px !important;
+                width: 148% !important;
+            }
+            #add_student_helper div {
+            width: 21% !important;
+            margin-top: 34px !important;
+            margin-left: 15% !important;       
+            /* background-color: midnightblue; */
+
+            }
+            .student_helper_container{
+                width: 319% !important;
+            }
+            .students_info_span{
+                display: none;
+                margin-top: -29px !important;
+                margin-left: 42px;
+                height: 55px !important;
+                width: 65% !important;
+                position: absolute;
+                /* background-color: orange; */
+            }
+            .students_info_div{
+                position: absolute;
+
+            }
+            .student_helper_container a img{
+                /* background-color: maroon; */
+                margin-top: 260px !important;
+                margin-left: 33.6% !important;
+            }
+            .students_info_btn_ok{
+                margin-top: -23px !important;
+            }
+            #i{
+                /* background-color: palevioletred; */
+                margin-top: -19px !important;
+                margin-left: -136% !important;
+            }
+            .student_helper_container{
+                height: 868px !important;
+            }
+            #group_students{
+                background-color: purple;
+                margin-left: 119%;
+                margin-top: -68px;
+            }
+
+        }
+          @media only screen and (min-width: 1024px) and (max-width:1500px) {
+            button#add{
+                width: 26% !important;
+            }
+            #tabletext {
+                margin-left: 286px !important;
+                /* width: 89%; */
+            }
+            #addtext{
+                margin-left: 288px;
+            }
+            .main{
+                margin-left: 0;
+            }
+          }

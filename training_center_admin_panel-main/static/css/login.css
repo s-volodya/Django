@@ -1,0 +1,107 @@
+.box {
+    margin: 96px auto;
+    width: 488px;
+    height: 440px;
+    background: white;
+    border-radius: 10px;
+    padding: 42px 55px;
+}
+
+​ .username {
+    width: 70px;
+    height: 19px;
+    margin: 0 304px 6px 0;
+    font-family: 'OpenSans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    text-align: left;
+    color: #424242;
+}
+
+​ .login_p {
+    height: 43px;
+    text-align: center;
+    font-family: 'OpenSans', sans-serif;
+    font-size: 40px;
+    font-weight: bolder;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 0.5;
+    letter-spacing: normal;
+    color: #202020;
+}
+
+​ body {
+    background-image: url(../../../static/img/bg_working@3x.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#user {
+    width: 470px;
+    height: 48px;
+    margin: 6px 0 0;
+    border-radius: 4px;
+    border: solid 1px #d3d3d3;
+    background-color: var(--white);
+    font-family: 'OpenSans', sans-serif;
+    padding-left: 17px;
+}
+
+.Password {
+    font-family: 'OpenSans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+#pass {
+    width: 470px;
+    height: 48px;
+    margin: 6px 0 0;
+    border-radius: 4px;
+    border: solid 1px #d3d3d3;
+    background-color: var(--white);
+    font-family: 'OpenSans', sans-serif;
+    padding-left: 17px;
+}
+
+label {
+    cursor: pointer;
+}
+
+.logIn {
+    width: 177px;
+    height: 45px;
+    margin: 53px 98px 0 156px;
+    padding: 12px 70px 11px;
+    border-radius: 4px;
+    background-color: #532057;
+    border: 1px solid #532057;
+    outline: none;
+    font-family: 'OpenSans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.36;
+    letter-spacing: normal;
+    color: white;
+    cursor: pointer;
+    z-index: 0;
+    transition: 0.2s ease-out 100ms;
+}
+
+.logIn:hover {
+    background-color: transparent;
+    border: 0.5px solid #532057;
+    box-shadow: 2px 1px 48px 11px rgba(83, 32, 71, 0.53);
+    -webkit-box-shadow: 0px 1px 7px 3px rgba(83, 32, 87, 0.63);
+    -moz-box-shadow: 0px 1px 7px 3px rgba(83, 32, 87, 0.63);
+    box-shadow: 0px 1px 7px 3px rgba(83, 32, 87, 0.63);
+    color: #532057;
+}

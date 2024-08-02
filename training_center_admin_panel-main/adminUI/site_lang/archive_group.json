@@ -1,0 +1,44 @@
+{
+    "en":{
+            "title":"Archive Details:Groups",
+          "table":{
+          "group_name":"Group Name",
+          "start": "Contract Start",
+          "end":"Contract Completion",
+          "teacher1":"Teacher",
+          "current_language":"Current Language",
+          "action":"Action",
+          "act_btn":{
+              "restore":"Restore"
+          }
+          }
+    },
+    "ru":
+      {"title":"Детали архива: Группы",
+      "table":{
+          "group_name":"Имя группы",
+          "start": "Начало контракта",
+          "end":"Завершение контракта",
+          "teacher1":"Преподаватель",
+          "current_language":"Текущий язык",
+          "action":"Действие",
+          "act_btn":{
+              "restore":"Восстановить"
+          }
+          }
+      },
+    "arm":{	
+        "title":"Արխիվի մանրամասներ․ Խմբեր",
+      "table":{
+          "group_name":"Խմբի անունը",
+          "start": "Պայմանագրի մեկնարկը",
+          "end":"Պայմանագրի ավարտը",
+          "teacher1":"Ուսուցիչ",
+          "current_language":"Ընթացիկ լեզու",
+          "action":"Գործողություն",
+          "act_btn":{
+              "restore":"Վերականգնել"
+          }
+          }
+    }
+  }

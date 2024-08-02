@@ -1,0 +1,112 @@
+
+
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"> -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"> -->
+<title>Title</title>
+<style>
+    .loader_bg{
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        z-index: 999999;
+        background: #fff;
+    }
+    .loader {
+        border: 0 solid transparent;
+        border-radius: 50%;
+        /* width: 150px; */
+        height: 150px;
+        position: absolute;
+        top:calc(10%);
+        left: calc(45%);
+        margin: 300px auto;
+        /* left: 700px; */
+    }
+    .loader:before, .loader:after, .rotimg{
+        content: '';
+        /* border: 1em solid #ff5733; */
+        border-radius: 50%;
+        width: inherit;
+        height: inherit;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: loader 2.5s linear  infinite;
+        opacity: 0;
+    }
+    .loader:before {
+        animation-delay: .5s;
+    }
+    @keyframes loader{
+        0%{
+            transform: scale(0);
+            opacity: 0;
+            transform: rotate(0deg);
+        }
+        10%{
+            transform: scale(0.5);
+            opacity: 1;
+            transform: rotate(50deg);
+        }
+        20%{
+            opacity: 1;
+            transform: scale(1);
+            transform: rotate(100deg);
+        }
+        30%{
+            opacity: 1;
+            transform: rotate();
+            transform: rotate(150deg);
+        }
+        40%{
+            opacity: 1;
+            transform: rotate(180deg);
+        }
+        50%{
+            opacity: 1;
+            transform: rotate(190deg);
+        }
+        60%{
+            opacity: 1;
+            transform: rotate(200deg);
+        }
+        70%{
+            opacity: 1;
+            transform: rotate(250deg);
+        }
+        80%{
+            opacity: 1;
+            transform: rotate(300deg);
+        }
+        90%{
+            opacity: 1;
+            transform: rotate(350deg);
+        }
+        100%{
+            transform: rotate(360deg);
+            opacity: 1;
+        }
+    }
+</style>
+    {% load static %}
+  <div class="loader_bg">
+        <div class="loader">
+            <img src="{% static 'logo/logo(admin).svg' %}" alt="" class="rotimg">
+
+        </div>
+  </div>
+  <p>Barev</p> <!-- dont remove from code !!!!!!!!!-->
+  
+    
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>    
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+<script>
+    window.onload=function(){
+        $('.loader_bg').fadeToggle()
+    }
+
+</script>

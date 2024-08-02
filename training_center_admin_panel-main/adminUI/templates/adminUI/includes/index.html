@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{%  load static %}
+	<title></title>
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" >
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>	
+	{% block model %}
+
+		<div class="container">
+			<div class = "header-line">
+				<div class = "left-part">
+					<div class = "first-part">
+						<p class = "text-contract">Contract date</p>
+						<div class = "contract-date">16.07.2020-26.09.2020</div>
+					</div>
+					<div class = "second-part">
+						<p class = "text-contract-second">Lesson Start date</p>
+						<div class = "contract-date-start">15:00</div>
+						<div class = "at">-</div>
+						<div class = "contract-date-start">17:00</div>
+					</div>
+				</div>
+				<div class = "right-part">
+					<div class = "first-part">
+						<p class = "text-contract">Scheldue Lessons</p>
+						<div class = "without-check"></div>
+					</div>
+					<div class = "second-part">
+						<p class = "text-contract-second">Done Lessons</p>
+						<div class = "check">✓</div>
+					</div>
+				</div>
+				<div class="close">✕</div>
+			</div>
+			<div class="body">
+				<div class = "body-line">
+					<p class = "body-title-first">Calendar view</p>
+					<p class = "body-title-second">Table view</p>
+				</div>
+				<div class ="content">
+					<div class="content-header">
+						<div class="status">Status</div>
+						<div class="date">Date</div>
+						<div class="subject">Subject</div>
+						<div class="lessons">Lessons</div>
+					</div>
+					<div class = "line">
+						<div class = "content-body">
+							<div class="done">
+								<div class="done-block">
+									Done
+								</div>
+							</div>
+							<div class="date-text">
+									21.08.2020
+							</div>
+							<div class="subject-text">
+								<select>
+									<option>
+										HTML
+									</option>
+								</select>
+							</div>
+							<div class="lessons-text">
+								<select>
+									<option>
+										HTML:Basic elements
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class = "line another">
+						<div class = "content-body">
+							<div class="done">
+								<div class="done-block">
+									Done
+								</div>
+							</div>
+							<div class="date-text">
+									21.08.2020
+							</div>
+							<div class="subject-text">
+								<select>
+									<option>
+										HTML
+									</option>
+								</select>
+							</div>
+							<div class="lessons-text">
+								<select>
+									<option>
+										HTML:Basic elements
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class = "line">
+						<div class = "content-body">
+							<div class="progress">
+								<div class="progress-block">
+									In progress
+								</div>
+							</div>
+							<div class="date-text">
+									21.08.2020
+							</div>
+							<div class="subject-text">
+								<select>
+									<option>
+										HTML
+									</option>
+								</select>
+							</div>
+							<div class="lessons-text">
+								<select>
+									<option>
+										HTML:Basic elements
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class = "line another">
+						<div class = "content-body">
+							<div class="coming">
+								<div class="coming-block">
+									Coming
+								</div>
+							</div>
+							<div class="date-text">
+									21.08.2020
+							</div>
+							<div class="subject-text">
+								<select>
+									<option>
+										HTML
+									</option>
+								</select>
+							</div>
+							<div class="lessons-text">
+								<select>
+									<option>
+										HTML:Basic elements
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class = "line">
+						<div class = "content-body">
+							<div class="coming">
+								<div class="coming-block">
+									Coming
+								</div>
+							</div>
+							<div class="date-text">
+									21.08.2020
+							</div>
+							<div class="subject-text">
+								<select>
+									<option>
+										HTML
+									</option>
+								</select>
+							</div>
+							<div class="lessons-text">
+								<select>
+									<option>
+										HTML:Basic elements
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class = "line another">
+						<div class = "content-body">
+							<div class="coming">
+								<div class="coming-block">
+									Coming
+								</div>
+							</div>
+							<div class="date-text">
+									21.08.2020
+							</div>
+							<div class="subject-text">
+								<select>
+									<option>
+										HTML
+									</option>
+								</select>
+							</div>
+							<div class="lessons-text">
+								<select>
+									<option>
+										HTML:Basic elements
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src = "{% static  'js/script.js' %}"></script>
+		{% endblock %}
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <script src="https://kit.fontawesome.com/ffd405fbe4.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="{% static 'css/style_Actual.css' %}">
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        {% block payment %}
+
+        
+        <div class="popup">
+            <div class="popup_block">
+                <div class="popup_head">
+                    <div class="popup_name">
+                        <h2>View Payment</h2>
+                    </div>
+                    <div class="popup_x">
+                        <i class="popup_close">&#10005</i>
+                    </div>
+                </div>
+                <div class="popup_choose">
+                    <a href=" /../adminUI/templates/adminUI/include/Payment Schedule.html">
+                        <p>Payment Schedule</p>
+                    </a>
+                    <a href="Actual Payments.html">
+                        <p>Actual Payment</p>
+                    </a>
+                </div>
+                <hr color="silver">
+                <div class="contract_date">
+                    <i class="far fa-clock"></i>
+                    <span>Contract date</span>
+                    <div class="date">
+                    </div>
+                    <hr color="silver">
+                    <div class="contract_date">
+                        <p>16.07.2020-26.09.2020</p>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <th>Date</th>
+                        <th>Paid Amount</th>
+                        <th style="width: 100px;">Upoad files</th>
+                        <th style="text-align:left">Comment</th>
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>12.02.2021</td>
+                            <td>40 000 AMD</td>
+                            <td>
+                                <a href="">1 File</a>
+                            </td>
+                            <td>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo impedit
+                                    neque,aceat,itatilo consequatur nostrum enim iste maiores maxime.</p>
+                            </td>
+                            <td>
+                                <div class="btn">
+                                    <button class="btn_edit">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <button class="btn_delet">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td>12.02.2021</td>
+                            <td>40 000 AMD</td>
+                            <td>
+                                <a href="">4 Files</a>
+                            </td>
+                            <td>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo impedit
+                                    neque,aceat,itatilo consequatur nostrum enim iste maiores maxime.</p>
+                            </td>
+                            <td>
+                                <div class="btn">
+                                    <button class="btn_edit">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <button class="btn_delet">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td>12.02.2021</td>
+                            <td>40 000 AMD</td>
+                            <td>
+                                <a href="">4 Files</a>
+                            </td>
+                            <td>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quo impedit
+                                    neque,aceat,itatilo consequatur nostrum enim iste maiores maxime.</p>
+                            </td>
+                            <td>
+                                <div class="btn">
+                                    <button class="btn_edit">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    <button class="btn_delet">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                </div>
+                            </td>
+
+                        </tr>
+
+                        <tr>
+                            <td><input type="text" style="width: 70px;" id="date_input"></td>
+                            <td><input type="text" style="width: 70px;" id="paid_input"></td>
+                            <td>
+                                <i class="fas fa-upload"></i>
+                            </td>
+                            <td><input type="text" id="comment_input"></td>
+                            <td>
+                                <button class="btn_add">+Add</button>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div class="total">
+                    <span>Total Payment</span>
+                    <h2>200 000 AMD</h2>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+
+    </body>
+</html>

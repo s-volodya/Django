@@ -1,0 +1,323 @@
+{% extends "adminUI/header.html" %}
+{% block title %}Add_Teacher{% endblock %}
+    {% block head1 %}
+        {% load static %}
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+                <title>Document</title>
+                {% load static %}
+                <link rel="stylesheet" href="{% static 'tagify-master/dist/tagify.css' %}">
+                <link rel="stylesheet" href="{% static 'css/add_teacher.css' %}">
+
+
+    {% endblock %}
+
+    {% block body %}
+    {% load static %}
+<style>
+    #addtext span{
+        font-size: 20px !important;
+    }
+    .fileinputbuttontext{
+        font-size: 18px !important;
+    }
+</style>
+
+        <div style="margin-top: 64px;margin-left: 350px;">
+            <div id = addtext style="margin-top: 10%;">
+               <a href="/teachers/"> <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                  </svg></a>
+                <span>{{title}}</span>
+                <hr>
+            </div>
+            <div style="margin-top:30px;">
+                <form method="POST" id = "myForm"  onsubmit="return validate()" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <label>{{name}}</label><br>
+                    <input name = first_name class = "input" type="text" placeholder="{{name}}" required><br><br>
+
+                    <label>{{surname}}</label><br>
+                    <input name = last_name class = "input" type="text" placeholder="{{surname}}" required><br><br>
+
+                    <label>{{email}}</label><br>
+                    <input name = email class = "input" type="text" placeholder="Example@gmail.com" required><br><br>
+
+                    <label>{{phone_number}}</label><br>
+                    <input name = phone_number class = "input phone" type="number" placeholder="+374 93606060" required><br><br>
+
+                    <label>{{language}}</label><br>
+                    <input class = "input tags"  required name="tags" placeholder="{{language}}"><br>
+
+                    <label>{{upload_picture}}</label><br>
+                    <input type="text" readonly class="input inpfile1" style="width: 488px; font-style: italic;" placeholder="Select jpg,png or pdf">
+                    <input class = "fileinput fi1"  type="file" id = "inp1" placeholder="Select png, jpg or pdf" style="width: 488px" name="image_teacher" hidden>
+                    <label for = "inp1">
+                        <div class="fileinputbutton" style="margin-top: -6px; margin-left: -17px;">
+                            <input name="upload_file" type="file"  style="margin-top: -6px; visibility:hidden;cursor: pointer;  padding: 13px 40px; opacity: 1;" class="fileinput" >
+                            <img class = "fileinputbuttonimg" style="    margin-top: -103px;" src="{% static 'component.png' %}">
+                            <p class = "fileinputbuttontext" style=" margin-top: -45px;">{{browse_button2}} </p>
+                        </div>
+                    </label>
+                <br><br><br><br>
+
+                    <div class="workinghours">
+                        <label>{{working_hours}}</label><br><br>
+                        <button type="button" class="weekbutton">{{table.mon}}</button>
+                        <button type="button" class="weekbutton">{{table.tue}}</button>
+                        <button type="button" class="weekbutton">{{table.wed}}</button>
+                        <button type="button" class="weekbutton">{{table.thr}}</button>
+                        <button type="button" class="weekbutton">{{table.fri}}</button>
+                        <button type="button" class="weekbutton">{{table.sat}}</button>
+                        <button type="button" class="weekbutton">{{table.sun}}</button><br><br>
+                        <input maxlength="5" name = monday_start type="text" onfocus="val_time()" class="dayinput" placeholder="-- : --" onkeyup="valid('monday_start')">
+                        <input  maxlength="5" name = tuesday_start type="text" class="dayinput" placeholder="-- : --"  onkeyup="valid('tuesday_start')">
+                        <input maxlength="5" name = wednesday_start type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('wednesday_start')">
+                        <input maxlength="5" name = thursday_start type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('thursday_start')">
+                        <input  maxlength="5" name = friday_start type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('friday_start')">
+                        <input maxlength="5" name = saturday_start type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('saturday_start')">
+                        <input  maxlength="5"name = sunday_start type="text" class="dayinput" placeholder="-- : --"onkeyup="valid('sunday_start')"> <br><br>
+                        <input maxlength="5" name = monday_end type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('monday_end')">
+                        <input maxlength="5"name = tuesday_end type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('tuesday_end')">
+                        <input maxlength="5"name = wednesday_end type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('wednesday_end')">
+                        <input maxlength="5"name = thursday_end type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('thursday_end')">
+                        <input maxlength="5"name = friday_end type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('friday_end')">
+                        <input maxlength="5"name = saturday_end type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('saturday_end')">
+                        <input maxlength="5"name = sunday_end type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('sunday_end')">
+                    </div>
+<style>
+    .weekbutton{
+        margin-left: 10px;
+    }
+    .dayinput {
+        margin-left: 10px;
+    }
+    .inputsubmit{
+        width: 179px;
+        height: 39px;
+    }
+</style><br><br>
+                    <label>{{add_linkedin}}</label><br>
+                    <input class = "input url" name="link" required placeholder="https://www.linkedin.com/mynetwork/invite-connect/connect/" id="copyteacher">
+                    <img src="/static/img/link.png" alt=""  onclick="copytext()" data-toggle='tooltip' data-placement='bottom' title='Copy text' id="copied" style="margin-left: -31px;">
+                    <br><br>
+
+
+
+                    <input name = "teachersadd" required class = inputsubmit type="submit" value="Add"  style="height:42px; width:177px;"><br><br>
+                </form>
+                <input  id = "lang" value = "{{languages}}" type="hidden">
+            </div>
+        </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="{% static 'tagify-master/dist/tagify.min.js' %}"></script>
+    <script src="{% static 'tagify-master/dist/jQuery.tagify.min.js' %}"></script>
+    <script src="https://use.fontawesome.com/5134f0e799.js"></script>
+    <script>
+        var lang = document.getElementById("lang").value;
+        lang = lang.split("")
+        let index = lang.indexOf("'") 
+        while(index > -1)
+        {
+            index = lang.indexOf("'") 
+            lang.splice(index, 1);
+        }
+        lang.splice(0,1)
+        lang = lang.join('')
+        lang = lang.split(", ")
+
+        $('[name = tags]').tagify({duplicates: false, enforceWhitelist: true, whitelist : lang});
+
+        function validate()
+        {
+            let weekdays = ["monday","tuesday","wednesday", "thursday","friday","saturday","sunday"]
+
+            for(i of weekdays){
+                let input_value_start = $('[name='+i+'_start]').val()
+                let input_value_end = $('[name='+i+'_end]').val()
+                let input_start = $('[name='+i+'_start]')
+                let input_end = $('[name='+i+'_end]')
+                if (input_value_start.length !=0){
+                    timeR = /\d\d:\d\d/;
+                    if(input_value_start.match(timeR)==input_value_start){
+                        if(input_value_end.length!=0){
+                            if(input_value_end.match(timeR)==input_value_end){
+
+                            }
+                            else{
+                                alert('sxal_syntax_end')
+                            }
+
+
+                        }
+                        else{
+                            alert('grel_ekrord@')
+                        
+                        }
+
+                    }
+                    else{
+                        alert('sxal_syntax_start')
+                        input_start.css('backgroundColor', "red")
+                    }
+
+
+                }
+                else{
+                    if(input_value_end.length!=0){
+                        alert('grel_start_@')
+
+                    }
+
+                }
+            }
+            timeRE = /\d\d:\d\d/
+            phoneRE = /^[0-9\-\+]{9,15}$/
+            urlRE = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/
+            form = document.getElementById("myForm")
+            phoneInput = form.getElementsByClassName("phone")[0]
+            urlInput = form.getElementsByClassName("url")[0]
+            if(form.getElementsByClassName("tagify--empty").length == 1)
+            {
+                alert("please input some languages")
+                return false
+            }
+            times = form.getElementsByClassName("dayinput")
+            for(i of times)
+            {
+                if(i.value.match(timeRE) != i.value && i.value != "")
+                {
+                    alert("time inputs must be in XX:XX format")
+                    return false
+                }
+            }
+            if(phoneInput.value.match(phoneRE) != phoneInput.value)
+            {
+                alert("incorrect phone number input")
+                return false
+            }
+            if(urlInput.value.match(urlRE) != urlInput.value)
+            {
+                /*alert("incorrect url input")*/
+                /*return false*/
+            }
+        }
+
+    </script>
+    <script>
+        function copytext(){
+            var clipboard= document.getElementById("copyteacher");
+            clipboard.select();
+            clipboard.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            let copied=document.getElementById('copied');
+            // copied.setAttribute('title','text copied')
+            
+            
+        }
+    </script>
+    <style>
+        img:hover {
+            cursor: pointer;
+        }
+        *{
+            font-family: Open Sans;
+        }
+        .input {
+            height: 48px;
+        }
+        .tagify__input {
+            margin-top: 11px;
+        }
+        .workinghours{
+            margin-left: 22px;
+        }
+    </style>
+    <script>
+            $('.fi1').change(function(){
+        var fileExtension = ['jpeg', 'jpg', 'png', 'pdf'];
+        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+            alert("Only formats are allowed : "+fileExtension.join(', '));
+        }
+        else{
+            $('.inpfile1').css('color','green')
+            $('.inpfile1').css('font-style','normal')
+            $('.inpfile1').val($('.fi1').val())
+        }        
+    })
+    </script>
+    <script>
+     
+
+        function valid(month_name){
+            let input_value= $('[name='+month_name+']').val()
+            if (input_value.length==2){
+                if(input_value > 24 || input_value < 0){
+                    input_value = 24
+                }
+                $('[name='+month_name+']').val(input_value+=":")
+            }
+            var t = input_value.split(':');
+            if(t[1] > 59){
+                t[1] = "59";
+                input_value =  "00";
+                console.log(t[1])
+                time = t[0]+':'+t[1]
+                $('[name='+month_name+']').val(time)
+                
+
+            }
+
+
+        }
+
+        // FILE SIZE
+        // function returnFileSize(number) {
+        //     if(number < 1024) {
+        //         return number + '  bytes';
+        //     } else if(number >= 1024 && number < 1048576) {
+        //         return (number/1024).toFixed(1) + '  KB';
+        //     } else if(number >= 1048576) {
+        //         return (number/1048576).toFixed(1) + '  MB';
+        //     }
+        // }
+
+        // $('.fileinput').bind('change', function() {
+        //     console.log(returnFileSize(this.files[0].size));
+        //     // alert('This file size is: ' + this.files[0].size/1024/1024 + "  MB");
+        // });
+
+        $('.fileinput').bind('change', function() {
+            console.log('This file size is: ' + this.files[0].size/1024/1024 + "  MB");
+            if(this.files[0].size/1024/1024 > 10){
+                alert("This file size is too long, please choose another file.")
+            }
+        });
+
+
+    </script>
+
+    <script>
+        function val_time(){
+
+
+            timeR = /\d\d:\d\d/;
+            form = document.getElementById("myForm")
+            time = form.getElementsByClassName("dayinput")
+
+            for(i of time)
+            {
+                if(i.value.match(timeR) != i.value && i.value != "")
+                {
+
+                    alert("time inputs must be in XX:XX format");
+                    i.value = ""
+                    return false
+                }
+            }
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,193 @@
+{% extends "adminUI/header.html" %}
+{% block title %}Document{% endblock %}
+    {% block head1 %}
+    {% load static %}
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+     <link rel="stylesheet" href="{% static 'css/add_grup.css' %}" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+    {% endblock %}
+{% block body %}
+<body>
+    <div class="main">
+
+        <div style="margin-top: 64px;margin-left: 350px;">
+            <div id = addtext>
+                <span><a href="/groups/"><i class="fa fa-chevron-left"></i></a> {% if group  %}  Edit Group {{group.name}}{% endif %}{% if not group  %} Add New Group{% endif %}</span>
+                <hr>
+            </div>
+            <div >
+                <div id="users" >
+                    <form id="add_group_form"  {% if group  %}  aaction="/groups/{{group.id}}/" {{group.name}}{% endif %} {% if not group  %}  action="/groups/" {% endif %} method="POST" onsubmit = "return validate()" >
+                        {% csrf_token %}
+                        <label style="width: 200px;">Group Name</label><br>
+                        <input class = "input" required type = "text" name="groupName" value="{{group.name}}"><br><br>
+
+                        <label class = labeldate>Start</label>
+                        <label class = labeldate1>End</label><br>
+                        <input id=data_start class = "inputdate1" required type = "date" name = "start" value="{{group.start}}">
+                        <input id=data_end class = "inputdate2" required type = "date" name = "end"  value="{{group.end}}"><br><br>
+
+
+
+                            {% if group  %}  
+                            
+                            <label style="width: 400px !important;">Current language</label><br>
+                            <select name = language class = input style="width: 659px">
+                                <option value= '{{group.language.id}}'>
+                                    {{group.language}}
+                                </option>
+    
+           
+                                {% for i in Languages %}
+                                {% if  group.language.id != i.id %}
+                                <option value= '{{i.id}}'>
+                                    {{i.name1}}
+                                </option>
+                                {% endif %}
+                                {% endfor %}
+    
+                            </select><br><br>
+    
+                            <label>Assign Teacher</label><br>
+                            <select name = teacher class = input style="width: 659px">
+                                <option value= {{group.teacher.id}}>
+                                    {{group.teacher.first_name}} {{group.teacher.last_name}}
+                                </option>
+                                {% for i in Teachers %}
+                                    {% if group.teacher.id != i.id %}
+                                    <option value= {{i.id}}>
+                                        {{i.first_name}} {{i.last_name}}
+                                    </option>
+                                    {% endif %}
+                                {% endfor %}
+                            
+                            {% endif %}
+                            
+                            
+                            {% if not group  %}
+                            
+                            <label>Current language</label><br>
+                            <select name = language class = input style="width: 659px">
+                                <option value= '{{group.language}}'>
+                                    {{group.language}}
+                                </option>
+    
+                                {% for i in Languages %}
+                                {% if  group.language.id != i.id %}
+                                <option value= '{{i.id}}'>
+                                    {{i.name1}}
+                                </option>
+                                {% endif %}
+                                {% endfor %}
+    
+                            </select><br><br>
+    
+                            <label>Assign Teacher</label><br>
+                            <select name = teacher class = input style="width: 659px">
+                                {% for i in Teachers %}
+                                <option value= {{i.id}}>
+                                    {{i.first_name}} {{i.last_name}}
+                                </option>
+                                {% endfor %}
+                            
+                            {% endif %}
+                        </select><br><br>
+                        {% if group  %}  <input type="text" name='edit_group' value="0" hidden > {% endif %}
+
+                        <input class = "inputsubmit" type="submit" name = "add" value=" {% if group  %}  Edit {% endif %}{% if not group  %} Add {% endif %}"  style="width: 170px; height: 42px;">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://use.fontawesome.com/5134f0e799.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+    <style>
+        label {
+            width:200px;
+            font-family: open sans;
+        }
+        .labeldate {
+            font-family: open sans;
+        }
+        .labeldate1{
+            font-family: open sans;
+        }
+        .input {
+            height: 48px;
+        }
+        .inputdate1,.inputdate2 {
+            height: 48px;
+        }
+        .labeldate1 {
+            margin-left: 300px;
+        }
+        .inputdate2 {
+            margin-left: 39px;
+        }
+    </style>
+
+    <script>
+                // validations
+        $(document).ready(function() {
+            $("#add_group_form").validate({
+                rules: {
+                    name : {
+                        required: true,
+                        minlength: 3
+                    },
+                    // start :{
+                    //     required: true,
+                    //     date: true,
+                    //     dateISO: true,
+                    // },
+                    end :{
+                        required: true,
+                        dateGreaterThan: $("#inputdate1").val(),
+                        date: true,
+                        dateISO: true
+                    },
+                },
+                messages : {
+                    name: {
+                        minlength: "Name should be at least 3 characters"   
+                    },
+                }
+            });
+        });
+
+
+        // jQuery.validator.addMethod("dateGreaterThan",
+        //     function(value, element, params) {
+        //     if ($("#inputdate1").val() === "")
+        //         return true;
+
+        //     return isNaN($("#inputdate1").val()) && isNaN($("#inputdate1").val())
+        //             || (Number(value) > Number($(params).val()));
+        //             }, 'Must be greater than {0}.');
+
+
+        function validate(){
+            // console.log($('#add_group_form')[0][3])
+            let  data_start = $('#data_start').val()
+            let  data_end = $('#data_end').val()
+            // console.log(data_start)
+            if (data_start<data_end){
+                console.log('chishta');
+                return true
+            }
+            else{
+                console.log('sxala');
+                $('#data_end').val(data_start);
+                return false
+            }
+
+            
+        }
+
+    </script>
+{% endblock %}

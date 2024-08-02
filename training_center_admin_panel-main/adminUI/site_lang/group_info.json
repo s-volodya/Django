@@ -1,0 +1,113 @@
+{
+    "en":{
+            "title":"Groups",
+            "gr":"Group",
+          "teacher":"Teacher",
+          "members_studnet":"Members",
+          "more":{
+         "w_sch":"Schedule",
+         "week":"Week",
+         
+          "mon":"Monday",
+          "tue": "Tuesday",
+          "wed":"Wednesday",
+          "thr":"Thursday",
+          "fri":"Friday",
+          "sat":"Saturday",
+          "sun":"Sunday",
+              "st":"Start",  
+              "end":"End",
+              "room":"Room",
+              "btns":{
+                  "upd":"Update Schedule",
+                  "view":"View Schedule"
+              }
+          },
+          "cont_date":"Contract Date",
+          "ls_start_date": "Lesson Start Date",
+          "sch_les":"Scheduled Lessons",
+          "done_les":"Done Lessons",
+          "cal_view":"Calendar View",
+          "title_table":"Table View",
+          "status_table":"Status",
+          "data_table":"Date",
+          "web_table":"Category",
+          "lesonos_table":"Lessons"
+          
+    },
+    "ru":	{
+            "title":"Группы",
+            "gr":"Групп",
+          "teacher":"Преподаватель",
+          "members_studnet":"Члены",
+          "more":{
+              "w_sch":"Расписание",
+              "week":"Неделя",
+          "mon":"Понедельник",
+          "tue":"Вторник",
+          "wed":"Среда",
+          "thr":"Чтверг",
+          "fri":"Пятница",
+          "sat":"Суббота",
+          "sun":"Воскресение",  
+              "st":"Начало",
+              "end":"Конец",
+              "room":"Комната",
+              "btns":{
+                  "upd":"Обновить расписание",
+                  "view":"Видеть Расписание"
+              }
+          },
+          "cont_date":"Дата контракта",
+          "ls_start_date": "Дата начала урока",
+          "sch_les":"Запланированные уроки",
+          "done_les":"Сделанные уроки",
+          "cal_view":"Просмотр календаря",
+          "title_table":"Просмотр таблицы",
+          "status_table":"Статус",
+          "data_table":"Дата",
+          "web_table":"Категория",
+          "lesonos_table":"Уроки"
+      },
+    "arm":{	
+        "title":"Խմբեր",
+            "gr":"Խումբ",
+          "teacher":"Ուսուցիչ",
+          "members_studnet":"Անդամներ",
+          "more":{
+              "w_sch":"Ժամանակացույց",
+              "week":"Շաբաթվա օրեր",
+          "mon":"Երկուշաբթի",
+          "tue": "Երեքշաբթի",
+          "wed":"Չորեքշաբթի",
+          "thr":"Հինգշաբթի",
+          "fri":"Ուրբաթ",
+          "sat":"Շաբաթ",
+          "sun":"Կիրակի",  
+              "st":"Սկիզբ",
+              "end":"Ավարտ",
+              "room":"Դասասենյակ",
+              "btns":{
+                  "upd":"Թարմացնել ժամանակացույցը",
+                  "view":"Դիտել ժամանակացույցը"
+              }
+
+          },
+          "cont_date":"Պայմանագրի ամսաթիվը",
+          "ls_start_date": "Դասի մեկնարկի ամսաթիվը",
+          "sch_les":"Պլանավորված դասեր",
+          "done_les":"Արված դասեր",
+          "cal_view":"Օրացույց",
+          "title_table":"Դիտել աղյուսակով",
+          "status_table":"Կարգավիճակ",
+          "data_table":"Ամսաթիվ",
+          "web_table":"Կատեգորիա",
+          "lesonos_table":"Դասեր"
+    }
+  }
+  
+  
+
+  
+
+  

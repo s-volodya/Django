@@ -1,0 +1,75 @@
+{% extends "adminUI/header.html" %}
+ {% block title %}Admin Profile{% endblock %}
+{% block head1 %} 
+
+{% load static %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'css/admin_profile_edit.css' %}">
+{% endblock %}
+
+{% block body %}
+
+{% load static %}
+
+<div id="admin_profile">
+   <div class="profile">Profile</div>
+   <div id="admin_profile_edit">
+
+   <div class="admin_profile_left_section">
+   <div class="admin_picture"><img width="100%" src=" {{user.pictures_teacher.url}}" ></div>
+   <form action="POST" onsubmit="return submit_admin_profile()" enctype="multipart/form-data">
+      <div class="admin_profile_name">
+         <label>{{table.name}}</label><br>
+         <label class="label_admin_profile label_admin_name">{{user.first_name}}</label><br>
+         <input class="input input_admin_profile input_admin_name" name = first_name type="text" placeholder="name" required><br><br>
+
+         <label>{{table.surname}}</label><br>
+         <label class="label_admin_profile label_admin_surname">{{user.last_name}}</label><br>
+         <input name = last_name class="input input_admin_profile input_admin_surname"type="text" placeholder="surname" required><br><br>
+
+      </div>
+
+   <label>{{table.email}}</label><br>
+    <label class="label_admin_profile label_admin_email" >{{user.email}}</label><br>
+    <input name = email class = "input input_admin_profile input_admin_email" type="text" placeholder="Example@gmail.com" required><br><br>
+
+    <label>Company Name</label><br>
+    <label class="label_admin_profile label_admin_companyname">{{user.company_name}}</label><br>
+    <input class="input  input_admin_profile input_admin_companyname " name = first_company_name type="text" placeholder="company_name" required><br><br>
+
+    <label>Phone Number</label><br>
+    <label class="label_admin_profile label_admin_number">{{user.phone_number}}</label><br>
+    <input name = phone_number class = "input phone input_admin_profile input_admin_number" type="number" placeholder="+374 93606060" required><br><br>
+
+    
+    <label>Company logo</label><br>
+    <label class="label_admin_profile" id='logo_company'><img src="{{user.logo.url}}" alt=""></label><br>
+    <input class="input  input_admin_profile" name = first_company_logo type="file" placeholder="company_logo" required id='file_company_logo'><br><br>
+
+</form> 
+
+<button id="admin_profie_save" class="edit">Edit</button>
+</div>
+<div class="admin_profile_right_section">
+   <div class="free">FREE</div>
+   <div class="payment">
+      <div><div style="font-size: 55px !important; text-align: center;width: 200px;">$ 0</div><div>LIFETIME</div></div>
+   </div>
+   <div class="lorem">
+      <p>- Lorem Ipsum</p>
+      <p>- Lorem Ipsum</p>
+      <p>- Lorem Ipsum</p>
+      <p>- Lorem Ipsum</p>
+      <p>- Lorem Ipsum</p>
+   </div>
+   <button class="change_plan">Change Plan</button>
+</div>
+</div>
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="{% static 'js/admin_profile.js' %}"></script>
+{% endblock %}

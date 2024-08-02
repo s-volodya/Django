@@ -1,0 +1,78 @@
+
+        .input{
+            width: 644px;
+            height: 36px;
+            background: #FFFFFF no-repeat padding-box;
+            border: 1px solid #D3D3D3;
+            border-radius: 4px;
+            padding-left: 10px;
+            opacity: 1;
+        }
+        label{
+            width: 41px;
+            height: 19px;
+            text-align: left;
+            font-size: 14px;
+            font-family: Semibold Open Sans;
+            letter-spacing: 0px;
+            color: #424242;
+            opacity: 1;
+        }
+        .labeldate{
+            width: 41px;
+            height: 19px;
+            text-align: left;
+            font-size: 14px;
+            font-family: Semibold Open Sans;
+            letter-spacing: 0px;
+            color: #424242;
+            opacity: 1;
+        }
+        .labeldate1{
+            margin-left: 288px;
+            width: 41px;
+            height: 19px;
+            text-align: left;
+            font-size: 14px;
+            font-family: Semibold Open Sans;
+            letter-spacing: 0px;
+            color: #424242;
+            opacity: 1;
+        }
+        .inputsubmit{
+            width: 423px;
+            height: 36px;
+            background: #532057 no-repeat padding-box;
+            border: 1px solid #D3D3D3;
+            border-radius: 4px;
+            padding-left: 10px;
+            opacity: 1;
+            color: white;
+        }
+        .inputdate1{
+            width: 300px;
+            height: 36px;
+            background: #FFFFFF no-repeat padding-box;
+            border: 1px solid #D3D3D3;
+            border-radius: 4px;
+            padding-left: 10px;
+            opacity: 1;
+        }
+        .inputdate2{
+            width: 300px;
+            height: 36px;
+            background: #FFFFFF no-repeat padding-box;
+            border: 1px solid #D3D3D3;
+            border-radius: 4px;
+            padding-left: 10px;
+            opacity: 1;
+        }
+                #addtext{
+            margin-top: 108px;
+            text-align: left;
+            font-size: 20px;
+            font-family: 'Open Sans', sans-serif;
+            letter-spacing: 0px;
+            color: #424242;
+            opacity: 1;
+        }

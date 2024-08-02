@@ -1,0 +1,90 @@
+{% extends "adminUI/header.html" %}
+{% block title %}Student info{% endblock %}
+{% block head1 %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/student_info.css' %}" >
+<link rel="stylesheet" href="{% static 'css/teacher_info.css' %}" >
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+    *{
+	font-size: 16px !important;
+}
+</style>
+{% endblock %}
+
+{% block body %}
+{% load static %}
+
+<div class="center">
+    <div class = "left-part">
+        <div class="flex">
+            <p class = "arrow-left"><a href="/teachers/">‹</a></p>
+            <!-- <img src="{% static 'media/photos/'%}{{students.pictures_studnet}}" class="img">  -->
+            <p class = "name-surname"> {{teacher_info.last_name}} {{teacher_info.first_name}} </p>
+        </div>
+
+        <div class="left-content" style="margin-left: 520px;">
+            <div class="line-first">{{group.name}} <span class = "t-name">{{teacher.last_name}} {{teacher.first_name}} </span></div>
+            <div class="line-second">Contact Info</div>
+            <div class="line-third">
+                <div class="left-part-second">Phone number</div>
+                <div class="left-part-second">{{teacher_info.phone_number}}</div>
+            </div>
+            <div class="line-second">Personal info</div>
+
+            <div class="line-third">
+                <div class="left-part-second">Languages</div>
+                <div class="left-part-second">{{lang}}</div>
+            </div>
+            <div class="line-third">
+                <div class="left-part-second">Group Teacher</div>
+                <div class="left-part-second">{% for i in group_teacher %} <a href='/groups/{{i.id}}/'> {{i.name}}</a> {% endfor %}</div>
+            </div>
+            <div class="line-third">
+               
+                <div class="left-part-second">                  
+                    <div class="workinghours">
+                        <label>Working hours</label><br>
+                        <button type="button" class="weekbutton">Mon</button>
+                        <button type="button" class="weekbutton">Tue</button>
+                        <button type="button" class="weekbutton">Wed</button>
+                        <button type="button" class="weekbutton">Thr</button>
+                        <button type="button" class="weekbutton">Fri</button>
+                        <button type="button" class="weekbutton">Sat</button>
+                        <button type="button" class="weekbutton">Sun</button><br><br>
+                        <label name = monday_start type="text" class="dayinput"  >{{teacher_info.monday_start}}</label>
+                        <label name = tuesday_start type="text" class="dayinput" >{{teacher_info.tuesday_start}}</label>
+                        <label name = wednesday_start type="text" class="dayinput">{{teacher_info.wednesday_start}}</label>
+                        <label name = thursday_start type="text" class="dayinput">{{teacher_info.thursday_start}}</label>
+                        <label name = friday_start type="text" class="dayinput" >{{teacher_info.friday_start}}</label>
+                        <label name = saturday_start type="text" class="dayinput">{{teacher_info.saturday_start}}</label>
+                        <label name = sunday_start type="text" class="dayinput">{{teacher_info.sunday_start}}</label>
+                        <label name = monday_end type="text" class="dayinput" >{{teacher_info.monday_end}}</label>
+                        <label name = tuesday_end type="text" class="dayinput">{{teacher_info.tuesday_end}}</label>
+                        <label name = wednesday_end type="text" class="dayinput" >{{teacher_info.wednesday_end}}</label>
+                        <label name = thursday_end type="text" class="dayinput">{{teacher_info.thursday_end}}</label>
+                        <label name = friday_end type="text" class="dayinput">{{teacher_info.friday_end}}</label>
+                        <label name = saturday_end type="text" class="dayinput" > {{teacher_info.saturday_end}} </label>
+                        <label name = sunday_end type="text" class="dayinput" >  {{teacher_info.sunday_end}}    </label>                                         
+
+                                                
+
+                    </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+<script type="text/javascript" src="{% static 'js/student_info.js' %}"></script>
+
+{% endblock %}

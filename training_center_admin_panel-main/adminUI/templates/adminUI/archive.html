@@ -1,0 +1,91 @@
+{% extends "adminUI/header.html" %}
+{% block title %}Archive {{archive_select_name}}{% endblock %}
+    {% block head1 %}
+    {% load static %}
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/archive.css' %}" >
+    {% endblock %}
+{% block body %}
+
+<style>
+    #body_table td{
+        max-width: 10% !important;
+        word-break: break-word;
+        text-align: left;
+        min-width: 100px !important;
+    }
+    body{
+        overflow-x: hidden;
+    }
+    @media only screen and ( max-width: 1440px){
+        table{
+        width: 90%;
+        margin-left: -8px;
+        }
+        hr{
+            width: 79%;
+        }
+
+    }
+</style>
+
+        <div id = addtext>
+            <span>{{title}}</span>
+        </div>
+
+
+        <div class="table" id = tabletext style="margin-top: 40px !important;width: 1400px !important;">
+            <hr>
+            <table>
+                <thead>
+                    <tr id=head_tr>
+
+                    </tr>
+                </thead>
+                <tbody id=body_table>
+                   
+
+                </tbody>
+            </table>
+            <form action="/add/" method="POST" style="display: none;">
+                {% csrf_token %}
+                <input type="submit" name = "students" id = "addform">
+            </form>
+            <form action="/edit/" method="POST" style="display: none;">
+                {% csrf_token %}
+                <input type="text" name = "edit" id = "editinput">
+                <input type="submit" name = "students" id = "editform">
+            </form>
+
+        </div>
+    </div>
+    <input type=text value="{{body_table}}" id='beckend_body_table' hidden>
+    <input type=text value="{{head_table}}" id='beckend_body_head' hidden>
+    <input type=text value="{{archive_select_name}}" id='beckend_archive_name' hidden>
+
+    <script src="https://use.fontawesome.com/5134f0e799.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        console.log($('#beckend_body_table').val())
+        $('#body_table').html($('#beckend_body_table').val())
+        $('#head_tr').html($('#beckend_body_head').val())
+        function edit(id){
+            $.ajax({
+          method: "POST",
+          url: "/archive/"+$('#beckend_archive_name').val()+"/",
+          dataType: 'json',
+          data:{'id':id}
+          }).done (function(res){
+            location.reload()
+
+          });
+
+
+        }
+    </script>
+
+
+
+{% endblock %}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+{% extends "adminUI/header.html" %}
+{% block title %}Document{% endblock %}
+    {% block head1 %}
+    {% load static %}
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+     <link rel="stylesheet" href="{% static 'css/grupa_page.css' %}" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+    {% endblock %}
+{% block body %}
+
+<style>
+
+
+    .table div span{
+        font-size: 18px !important;
+    }
+    #users span{
+        margin-right: 1%;
+        height: 50px;
+        width: auto;
+    }
+    #tabletext::-webkit-scrollbar{
+        background-color: transparent;
+    }
+    div.div1.ui-droppable div span{
+        margin-left: 10%;
+        font-size: 20px;
+    }
+    #group_list_id{
+        margin-left: 85%;
+    }
+
+</style>
+<div class="table" id = tabletext style="width: 120% !important; height: auto; max-height: 580px;  overflow-y: scroll;  position: relative;margin-left: 4%;">
+
+        <div style="margin-top: 64px;margin-left: 331px; margin-top: 27px;">
+
+            <div id = addtext style="margin-top: 35px;">
+                <span style="font-size: 22px !important;">{{title}}</span>
+                <a href = "/students/" id="group_list_id"><img src="{% static 'list.svg' %}"></a>
+                <a href = "/groups/" style="margin-left: 0px;"><img src="{% static 'group.svg' %}"></a>
+                <hr>
+                {% if role != 'Teacher' %}
+                <button onclick="add()" id = "add" style="width: auto;" ><i class="fa fa-plus"></i> {{add_button}}</button>
+                {% endif %}
+            </div>
+
+                <span>{{av_info}}</span>
+                <hr>
+
+                {% csrf_token %}
+                {% for i in groups %}
+                    <div class = div1 style="margin-right: 17px; margin-left: -3px;">
+                        <div class = "groupname"  {% if i.name == Individual %} style="background-color: #000B71" {% endif %}  >
+                            <a href="/groups/{{i.id}}/" id='name_group'><span>{{i.name}}</span><br></a>    
+                            {% if role != 'Teacher' %}
+                        <div class='navbar_edit'>          
+                            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                              
+                              
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                  <ul class="navbar-nav mr-auto">
+                                    <li class="nav-item dropdown">
+                                        <a  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> . . .</a>
+                            
+                                 
+                            
+                                
+                                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="#" onclick="edit('{{i.id}}'); return false;">{{more.edit}}</a>
+                                        <a class="dropdown-item" href="#" onclick="del('{{i.id}}'); return false;">{{more.del}}</a>
+                                      </div>
+                                    
+                                    </li>
+
+                                  </ul>
+         
+                                </div>
+                              </nav>
+                            </div>  
+                            {% endif %}
+
+
+
+                        </div>
+                        <form method="POST" action="/groups/{{i.id}}/" hidden>
+                            {%csrf_token%}
+                            <input type="submit" name = "edit"id='edit_grups{{i.id}}'>
+                           
+                        </form>
+                        <div class = div2 id="div{{i.id}}" ondrop="drop(event)" ondragover="allowDrop(event)" style="height: 130px; max-height: 130px;">
+                            
+                            {% for j in students %}
+                                {% if j.group.id == i.id %}
+
+                                {% if role != 'Teacher' %}
+                                     <span id = "drag{{j.id}}" draggable="true" ondragstart="drag(event)" >{{j.first_name}} {{j.last_name}}<br></span>
+                                {% else %}
+                                <span >{{j.first_name}} {{j.last_name}}<br></span>
+                                    
+                                {% endif %}
+
+
+                                   
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+
+            <div style="margin-top:-49px; ">
+                <hr style="position:relative;">
+                <div id="users" ondrop="drop(event)" ondragover="allowDrop(event)" style="display: flex;flex-wrap: wrap; justify-content: flex-start;  padding-top:25px;width: 100%; height: 200px;text-align: left;font-size: 24px;font-family: 'Open Sans', sans-serif;letter-spacing: 0px;color: #424242">
+                    {% for i in studentsWithoutGroup %}
+                            <span id = "drag{{i.id}}" draggable="true" ondragstart="drag(event)" style="background-color:#e8e8e8; padding: 10px; font-size: 80%;" class="changeback">{{i.first_name}} {{i.last_name}} ID: {{i.id}}<br></span><br>
+                    {% endfor %}
+                    <!-- <p>awad</p> -->
+                </div>
+            </div>
+        </div>
+</div>
+
+    <script src="https://use.fontawesome.com/5134f0e799.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script type="text/javascript" src="{% static 'js/grupa_page.js' %}"></script>
+    <script>
+                function del(id)
+        {
+            if (confirm("Delete !")){
+                 $.ajax({
+                 method: "POST",
+                 url: "/groups/"+id+"/",
+                 dataType: 'json',
+                 data:{'id':id,'delete':'ok'},
+                 }).done(function(res){
+                     
+                     location.reload();
+                    
+                 })
+            }
+        }
+        function edit(id){
+     
+            document.getElementById('edit_grups'+id).click()
+        }
+
+        
+    </script>
+{% endblock %}

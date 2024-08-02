@@ -1,0 +1,59 @@
+{
+    "en":{
+            "title":"Rooms",
+          "table":{
+          "room_name":"Room Name",
+          "address": "Address",
+          "seats_nuber":"Number of Seats",
+          "computers":"Computers",
+          "specifications":"Specifications",
+          "comment_room":"Comments",
+          "action":"Actions",
+          "act_btn":{
+              "edit":"Edit",
+              "archive":"Archive"
+          },
+          "add_btn":{
+              "add_room":"Add Room"
+          }
+          }
+    },
+    "ru":{
+        "title":"Комнаты",
+          "table":{
+          "room_name":"Название Комнаты",
+          "address": "Адрес",
+          "seats_nuber":"Количество мест",
+          "computers":"Компьютеры",
+          "specifications":"Характеристики",
+          "comment_room":"Комментарии",
+          "action":"Действия",
+          "act_btn":{
+              "edit":"Редактировать",
+              "archive":"Архивировать"
+          },
+          "add_btn":{
+              "add_room":"Добавить комнату"
+          }
+          }
+      },
+    "arm":{	
+        "title":"Դասասենյակներ",
+          "table":{
+          "room_name":"Դասասենյակի անվանումը",
+          "address": "Հասցե",
+          "seats_nuber":"Նստատեղերի քանակը",
+          "computers":"Համակարգիչներ",
+          "specifications":"Բնութագրություն",
+          "comment_room":"Մեկնաբանություն",
+          "action":"Գործողություն",
+          "act_btn":{
+              "edit":"Խմբագրել",
+              "archive":"Արխիվացնել"
+          },
+          "add_btn":{
+              "add_room":"Ավելացնել դասասենյակ"
+          }
+          }
+    }
+  }

@@ -1,0 +1,349 @@
+{% extends "adminUI/header.html" %} {% block title %}Edit Student{% endblock %} {% block head1 %} {% load static %}
+
+<link rel="stylesheet" href="{% static 'tagify-master/dist/tagify.css' %}">
+<link rel="stylesheet" href="{% static 'css/edit_studnet.css' %}"> {% endblock %} {% block body %} {% load static %}
+
+<style>
+    .input{
+        width: 70%;
+    }
+    .input_phone{
+        width: 63%;
+        padding: 11px;
+    }
+    #passport_pic_id{
+        margin-bottom: -39px;
+    }
+</style>
+
+<div class="main">
+    <p id="maintext" style="margin-top:7%; margin-left:370px; font-family: Open sans;width: 232px;">
+        <a style="cursor: pointer;" href="/students/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                  </svg></a> {{title}}</p>
+    <hr style="border:1px solid #eee; width: 1181px; margin-left: 370px;">
+
+    <form method="POST" enctype="multipart/form-data" style="margin-left: 347px;">
+        {% csrf_token %}
+        <label>{{name}}</label><br>
+        <input value="{{user.first_name}}" name=first_name class=input type="text" placeholder="Name"><br><br>
+
+        <label>{{surname}}</label><br>
+        <input value="{{user.last_name}}" name=last_name class=input type="text" placeholder="Surname"><br><br>
+
+        <label>{{phone_number}}</label><br>
+        <select name=phone_number_code class=phsel>
+                    <option value="+374">+374</option>
+                </select>
+        <input value="{{user.phone_number}}" name="phone_number input"class=input_phone type="text" placeholder="Phone Number"><br><br>
+
+        <label>{{email}}</label><br>
+        <input value="{{user.email}}" name=email class=input type="text" placeholder="example@gmail.com"><br><br>
+
+        <label>{{date_of_birth}}</label><br>
+        <input value="{{user.date_of_birth}}" name="date_of_birth" class=input type="date"><br><br>
+
+        <label>{{contract_number}}</label><br>
+        <input value="{{user.contract_number}}" name=contract_number class=input type="text" placeholder="Contract Number "><br><br>
+
+        <label>{{passport_type}}</label><br>
+        <select name="passport_type" class= "input" >
+                    {% if user.passport_type == "Passport" %}
+                    <option selected>
+                    Passport
+                    </option>
+                    {% endif %}
+                    {% if user.passport_type != "Passport" %}
+                    <option>
+                    Passport
+                    </option>
+                    {% endif %}
+                    {% if user.passport_type == "Id Card" %}
+                    <option selected>
+                    Id Card
+                    </option>
+                    {% endif %}
+                    {% if user.passport_type != "Id Card" %}
+                    <option>
+                    Id Card
+                    </option>
+                    {% endif %}
+                </select><br><br>             
+                <label>{{passport_number}}</label><br>
+                <input name = passport_number class = input type="text" value="{{user.passport_number}}"><br><br>
+
+                <label>{{address}}</label><br>
+                <input name = address class = input type="text" value="{{user.address}}"><br><br>
+                
+           
+                <label>{{language}}</label><br>
+                <input class = "input tags" name="tags" placeholder="Languages" style=" display: inline-block;" value="{{studnet_language}}"><br>
+                <label>{{contract_start_date}}</label>
+                <label class = labeldate>{{contract_end_date}}</label><br>
+                
+                <input name = contract_start class = inputdate1 type="date" value="{{user.contract_start}}">
+                <input name = contract_end class = inputdate2 type="date" value="{{user.contract_end}}"><br><br>
+
+                
+                <label>{{contract_monthly_price}}</label>
+                <label class = labeldate style="margin-left: 212px">{{sale_price}}</label>
+                <label class = labeldate style="margin-left: 212px">{{price_for_one_lesson}}</label><br>
+                <input name = priceM class = input type="text" style="width: 317px" value="{{user.priceM}}"  id='price_m'>
+                <input name = price_sale class = input type="text" style="width: 317px;margin-left: 12px" id='price_sale' value="{{user.price_sale}}">
+                <input name = price class = input type="text" style="width: 317px; margin-left: 10px" value="{{user.price}}" id='price'><br><br>
+
+
+
+            
+
+
+
+                
+                <label>{{upload_passport_picture}}</label><br>
+                <input type="text" readonly class="input inpfile1" style="width: 488px;" placeholder="Select jpg,png or pdf"   value="{{user.passportPic}}">
+                <input class = 'fileinput fi1' type="file" id = "inp" placeholder="Select png, jpg or pdf"  style="width: 488px" name="image_">
+                <label for = "inp"><div class="fileinputbutton"><img class = "fileinputbuttonimg" src="{% static 'component.png' %}"><p class = "fileinputbuttontext">{{browse_button}}</p></div></label><br><br><br><br>
+
+                <label>{{upload_picture}}</label><br>
+                <input type="text" readonly class="input inpfile2" style="width:488px ;" placeholder="Select jpg,png or pdf"  value="{{user.pictures_studnet}}">
+                <input class = 'fileinput fi2' type="file" id = "inp1" placeholder="Select png, jpg or pdf" style="width: 488px" name="image_studenta">
+                <label for = "inp1"><div class="fileinputbutton"><img class = "fileinputbuttonimg" src="{% static 'component.png' %}"><p class = "fileinputbuttontext">{{browse_button}} </p></div></label><br><br><br><br>
+                    
+
+ 
+                
+               <br>
+                
+              
+                <button class = "inputsubmit" type="submit" name="studentsedit" value="{{user.id}}">{{add_button}}</button><br><br>
+
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick="change_language()">
+                    Launch demo modal
+                  </button>
+                  
+                  <!-- Modal -->
+                  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" id='language_change'>
+                            
+                
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary"  data-dismiss="modal">Save changes</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                
+
+
+
+
+
+
+                <input  id = "lang" type="hidden" value = "{{Languages}}">
+                <input type="hidden" id='student_lang' value="{{studnet_language}}" >
+                <input  id='sale_price_month' type='hidden' name='price_month_sale' value="{{user.priceM_sale}}">
+            </form>
+        </div>
+    
+
+       
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script src="{% static 'tagify-master/dist/tagify.min.js' %}"></script>
+<script src="{% static 'tagify-master/dist/jQuery.tagify.min.js' %}"></script>
+<script src="https://use.fontawesome.com/5134f0e799.js"></script>
+<script>
+    var lang = document.getElementById("lang").value;
+    var lang_studnet = document.getElementById("student_lang").value;
+
+
+
+    lang = lang.split("")
+    let index = lang.indexOf("'")
+    while (index > -1) {
+        index = lang.indexOf("'")
+        lang.splice(index, 1);
+    }
+    lang.splice(0, 1)
+    lang = lang.join('')
+    lang = lang.split(", ")
+
+    $('[name = tags]').tagify({
+        duplicates: false,
+        enforceWhitelist: true,
+        whitelist: lang
+    });
+
+
+    function readFile() {
+
+        if (this.files && this.files[0]) {
+
+            var FR = new FileReader();
+
+            FR.addEventListener("load", function(e) {
+                document.getElementById("file").value = e.target.result;
+            });
+
+            FR.readAsDataURL(this.files[0]);
+        }
+
+    }
+    document.getElementById("inp").addEventListener("change", readFile);
+
+    function validate() {
+        timeRE = /\d\d:\d\d/
+        phoneRE = /^[0-9]{6,12}$/
+        form = document.getElementById("myForm")
+        phoneInput = form.getElementByClassName("phone")[0]
+        if (phoneInput.value.match != phoneInput.value) {
+            alert("invalid phone number")
+            return false
+        }
+    }
+
+    $('#price_m').on('keyup', function() {
+        var $this = $(this),
+            val = $this.val();
+        var price_value = $('#price_sale').val()
+        $('#price').val(val / 12)
+        if ($('#price_sale').val().length != 0 && $('#price_sale').val() != 0) {
+            var sale_price = price_value * val / 100
+            sale_price = val - sale_price
+            $('#sale_price_month').val(sale_price)
+        } else {
+            $('#sale_price_month').val(val)
+        }
+    });
+
+    $('#price_sale').on('keyup', function() {
+        var $this = $(this),
+            val = $this.val();
+        var price_value = $('#price_m').val()
+        var sale_price = price_value * val / 100
+        sale_price = price_value - sale_price
+        $('#price').val(sale_price / 12)
+        $('#sale_price_month').val(sale_price)
+
+    });
+
+    function change_language(){
+    let lang_change =   $('[name = tags]').val()
+    let change_input_select = []
+    lang_change = lang_change.split('"value":').splice(1)
+    console.log(lang_change)
+    for (let i=0 ;i<lang_change.length;i++){
+        console.log(lang_change[i].split('"')[1])
+        change_input_select.push(lang_change[i].split('"')[1])
+       
+    }
+    $("#language_change").html('<input class = "tags" name="tags_change_select" placeholder="{{language}}" value="{{language_last_change}}"><br>')
+
+    $('[name = tags_change_select]').tagify({duplicates: false, enforceWhitelist: true, whitelist : change_input_select});
+    console.log(change_input_select,'areci')
+
+
+
+}
+
+</script>
+<style>
+    * {
+        font-family: Open sans;
+        font-size: 14px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.36;
+        letter-spacing: normal;
+    }
+
+    
+    label {
+        color: #424242;
+    }
+    
+    .input {
+        height: 48px;
+    }
+    
+    .tagify__input {
+        margin-top: 10px;
+    }
+    
+    .inputdate1,
+    .inputdate2 {
+        height: 48px;
+        width: 200px;
+    }
+    
+    .labeldate {
+        margin-left: 78px;
+    }
+    
+    .fileinputbutton {
+        margin-left: -77px;
+        margin-top: -25px;
+    }
+    
+    .inpfile1,
+    .inpfile2 {
+        font-style: italic;
+    }
+    
+    .inputsubmit {
+        margin-left: 70px;
+        width: 178px;
+        height: 41px;
+        background: #532057 no-repeat padding-box;
+        border: 1px solid #D3D3D3;
+        border-radius: 4px;
+        padding-left: 10px;
+        opacity: 1;
+        color: white;
+    }
+</style>
+<script>
+    //    let fileval=$('.inpfile1').val()
+    //    let fileval2=$('.inpfile2').val()
+    //    if($('.fi1').val!=""){
+    //        $('inpfile1').val(1)
+    //    }
+    $('.fi1').change(function() {
+        var fileExtension = ['jpeg', 'jpg', 'png', 'pdf'];
+        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+            alert("Only formats are allowed : " + fileExtension.join(', '));
+        } else {
+            $('.inpfile1').css('color', 'green')
+            $('.inpfile1').css('font-style', 'normal')
+            $('.inpfile1').val($('.fi1').val())
+        }
+    })
+    $('.fi2').change(function() {
+        var fileExtension1 = ['jpeg', 'jpg', 'png', 'pdf'];
+        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension1) == -1) {
+            alert("Only formats are allowed : " + fileExtension1.join(', '));
+        } else {
+            $('.inpfile2').css('color', 'green')
+            $('.inpfile2').css('font-style', 'normal')
+            $('.inpfile2').val($('.fi2').val())
+        }
+    })
+</script>
+
+
+
+
+{% endblock %}

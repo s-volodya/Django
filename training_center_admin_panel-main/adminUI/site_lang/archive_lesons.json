@@ -1,0 +1,41 @@
+{
+    "en":{
+            "title":"Archive Details:Lessons",
+          "table":{
+          "lesson_name":"Lesson Name",
+          "desc": "Description",
+          "file": "File",
+          "rel_comp": "Realted Component",
+          "action":"Action",
+          "act_btn":{
+              "restore":"Restore"
+          }
+          }
+    },
+    "ru":
+      {"title":"Детали архива: Урокы",
+      "table":{
+          "lesson_name":"Название урока",
+          "desc": "Описание",
+          "file": "Файл",
+          "rel_comp": "Связанный компонент",
+          "action":"Действие",
+          "act_btn":{
+              "restore":"Восстановить"
+          }
+          }
+      },
+    "arm":{	
+        "title":"Արխիվի մանրամասներ․ Դասեր",
+      "table":{
+          "lesson_name":"Դասի անվանումը",
+          "desc": "Նկարագրություն",
+          "file": "Ֆայլ",
+          "rel_comp": "Փոխկապակցված բաղադրիչ",
+          "action":"Գործողություն",
+          "act_btn":{
+              "restore":"Վերականգնել"
+          }
+          }
+    }
+  }

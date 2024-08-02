@@ -1,0 +1,39 @@
+{
+    "en":{
+            "title":"Add Rooms",
+          "room_name":"Room Name",
+          "address": "Address",
+          "seats_nuber":"Number of Seats",
+          "computers":"Computers",
+          "specifications":"Specifications",
+          "comment_room":"Comments",
+          "add_btn":{
+              "add_room":"Add"
+          }
+    },
+    "ru":{
+        "title":"Добавить Комнаты",
+          "room_name":"Название Комнаты",
+          "address": "Адрес",
+          "seats_nuber":"Количество мест",
+          "computers":"Компьютеры",
+          "specifications":"Характеристики",
+          "comment_room":"Комментарии",
+          "add_btn":{
+              "add_room":"Добавить"
+         
+          }
+      },
+    "arm":{	
+        "title":"Ավելացնել նոր Դասասենյակ",
+          "room_name":"Դասասենյակի անվանումը",
+          "address": "Հասցե",
+          "seats_nuber":"Նստատեղերի քանակը",
+          "computers":"Համակարգիչներ",
+          "specifications":"Բնութագրություն",
+          "comment_room":"Մեկնաբանություն",
+          "add_btn":{
+              "add_room":"Ավելացնել"
+          }
+    }
+  }

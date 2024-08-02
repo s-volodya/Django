@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static '/logo/logo(admin).svg' %}" type="image/x-icon">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}"> 
+
+</head>
+<body style="background-image: url(../../../static/img/bg_working@3x.jpg);
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;">
+    {% load static %}
+    <form class="box" method="POST" style="background: white; width: 484px; height: 440px; border-radius: 10px;">
+        {% csrf_token %}
+        <p style="  height: 43px;
+        text-align: center;
+        font-family: 'OpenSans',sans-serif;
+        font-size: 40px;
+        font-weight: bolder;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 0.5;
+        letter-spacing: normal;
+        color: #202020;" >LOGIN</p>
+        <label for="user" class="username">Username</label><br>
+        <input type="email" name="email" placeholder="Username" id="user"><br><br><br>
+        <label for="pass" class="Password">Password</label><br>
+        <input type="password" name="password" placeholder="Password" id="pass" style="margin-top: 6px;">
+        <input type="submit" value="Login" class="logIn">
+     
+    </form>
+
+
+
+</body>
+</html>

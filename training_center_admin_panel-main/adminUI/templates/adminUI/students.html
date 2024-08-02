@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+{% extends "adminUI/header.html" %}
+{% block title %}Students{% endblock %}
+    {% block head1 %}
+    {% load static %}
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+     <link rel="stylesheet" href="{% static 'css/students.css' %}" >
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+    {% endblock %}
+{% block body %}
+<style>
+
+    
+    body{
+        /* opacity: 0.5; */
+        /* position: relative; */
+        z-index: 0;
+        overflow-x:hidden;
+        /* filter: opacity(25%); */
+        /* filter: alpha(opacity=60); */
+        /* background-color: rgba(0, 0, 0, 0.57); */
+    }
+    .students_info_div{
+            width: 20%;
+            height: 100px;
+            background-color: #ffffff;
+            margin-left: 30%;
+            margin-top: -150px;
+            /* box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16); */
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 5px;
+            /* position: absolute; */
+        }
+        .students_info_div div{
+            display: flex;
+            justify-content: space-between;
+        }
+        .students_info_div div a{
+            padding: 10px 0 10px 30px;
+        }
+    .students_info_span{
+        display: none;
+        width: 70%;
+        height: 50%;
+        padding: 5px 10px;
+        font-family: OpenSans;
+        font-size: 18px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: left;
+        color: var(--greyish-brown);
+    }
+        .students_info_btn_ok{
+            float: right;
+            width: 20%;
+            height: 40px;
+            border-radius: 4px;
+           background-color: #2586d1;
+           outline: none;
+           border: none;
+           border-color: #2586d1;
+           color: white;
+           margin-right: 10px;
+           margin-top: -10px;
+        }
+        .students_info_btn_ok:active{
+            border: none;
+            outline: none;
+        }
+    .student_helper_container{
+        width: 115%; 
+        height: 100px;
+        opacity: 700000;
+        margin-top: 50px;
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.57);
+        /* display: flex; */
+        margin-top: -100px;
+        height: 800px;
+
+    }
+        /* #add_student_helper div {
+            width: 84% !important;
+            margin-top: 64px !important;
+            margin-left: 43% !important;             
+            }
+
+
+        .students_info_div{
+            margin-top: 210px !important;
+            margin-left: 63% !important;  
+        }
+
+        .students_info_div div a img{
+            margin-top: -87px !important;
+            margin-left: -488% !important;  
+        } */
+
+
+  
+
+</style>
+
+
+    <!-- HELP -->
+<div id=helper_text>
+
+</div>
+
+
+
+    <div id = addtext>
+        <div id ='header_studnet' style="width:117% !important ">
+        <span>{{title}}</span>
+        <a href = "/students/" style="margin-left: 85%;"><img src="{% static 'list.svg' %}"></a>
+        <a href = "/groups/" style="margin-left: 0px;"><img id="group_students" src="{% static 'group.svg' %}"></a>
+        {% if role != 'Teacher' %}
+        <hr style="margin-top: 9px; border:1px solid #d3d3d3; width: 98% !important; margin-left: 0px; margin-bottom: -23px;">
+        <button  onclick="add()"  id = "add" style="float:left;  padding: 0 20px !important;height:45px"><i class="fa fa-plus"></i> {{add_button}}</button>
+        {% endif %}
+    </div>
+    </div>
+
+
+    <div class="table" id = tabletext>
+        
+        <table class="students_tabletext_table" id="students_tabletext_table_id">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>{{table.name}}</th>
+                    <th>{{table.surname}}</th>
+                    <th>{{table.phone_number}}</th>
+                    <th>{{table.email}}</th>
+                    <th>{{table.current_language}}</th>
+                    {% if role != 'Teacher' %}
+                    <th>{{table.monthly_fee}}</th>
+                    {% endif %}
+               
+                    <th>{{table.view}}</th>
+                   
+                    {% if role != 'Teacher' %}
+                    <th>{{table.action}}</th>
+                    {% endif %}
+                </tr>
+                <style>
+                tbody tr:nth-child(odd)
+                {       
+                    background:white;
+                }   
+                tbody tr:nth-child(even)
+                {
+                    background:#f6fbff;
+                }  
+                .table thead th {
+                    border-bottom: none;
+                } 
+                .table td, .table th {
+                padding: .75rem;
+                vertical-align: bottom;
+                border-top: 0px solid #dee2e6;
+                padding-bottom: 20px;
+                font-size: 16px;
+                color: #424242;
+                /* border-left: none !important; */
+                }    
+                .num_td {
+                    font-size: 19px !important; 
+                    border-right: none !important;
+                    border-left: 1px solid #e8e8e8 !important;
+                }     
+                tr {
+                    border-bottom: none !important;
+                }       
+                td {
+                    border-left: none !important;
+                }   
+                </style>
+            </thead>
+            <tbody>
+                {% for i in usersdata %}
+                    {% if not i.16 %}
+                    <tr>
+                        <td class="num_td"></td>
+                        <td><a href="/students/{{i.id}}/" target="_blank">{{i.first_name}}</a></td>
+                        <td>{{i.last_name}}</td>
+                        <td>+374 {{i.phone_number}}</td>
+                        <td>{{i.email}}</td>
+                                <td>{% for j in student_laguage  %}
+
+                                    {% if i.id == j.student.id %}
+
+                                    {{j.language.component_name}}
+
+                                    {% endif %}
+                                    {% endfor %}
+                                </td>
+                                {% if role != 'Teacher' %}
+                                <td>{{i.priceM_sale}}</td>
+                                {% endif %}
+        
+                        <td><a href="/students/{{i.id}}/" target="_blank"><img src = "{% static 'eye-open.svg' %}"></a></td>
+                        {% if role != 'Teacher' %}
+                        <td><button onclick="edit('{{i.id}}')" class = Edit>
+                        <img src = "{% static 'edit.svg' %}" style="  width: 20px; height: 20px;">
+                        </button> 
+                        <button onclick= "del('{{i.id}}')" class="Archieve">
+                        <a onclick="del({{i.id}})" >
+                        <i style=" width: 20px; height: 0; padding: 0;" id="delete_" class="fas fa-trash-alt"></i>
+                            </a>
+                        </button>
+                    </td>
+                        {% endif %}
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="/add/" method="GET" style="display: none;">
+            {% csrf_token %}
+            <input type="submit" name = "students" id = "addform">
+        </form>
+        <form action="/edit/" method="GET" style="display: none;">
+            {% csrf_token %}
+            <input type="text" name = "edit" id = "editinput">
+            <input type="submit" name = "students" id = "editform">
+        </form>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://use.fontawesome.com/5134f0e799.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/student_page.js' %}"></script>
+    <script>
+      let header_studnet=$("#header_studnet")
+
+      $("#add").css({"z-index": 8000, 
+        "position": "relative", 
+        "left": "0",
+        "top": "20%"
+        });
+
+       $(".students_info_div").on("click", function(){
+        $(".student_helper_container").css("display","none");
+        // $("body").css("backgroundColor","red");
+        console.log()
+       
+        $('#addtext').html(header_studnet)
+
+  
+       })
+
+    </script>
+
+<style>
+    *{font-family: Open sans;}
+</style>
+</html>
+{% endblock %}

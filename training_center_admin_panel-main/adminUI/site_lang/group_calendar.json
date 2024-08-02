@@ -1,0 +1,77 @@
+{
+    "en":{"month":{
+            "January":"January",
+            "February":"February",
+            "March":"March",
+            "April":"April",
+            "May":"May",
+            "June":"June",
+            "July":"July",
+            "August":"August",
+            "September":"September",
+            "October":"October",
+            "November":"November",
+            "December":"December"
+          },
+          "weekdays":{
+            "Mo":"Mo",
+            "Tu":"Tu",
+            "We":"We",
+            "Th":"Th",
+            "Fr":"Fr",
+            "Sa":"Sa",
+            "Su":"Su"
+          }
+    },
+    
+    "ru":{"month":{
+            "January":"Январь",
+            "February":"Февраль",
+            "March":"Март",
+            "April":"Апрель",
+            "May":"Май",
+            "June":"Июнь",
+            "July":"Июль",
+            "August":"Август",
+            "September":"Сентябрь",
+            "October":"Октябрь",
+            "November":"Ноябрь",
+            "December":"Декабрь"
+    },"weekdays":{
+        "Mo":"Пн",
+        "Tu":"Вт",
+        "We":"Ср",
+        "Th":"Чт",
+        "Fr":"Пт",
+        "Sa":"Сб",
+        "Su":"Вс"
+      }
+
+ 
+      },
+    "arm":{	"month":{
+            "January":"Հունվար",
+            "February":"Փետրվար",
+            "March":"Մարտ",
+            "April":"Ապրիլ",
+            "May":"Մայիս",
+            "June":"Հունիս",
+            "July":"Հուլիս",
+            "August":"Օգոստոս",
+            "September":"Սեպտեմբեր",
+            "October":"Հոկտեմբեր",
+            "November":"Նոյեմբեր",
+            "December":"Դեկտեմբեր"
+        },
+        "weekdays":{
+                "Mo":"Երկ",
+                "Tu":"Երք",
+                "We":"Չրք",
+                "Th":"Հնգ",
+                "Fr":"ՈՒր",
+                "Sa":"Շբթ",
+                "Su":"Կիր"
+              }
+        }
+
+  }

@@ -1,0 +1,172 @@
+<div class="main">
+    <div class="header">
+        <p id=headertext>admin panel</p>
+    </div>
+    <div class="sidebar">
+        <div class="student">
+            <div class=sidebartext><a href="/students/">Student</a></div>
+        </div>
+        <div class="student" style="top: 130px">
+            <div class=sidebartext><a href="/students/">Teacher</a></div>
+        </div>
+        <div class="student" style="top: 142px; height: {{height}}px;">
+            <div class=sidebartext>Subjects</div>
+            {% for i in subjects %}
+            <div class=sidebartext1><a href="/subjects/{{i.id}}/">{{i.name}}</a></div>
+            {% endfor %}
+        </div>
+    </div>
+    <div id=addtext>
+        <span style="padding:8px">Subjects</span>
+        <button id="add" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><i
+                class="fa fa-plus"></i> Add Subject
+        </button>
+
+
+    </div>
+    <a href="" data-toggle="modal" data-target="#exampleModal">Add new Sections</a>
+
+    <div id=mainConut>
+        {% for i in name %}
+        <span>{{i.name}}</span>
+        {% endfor %}
+        <ul>
+            {% for i in leng %}
+
+            <li >
+                <img src="{% static 'img/add (1).png' %}" srcset="{% static 'img/add (1)@2x.png' %}" class="add-1">
+                {{i.name1 }}
+                {% endfor %}
+                <ul class="d-none">
+                    <li>
+                        <ul class="d-none">
+                            <li></li>
+                        </ul>
+                    </li>
+                  }
+                </ul>
+            </li>
+
+        </ul>
+
+    </div>
+
+
+
+    <br>
+
+
+
+</div>
+
+
+<div class="container">
+
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <h4 class="modal-title">Create Subject</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="features">
+                        <h1>Create Subject</h1>
+                        <form method="post">
+                            {% csrf_token %}
+                            {{form.name}}
+                            <br>
+                            <button class="btn btn-success" value="1" type="submit" id="add1">Add</button>
+
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add new Sections</h5>
+
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form method="post">
+                {% csrf_token %}
+                {{form1.name1}}
+                {{form1.parentSubject}}
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <a id="add11" href="/subjects/<id>/"></a>
+                </div>
+
+
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+<script src="https://use.fontawesome.com/5134f0e799.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+
+
+        function addd()
+        {
+            document.getElementById('createSubject').click();
+        }
+         function  add_section1()
+        {
+            document.getElementById('add11').click();
+        }
+
+        function edit(id)
+        {
+            document.getElementById('editinput').value = id;
+            document.getElementById('editform').click();
+        }
+        function del(id)
+        {
+            console.log(id)
+            document.getElementById('delform').name = id;
+            document.getElementById('delform').click();
+        }
+        function showLang(ev)
+        {
+            for(i of ev.target.childNodes[1].classList)
+            {
+                if(i == "d-none")
+                {
+                    ev.target.childNodes[1].classList.remove("d-none")
+                    return ;
+                }
+            }
+            ev.target.childNodes[1].classList.add("d-none")
+        }
+    </script>

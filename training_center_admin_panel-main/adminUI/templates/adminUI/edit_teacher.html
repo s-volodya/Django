@@ -1,0 +1,223 @@
+{% extends "adminUI/header.html" %}
+{% block title %}Edit_Teacher{% endblock %}
+    {% block head1 %}
+        {% load static %}
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+                <title>Document</title>
+                {% load static %}
+                <link rel="stylesheet" href="{% static 'tagify-master/dist/tagify.css' %}">
+                <link rel="stylesheet" href="{% static 'css/add_teacher.css' %}">
+
+
+    {% endblock %}
+
+    {% block body %}
+    {% load static %}
+
+
+        <div style="margin-top: 64px;margin-left: 350px;">
+            <div id = addtext>
+                <span>{{title}}</span>
+                <hr>
+            </div>
+            <div style="margin-top:30px;">
+                <form method="POST" id = "myForm"  onsubmit="return validate()" enctype="multipart/form-data">
+     
+                    {% csrf_token %}
+                    <label>{{name}}</label><br>
+                    <input name = first_name class = "input" type="text" placeholder="{{name}}" required value="{{teacher_edit.first_name}}"><br><br>
+
+                    <label>{{surname}}</label><br>
+                    <input name = last_name class = "input" type="text" placeholder="{{surname}}" required value="{{teacher_edit.last_name}}"><br><br>
+
+                    <label>{{email}}</label><br>
+                    <input name = email class = "input" type="text" placeholder="Example@gmail.com" required value="{{teacher_edit.email}}"><br><br>
+
+                    <label>{{phone_number}}</label><br>
+                    <input name = phone_number class = "input phone" type="text" placeholder="+374 93606060" required value="{{teacher_edit.phone_number}}"><br><br>
+
+                    <label>{{language}}</label><br>
+                    <input class = "input tags" name="tags" placeholder="{{language}}" value="{{teacher_language}}"><br>
+
+                    <label>{{password}}</label><br>
+                    <input class = "input" name="password" placeholder="" value="{{teacher_edit.password}}"><br>
+
+                    <label>{{upload_picture}}</label><br>
+                    <input type="text" readonly class="input inpfile1" style="width: 488px; font-style: italic;" placeholder="Select jpg,png or pdf" value="{{teacher_edit.pictures_teacher}}">
+                    <input class = "fileinput fi1" type="file" id = "inp1" placeholder="Select png, jpg or pdf" style="width: 488px" name="image_teacher" hidden>
+                    <label for = "inp1"><div class="fileinputbutton" style="margin-top: -6px; margin-left: -17px;"><img class = "fileinputbuttonimg" src="{% static 'component.png' %}"><p class = "fileinputbuttontext">{{browse_button2}} </p></div></label><br><br><br><br>
+
+                    <div class="workinghours">
+                        <label>{{working_hours}}</label><br>
+                        <button type="button" class="weekbutton">{{table.mon}}</button>
+                        <button type="button" class="weekbutton">{{table.tue}}</button>
+                        <button type="button" class="weekbutton">{{table.wed}}</button>
+                        <button type="button" class="weekbutton">{{table.thr}}</button>
+                        <button type="button" class="weekbutton">{{table.fri}}</button>
+                        <button type="button" class="weekbutton">{{table.sat}}</button>
+                     
+                        <button type="button" class="weekbutton">{{table.sun}}</button><br><br>
+
+                       
+                        <input name = monday_start  maxlength="5"  type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('monday_start')" value="{{teacher_edit.monday_start}}" >
+                        <input name = tuesday_start  maxlength="5"  type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('tuesday_start')" value="{{teacher_edit.tuesday_start}}">
+                        <input name = wednesday_start  maxlength="5"  type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('wednesday_start')" value="{{teacher_edit.wednesday_start}}">
+                        <input name = thursday_start  maxlength="5"  type="text" class="dayinput" placeholder="-- : --"onkeyup="valid('thursday_start')" value="{{teacher_edit.thursday_start}}">
+                        <input name = friday_start  maxlength="5"  type="text" class="dayinput" placeholder="-- : --" onkeyup="valid('friday_start')" value="{{teacher_edit.friday_start}}">
+                        <input name = saturday_start  maxlength="5"  type="text" class="dayinput" placeholder="-- : --"value="{{teacher_edit.saturday_start}}"  onkeyup="valid('saturday_start')">
+                        <input name = sunday_start  maxlength="5"  type="text" class="dayinput" placeholder="-- : --"value="{{teacher_edit.sunday_start}}"onkeyup="valid('sunday_start')"><br><br>
+                        <input name = monday_end  maxlength="5"  type="text" class="dayinput" placeholder="-- : --"value="{{teacher_edit.monday_end}}" onkeyup="valid('monday_end')">
+                        <input name = tuesday_end  maxlength="5"  type="text" class="dayinput" placeholder="-- : --"value="{{teacher_edit.tuesday_end}}" onkeyup="valid('tuesday_end')">
+                        <input name = wednesday_end type="text"  maxlength="5"  class="dayinput" placeholder="-- : --"value="{{teacher_edit.wednesday_end}}" onkeyup="valid('wednesday_end')">
+                        <input name = thursday_end type="text"  maxlength="5"  class="dayinput" placeholder="-- : --"value="{{teacher_edit.thursday_end}}" onkeyup="valid('thursday_end')">
+                        <input name = friday_end type="text"  maxlength="5"  class="dayinput" placeholder="-- : --"value="{{teacher_edit.friday_end}}"  onkeyup="valid('friday_end')">
+                        <input name = saturday_end type="text"  maxlength="5"  class="dayinput" placeholder="-- : --"value="{{teacher_edit.saturday_end}}"  onkeyup="valid('saturday_end')">
+                        <input name = sunday_end type="text"  maxlength="5"  class="dayinput" placeholder="-- : --"value="{{teacher_edit.sunday_end}}"  onkeyup="valid('sunday_end')">
+
+
+
+
+                    </div>
+
+                    <label>{{add_linkedin}}</label><br>
+                    <input class = "input url" name="link" placeholder="https://www.linkedin.com/mynetwork/invite-connect/connect/" value="{{teacher_edit.linkedin_link}}"><br><br>
+
+
+                    <input name = "teachersadd" class = inputsubmit type="submit" value="{{add_button}}"><br><br>
+                </form>
+                <input  id = "lang" value = "{{Languages}}" type="hidden">
+                <input type="hidden" id='student_lang' value="{{teacher_language}}" >
+            </div>
+        </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="{% static 'tagify-master/dist/tagify.min.js' %}"></script>
+    <script src="{% static 'tagify-master/dist/jQuery.tagify.min.js' %}"></script>
+    <script src="https://use.fontawesome.com/5134f0e799.js"></script>
+    <script>
+        var lang = document.getElementById("lang").value;
+        lang = lang.split("")
+        let index = lang.indexOf("'") 
+        while(index > -1)
+        {
+            index = lang.indexOf("'") 
+            lang.splice(index, 1);
+        }
+        lang.splice(0,1)
+        lang = lang.join('')
+        lang = lang.split(", ")
+
+        $('[name = tags]').tagify({duplicates: false, enforceWhitelist: true, whitelist : lang});
+
+        function validate()
+        {
+            timeRE = /\d\d:\d\d/
+            phoneRE = /^[0-9\-\+]{9,15}$/
+            urlRE = /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/
+            form = document.getElementById("myForm")
+            phoneInput = form.getElementsByClassName("phone")[0]
+            urlInput = form.getElementsByClassName("url")[0]
+            if(form.getElementsByClassName("tagify--empty").length == 1)
+            {
+                alert("please input some languages")
+                return false
+            }
+            times = form.getElementsByClassName("dayinput")
+            for(i of times)
+            {
+                if(i.value.match(timeRE) != i.value && i.value != "")
+                {
+                    alert("time inputs must be in XX:XX format")
+                    return false
+                }
+            }
+            if(phoneInput.value.match(phoneRE) != phoneInput.value)
+            {
+                alert("incorrect phone number input")
+                return false
+            }
+            if(urlInput.value.match(urlRE) != urlInput.value)
+            {
+                /*alert("incorrect url input")*/
+                /*return false*/
+            }
+        }
+    </script>
+        <script>
+        function copytext(){
+            var clipboard= document.getElementById("copyteacher");
+            clipboard.select();
+            clipboard.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+            let copied=document.getElementById('copied');
+            // copied.setAttribute('title','text copied')
+            
+            
+        }
+    </script>
+    <style>
+        img:hover {
+            cursor: pointer;
+        }
+        *{
+            font-family: Open Sans;
+        }
+        .input {
+            height: 48px;
+        }
+        .tagify__input {
+            margin-top: 11px;
+        }
+        .workinghours{
+            margin-left: 22px;
+        }
+        .weekbutton{
+        margin-left: 10px;
+    }
+    .dayinput {
+        margin-left: 10px;
+    }
+    .inputsubmit{
+        width: 179px;
+        height: 39px;
+    }
+    </style>
+    <script>
+            $('.fi1').change(function(){
+        var fileExtension = ['jpeg', 'jpg', 'png', 'pdf'];
+        if ($.inArray($(this).val().split('.').pop().toLowerCase(), fileExtension) == -1) {
+            alert("Only formats are allowed : "+fileExtension.join(', '));
+        }
+        else{
+            $('.inpfile1').css('color','green')
+            $('.inpfile1').css('font-style','normal')
+            $('.inpfile1').val($('.fi1').val())
+        }        
+    })
+    </script>
+    <script>
+                function valid(month_name){
+            let input_value= $('[name='+month_name+']').val()
+            if (input_value.length==2){
+                if(input_value > 24 || input_value < 0){
+                    input_value = 24
+                }
+                $('[name='+month_name+']').val(input_value+=":")
+            }
+            var t = input_value.split(':');
+            if(t[1] > 59){
+                t[1] = "59";
+                input_value =  "00";
+                console.log(t[1])
+                time = t[0]+':'+t[1]
+                $('[name='+month_name+']').val(time)
+                
+
+            }
+
+        }
+    </script>
+{% endblock %}

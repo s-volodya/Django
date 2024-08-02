@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+{% extends "adminUI/header.html" %}
+{% block title %}Document{% endblock %}
+    {% block head1 %}
+    {% load static %}
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/dinamik_grups_page.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" >
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+    {% endblock %}
+{% block body %}
+
+
+    {% csrf_token %}
+    <style>
+        button{
+            font-size: 17px !important;
+        }
+        .schedule{
+            display: block;
+        }
+        .scheduletable thead tr th{
+            padding: 10px 40px;
+        }
+        .schedule>span{
+            margin-left: 21px;
+        }
+        
+        *{
+            font-size: 16px !important;
+        }
+        #addtext span{
+            font-size: 20px !important;
+        }
+        #tbody td label{
+            margin-left: 19px !important;
+        }
+        .students_ul{
+            margin-top: 5px; margin-left: 23px; font-family: 'Open Sans', sans-serif;font-size: 27px;color: #424242;
+            display: flex;
+            flex-wrap: wrap;
+            width: 60%;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+        #group_hr{
+            width: 40% !important;
+    margin-top: 109px;
+    position: absolute;
+        }
+        .maininfo_div{
+            margin-top: 40px;
+            float: left;
+        }
+        #editModal12{
+            margin-top: 100px;
+        }
+
+    </style>
+    <div class="main">
+        <div style=" margin-top: -42px; margin-left: 436px;">
+            <div id = addtext>
+                <span>{{title}}</span>
+                <a href = "/students/" style="margin-left: 85%;"><img src="{% static 'list.svg' %}"></a>
+                <a href = "/groups/" style="margin-left: 0px;"><img src="{% static 'group.svg' %}"></a>
+                <hr>
+                
+            </div>
+            <div style="margin-top:10px;">
+                <div id="users" style="padding-top:25px;width: 100%; height: 400px;text-align: left;font-size: 24px;font-family: 'Open Sans', sans-serif;letter-spacing: 0px;color: #424242;">
+
+                    <a href="#" data-toggle="modal" data-target="#editModal"  > <img src="{% static 'filter.png' %}" style="margin-left: 102% ;" alt="UPDATE"></a>
+                    <hr style="position:relative;    width: 118%;
+                    margin-left: -7%;">
+                    <div class = "maininfo">
+                        <div class="maininfo_div">
+                            <span style="margin-left: 23px">{{gr}} {{id}}</span><br>
+                    
+                            <span style="   margin-left: 24px;">{{teacher}} : {{group.teacher.first_name}} {{group.teacher.last_name}}</span>
+                            
+                        </div>
+
+                     <hr id="group_hr">
+
+                        <div class = "students" style="width: 27%;">
+                            <ul class="students_ul">
+                                {{members_studnet}}<br><br>
+                                {% for i in members %}
+                                    <a href=/students/{{i.id}}/ style="font-family: 'Open Sans', sans-serif;font-size: 18px;color: #924285; text-decoration: underline;">{{i.first_name}} {{i.last_name}}</a><br>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="verticalline"></div>
+                        <div class = "schedule">
+                            <span>{{more.w_sch}}</span>
+                            <table class = scheduletable>
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            {{more.week}}
+                                        </th>
+                                        <th>
+                                            {{more.st}}
+                                        </th>
+                                        <th>
+                                            {{more.end}}
+                                        </th>
+                                        <th>
+                                            {{more.room}}
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id = "tbody">
+                                    <tr>
+                                        <td>
+                                            <button id='week_number1' class="weekbutton">{{more.mon}}</button>
+                                        </td>
+                                        <td>
+                                
+                                            <label type="text" name = "monday_start" v-model = "monday_start" id="input_start" class='input_start'  style=" background-color: #e8e8e8; border-radius: 4px;">{{group.monday_start}}</label>
+                                        </td>
+                                        <td>
+                                            <label type="text" name = "monday_end" v-model = "monday_end"  class="input_end"  style="margin-left: -28px; background-color: #e8e8e8; padding-left: 10px; padding-right: 10px; border-radius: 4px;" >{{group.monday_end}}</label>
+                                        </td>
+                                        <td>
+                                            <select class='select_room' id='monday'>
+                                                <option value="{{room_group.monday.name}}" data-id='{{room_group.monday.id}}'>{{room_group.monday.name}}</option>
+                                                    {% for i in room %}
+                                                        {% if room_group.monday.id != i.id %}
+                                                             <option value="{{i.name}}" data-id={{i.id}}>{{i.name}}</option>
+                                                         {% endif %}
+
+                                                    {% endfor %}
+                                            </select>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button id='week_number2' class="weekbutton">{{more.tue}}</button>
+                                        </td>
+                                        <td>
+                                            <label type="text" name = "tuesday_start" v-model = "tuesday_start" >{{group.tuesday_start}}</label>
+                                        </td>
+                                        <td>
+                                            <label type="text" name = "tuesday_end" v-model = "tuesday_end"  >{{group.tuesday_end}}</label>
+                                        </td>
+                                        <td>
+                                            <select class='select_room' id='tuesday'>
+                                                <option value="{{room_group.tuesday.name}}" data-id='{{room_group.tuesday.id}}'>{{room_group.tuesday.name}}</option>
+                                                    {% for i in room %}
+                                                        {% if room_group.tuesday.id != i.id %}
+                                                             <option value="{{i.name}}" data-id={{i.id}}>{{i.name}}</option>
+                                                         {% endif %}
+
+                                                    {% endfor %}
+                                            </select>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button id='week_number3' class="weekbutton">{{more.wed}}</button>
+                                        </td>
+                                        <td>
+                                            <label type="text" name = "wednesday_start" v-model = "wednesday_start"  >{{group.wednesday_start}}</label>
+                                        </td>
+                                        <td>
+                                            <label type="text" name = "wednesday_start" v-model = "wednesday_end" >{{group.wednesday_end}}</label>
+                                        </td>
+                                        <td>
+                                            <select class='select_room' id='wednesday'>
+                                                <option value="{{room_group.wednesday.name}}" data-id='{{room_group.wednesday.id}}'>{{room_group.wednesday.name}}</option>
+                                                    {% for i in room %}
+                                                        {% if room_group.wednesday.id != i.id %}
+                                                             <option value="{{i.name}}" data-id={{i.id}}>{{i.name}}</option>
+                                                         {% endif %}
+
+                                                    {% endfor %}
+                                            </select>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button id='week_number4' class="weekbutton">{{more.thr}}</button>
+                                        </td>
+                                        <td>
+                                            <label type="text" name = "thursday_start" v-model = "thursday_start"  >{{group.thursday_start}} </label>
+                                        </td>
+                                        <td>
+                                            <label type="text" name = "thursday_end" v-model = "thursday_end" >{{group.thursday_end}}</label>
+                                        </td>
+                                        <td>
+                                            <select class='select_room' id='thursday' >
+                                                <option value="{{room_group.thursday.name}}" data-id='{{room_group.thursday.id}}'>{{room_group.thursday.name}}</option>
+                                                    {% for i in room %}
+                                                        {% if room_group.thursday.id != i.id %}
+                                                             <option value="{{i.name}}" data-id={{i.id}}>{{i.name}}</option>
+                                                         {% endif %}
+
+                                                    {% endfor %}
+                                            </select>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button id='week_number5' class="weekbutton">{{more.fri}}</button>
+                                        </td>
+                                        <td>
+                                            <label type="text" name = "friday_start" v-model = "friday_start"  >{{group.friday_start}}</label>
+                                        </td>
+                                        <td>
+                                            <label type="text" name = "friday_end" v-model = "friday_end" >{{group.friday_end}}</label>
+                                        </td>
+                                        <td>
+                                            <select class='select_room' id='friday'>
+                                                <option value="{{room_group.friday.name}}" data-id='{{room_group.friday.id}}'>{{room_group.friday.name}}</option>
+                                                    {% for i in room %}
+                                                        {% if room_group.friday.id != i.id %}
+                                                             <option value="{{i.name}}" data-id={{i.id}}>{{i.name}}</option>
+                                                         {% endif %}
+
+                                                    {% endfor %}
+                                            </select>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button id='week_number6' class="weekbutton">{{more.sat}}</button>
+                                        </td>
+                                        <td>
+                                            <label type="text" name = "saturday_start" v-model = "saturday_start" >{{group.saturday_start}}</label>
+                                        </td>
+                                        <td>
+                                            <label type="text" name = "saturday_end" v-model = "saturday_end"  >{{group.saturday_end}}</label>
+                                        </td>
+                                        <td>
+                                            <select class='select_room' id='saturday'>
+                                                <option value="{{room_group.saturday.name}}" data-id='{{room_group.saturday.id}}'>{{room_group.saturday.name}}</option>
+                                                    {% for i in room %}
+                                                        {% if room_group.saturday.id != i.id %}
+                                                             <option value="{{i.name}}" data-id={{i.id}}>{{i.name}}</option>
+                                                         {% endif %}
+
+                                                    {% endfor %}
+                                            </select>
+                                            
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <button id='week_number7' class="weekbutton">{{more.sun}}</button>
+                                        </td>
+                                        <td>
+                                            <label type="text" name = "sunday_start" v-model = "sunday_start" >{{group.sunday_start}}</label>
+                                        </td>
+                                        <td>
+                                            <label type="text" name = "sunday_end" v-model = "sunday_end" >{{group.sunday_end}}</label>
+                                        </td>
+                                        <td>
+                                            <select class='select_room' id='sunday'>
+                                                <option value="{{room_group.sunday}}" data-id='{{room_group.sunday.id}}'>{{room_group.sunday.name}}</option>
+                                                {% for i in room %}
+                                                {% if room_group.sunday.id != i.id %}
+                                                <option value="{{i.name}}" data-id={{i.id}}>{{i.name}}</option>
+                                                {% endif %}
+
+                                                {% endfor %}
+                                            </select>
+                                            
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                            <button id="myBtn1" class = "viewSchedule"  data-toggle="modal" data-target="#editModal12" onclick="tablica_lesons({{id}},'start','0')"  >{{more.btns.view}}</button>
+                            
+                            <button  class = "viewSchedules" data-toggle="modal" data-target="#editModal"  >{{more.btns.upd}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+ 
+    </div>
+    <div class="modal fade" id="editModal12" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document" style = "margin:0px;  margin-left: 221px;">
+                <div class="modal-content"  style="height:auto;">
+                    <div class="container" style="border:none">
+                        <div class = "header-line">
+                            <div class = "left-part">
+                                <div class = "first-part">
+                                    <p class = "text-contract" >{{cont_date}}</p>
+                                    <div class = "contract-date">{{group.start}}---{{group.end}} </div>
+                                </div>
+                                <div class = "second-part" id='add_new_lesons_time'>
+                                    <p class = "text-contract-second">{{ls_start_date}}</p>
+                                    <div class = "contract-date-start" id="lesons_start_time">15:00</div>
+                                    <div class = "at">-</div>
+                                    <div class = "contract-date-start" id="lesons_end_time">17:00</div>
+                                    <div id='save_and_edit'>
+
+                                    </div>
+    
+
+                              
+                                  
+                                </div>
+                                <div class = "second-part" id='add_new_lesons_time_comment'>
+         
+                         
+                                    
+                                </div>
+                                
+                            </div>
+                            <div class = "right-part">
+                                <div class = "first-part">
+                                    <p class = "text-contract">{{sch_les}}</p>
+                                    <div class = "without-check"></div>
+                                </div>
+                                <div class = "second-part">
+                                    <p class = "text-contract-second">{{done_les}}</p>
+                                    <div class = "check">✓</div>
+                                </div>
+                            </div>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="body" style="margin:-2px">
+                            <div class = "body-line">
+                                <p class = "body-title-first">{{cal_view}}</p>
+                                <p class = "body-title-second">{{title_table}}</p>
+                            </div>
+                            <div class ="content"  style="border:none">
+                                <div class="content-header">
+                                    <div class="status">{{status_table}}</div>
+                                    <div class="date">{{data_table}}</div>
+                                    <div class="subject">{{web_table}}</div>
+                                    <div class="lessons">{{lesonos_table}}</div>
+                                </div>
+                                <div id="body_table" ></div>
+                                <div class=last_next_button > 
+                                
+                                </div>
+                                    </div>
+                        
+                                </div>    
+                                <div class="calend">
+                                    {% for i in c|get_range %}
+                                    <div class = "obj">
+                                        <div class = "month-title" id="year_title{{i}}"></div>
+                                    <div class = "month" id="month_{{i}}">
+                                        <div class="weekdays">
+                                            Mo 
+                                        </div>
+                                        <div class="weekdays">
+                                            Tu
+                                        </div>
+                                        <div class="weekdays">
+                                            We
+                                        </div>
+                                        <div class="weekdays">
+                                            Th
+                                        </div>
+                                        <div class="weekdays">
+                                            Fr
+                                        </div>
+                                        <div class="weekdays">
+                                            Sa
+                                        </div>
+                                        <div class="weekdays">
+                                            Su
+                                        </div>
+                                      </div>
+                                    </div>
+                                    {% endfor %}
+                                    <div class="left" onclick="get_month_and_year('next',{{id}})" style="margin-top: 11px;"><</div>
+                                    <div class="right" onclick="get_month_and_year('last',{{id}})" > ></div>
+                                    
+                                    <div id='modal_dabl_clic'></div>
+                                </div>
+                              
+                        </div>
+            
+                    </div>
+                   
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style = "margin:0px;  margin-left: 288px; ">
+            <div class="modal-content" style = "height: auto;left: 47%;margin-top: 34%; width: 770px;" >
+                <div id="animacia" style="
+                position: absolute;
+                left: 37%;
+                top: -43%;
+            "></div>
+                <div class = "schedule">
+                    
+                            <span>{{more.w_sch}}</span>
+                            <table class = scheduletable1>
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            {{more.week}}
+                                        </th>
+                                        <th>
+                                            {{more.st}}
+                                        </th>
+                                        <th>
+                                            {{more.end}}
+                                        </th>
+                                        <th>
+                                            {{more.room}}
+                                        </th>
+                                    </tr>
+                        </thead>
+                        <tbody>
+                           
+                               
+                
+                                <tr>
+                                                <td>
+                                                    <button   id='week_number_1' class="weekbutton">{{more.mon}}</button>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id = "monday_start" v-model = "monday_start"   class='selectedinput' value='{{group.monday_start}}'>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id = "monday_end" v-model = "monday_end" class="selectedinput" value='{{group.monday_end}}'>
+                                                </td>
+                                                <td>
+                                                    <select class='select_room' id='monday'>
+                                                        <option value="{{room_group.monday.name}}" data-id='{{room_group.monday.id}}'>{{room_group.monday.name}}</option>
+                                                            {% for i in room %}
+                                                                {% if room_group.monday.id != i.id %}
+                                                                     <option value="{{i.name}}" data-id={{i.id}}>{{i.name}}</option>
+                                                                 {% endif %}
+        
+                                                            {% endfor %}
+                                                    </select>
+                                                    
+                                                </td>
+                                            </tr>
+                                     
+
+                                            <tr>
+                                                <td>
+                                                    <button  id='week_number_2' class="weekbutton">{{more.tue}}</button>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id = "tuesday_start" v-model = "tuesday_start" class='selectedinput' value="{{group.tuesday_start}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" id  = "tuesday_end" v-model = "tuesday_end" class='selectedinput' value="{{group.tuesday_end}}">
+                                                </td>
+
+                                                <td>
+                                                    <select class='select_room' id='tuesday'>
+                                                        <option value="{{room_group.tuesday.name}}" data-id='{{room_group.tuesday.id}}'>{{room_group.tuesday.name}}</option>
+                                                            {% for i in room %}
+                                                                {% if room_group.tuesday.id != i.id %}
+                                                                     <option value="{{i.name}}" data-id={{i.id}}>{{i.name}}</option>
+                                                                 {% endif %}
+        
+                                                            {% endfor %}
+                                                    </select>
+                                                    
+                                                </td>
+                                            </tr>
+                                   
+
+
+                                            <tr>
+                                                <td>
+                                                    <button  id='week_number_3' class="weekbutton">{{more.wed}}</button>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id  = "wednesday_start" v-model = "wednesday_start" class='selectedinput' value="{{group.wednesday_start}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" id  = "wednesday_end" v-model = "wednesday_end" class='selectedinput' value="{{group.wednesday_end}}">
+                                                </td>
+                                                <td>
+                                                    <select class='select_room' id='wednesday'>
+                                                        <option value="{{room_group.wednesday.name}}" data-id='{{room_group.wednesday.id}}'>{{room_group.wednesday.name}}</option>
+                                                            {% for i in room %}
+                                                                {% if room_group.wednesday.id != i.id %}
+                                                                     <option value="{{i.name}}" data-id={{i.id}}>{{i.name}}</option>
+                                                                 {% endif %}
+        
+                                                            {% endfor %}
+                                                    </select>
+                                                    
+                                                </td>
+                                            </tr>
+                           
+
+
+                                            <tr>
+                                                <td>
+                                                    <button  id='week_number_4' class="weekbutton">{{more.thr}}</button>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id = "thursday_start" v-model = "thursday_start" class='selectedinput' value="{{group.thursday_start}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" id  = "thursday_end" v-model = "thursday_end" class='selectedinput' value="{{group.thursday_end}}">
+                                                </td>
+                                                <td>
+                                                    <select class='select_room' id='thursday' >
+                                                        <option value="{{room_group.thursday.name}}" data-id='{{room_group.thursday.id}}'>{{room_group.thursday.name}}</option>
+                                                            {% for i in room %}
+                                                                {% if room_group.thursday.id != i.id %}
+                                                                     <option value="{{i.name}}" data-id={{i.id}}>{{i.name}}</option>
+                                                                 {% endif %}
+        
+                                                            {% endfor %}
+                                                    </select>
+                                                    
+                                                </td>
+                                            </tr>
+                                
+   
+
+                                            <tr>
+                                                <td>
+                                                    <button  id='week_number_5' class="weekbutton">{{more.fri}}</button>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id  = "friday_start" v-model = "friday_start" class='selectedinput' value="{{group.friday_start}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" id  = "friday_end" v-model = "friday_end" class='selectedinput' value="{{group.friday_end}}">
+                                                </td>
+                                                <td>
+                                                    <select class='select_room' id='friday'>
+                                                        <option value="{{room_group.friday.name}}" data-id='{{room_group.friday.id}}'>{{room_group.friday.name}}</option>
+                                                            {% for i in room %}
+                                                                {% if room_group.friday.id != i.id %}
+                                                                     <option value="{{i.name}}" data-id={{i.id}}>{{i.name}}</option>
+                                                                 {% endif %}
+        
+                                                            {% endfor %}
+                                                    </select>
+                                                    
+                                                </td>
+                                            </tr>
+                     
+ 
+
+                                            <tr>
+                                                <td>
+                                                    <button  id='week_number_6' class="weekbutton">{{more.sat}}</button>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id  = "saturday_start" v-model = "saturday_start" class='selectedinput' value="{{group.saturday_start}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" id  = "saturday_end" v-model = "saturday_end" class='selectedinput' value="{{group.saturday_end}}">
+                                                </td>
+                                                <td>
+                                                    <select class='select_room' id='saturday'>
+                                                        <option value="{{room_group.saturday.name}}" data-id='{{room_group.saturday.id}}'>{{room_group.saturday.name}}</option>
+                                                            {% for i in room %}
+                                                                {% if room_group.saturday.id != i.id %}
+                                                                     <option value="{{i.name}}" data-id={{i.id}}>{{i.name}}</option>
+                                                                 {% endif %}
+        
+                                                            {% endfor %}
+                                                    </select>
+                                                    
+                                                </td>
+                                            </tr>
+                 
+
+                                            <tr>
+                                                <td>
+                                                    <button id='week_number_7' class="weekbutton">{{more.sun}}</button>
+                                                </td>
+                                                <td>
+                                                    <input type="text" id  = "sunday_start" v-model = "sunday_start"  class='selectedinput' value="{{group.sunday_start}}">
+                                                </td>
+                                                <td>
+                                                    <input type="text" id  = "sunday_end" v-model = "sunday_end"  class='selectedinput' value="{{group.sunday_end}}">
+                                                </td>
+                                                <td>
+                                                    <select class='select_room' id='sunday'>
+                                                        <option value="{{room_group.sunday}}" data-id='{{room_group.sunday.id}}'>{{room_group.sunday.name}}</option>
+                                                        {% for i in room %}
+                                                        {% if room_group.sunday.id != i.id %}
+                                                        <option value="{{i.name}}" data-id={{i.id}}>{{i.name}}</option>
+                                                        {% endif %}
+        
+                                                        {% endfor %}
+                                                    </select>
+                                                    
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td></td>
+                                            
+                                                <td>
+                                                    <button  class = "viewSchedules"  onclick="edit_shedule1({{id}})" >{{more.btns.upd}}</button>
+                                                </td>
+                                            </tr>
+
+
+                           
+
+                        </tbody>
+                        
+                    </table>
+                    
+                    </div>
+                
+        
+                </div>
+               
+        </div>
+    </div>
+
+ <!-- <div id="a15" ><input type="text" value="15" ></div></div>
+  <button onclick="updateDiv()">clik</button> -->
+
+<!-- <script>
+      function updateDiv()
+  { 
+      create_calendar({{id}},'cread',1);
+      $( "#a15" ).load(window.location.href + " #a15" );
+  }   
+
+</script> -->
+
+ 
+    
+    <input type="hidden" value="{{start}}" id = start>
+    <input type="hidden" value="{{end}}" id = end>
+    <input type="hidden" value="{{id}}" id = 'id_grups_select'>
+    <input type="hidden" value="{{id}}" id = 'method_serch_create_edit'>
+    
+    
+    <script src="https://use.fontawesome.com/5134f0e799.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/dinamik_group.js' %}"></script>
+    <script>
+           function close_modal(){
+       console.log('asaedasdasdasd')
+    $('#editModal12').hide();
+
+
+   }
+        $(".calend").hide()
+        
+        document.querySelector(".body-title-first").onclick = ()=>{
+        console.log('stexic')
+        document.querySelector(".body-title-first").style.color = "#532057"
+        document.querySelector(".body-title-first").style.borderBottom = "2px solid #532057"
+        document.querySelector(".body-title-second").style.color = "#707070"
+        document.querySelector(".body-title-second").style.borderBottom = "none"
+        $(".content").fadeOut()
+
+        create_calendar('{{id}}','cread',1)
+        setTimeout(()=>{
+        $(".calend").fadeIn()
+   },500)
+   }
+   document.querySelector(".body-title-second").onclick = ()=>{
+        document.querySelector(".body-title-second").style.color = "#532057"
+        document.querySelector(".body-title-second").style.borderBottom = "2px solid #532057"
+        document.querySelector(".body-title-first").style.color = "#707070"
+        document.querySelector(".body-title-first").style.borderBottom = "none"
+        setTimeout(()=>{
+          tablica_lesons('{{id}}','start','0');
+        $(".content").fadeIn()
+        },500)
+        $(".calend").fadeOut()
+   }
+    $('#week_number{{week_name}}').attr('class','selectedweekbutton')
+    $('#week_number_{{week_name}}').attr('class','selectedweekbutton')
+    console.log( $('.forma_shedul'))
+
+
+//     if (document.addEventListener) {
+//   document.addEventListener('contextmenu', function(e) {
+//     alert("You've tried to open context menu"); //here you draw your own menu
+//     e.preventDefault();
+//   }, false);
+// } else {
+//   document.attachEvent('oncontextmenu', function() {
+//     alert("You've tried to open context menu");
+//     window.event.returnValue = false;
+//   });
+// }
+       
+        </script>
+
+
+       <style>
+           .select_room {
+               font-size: 18px;
+           }
+       </style>
+{% endblock %}

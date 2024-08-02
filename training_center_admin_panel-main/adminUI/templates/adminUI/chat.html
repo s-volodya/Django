@@ -1,0 +1,182 @@
+{% extends "adminUI/header.html" %}
+{% block title %}Chat{% endblock %}
+    {% block head1 %}
+    {% load static %}
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+     <link rel="stylesheet" href="{% static 'css/chat.css' %}" >
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet"  href="{% static 'css/jquery.emojipicker.css' %}" >
+<link rel="stylesheet" href="{% static 'css/jquery.emojipicker.tw.css' %}" >
+
+<link   href="{% static 'css/image-uploader.min.css' %}" rel="stylesheet">
+
+
+    
+    {% endblock %}
+
+
+{% block body %}
+
+
+<div class="container py-5 px-4">
+  <!-- For demo purpose-->
+
+
+  <div class="row rounded-lg overflow-hidden shadow" style="width: 133%;margin-top: 7%; ">
+    <!-- Users box-->
+    <div class="col-5 px-0">
+      <div class="bg-white">
+        
+        <div class="bg-gray px-4 py-2 bg-light">
+          <p class="h5 mb-0 py-1">{{recent}}</p>
+        </div>
+        <div class="input-group" style="display:flex;">
+          <div class="form-outline"style="width: 93%;">
+            <input id="search-focus" style=" width: 100%;" type="search" id="form1" class="form-control" onfocus="myFunction()" onblur="myFunction()" onkeyup="serch_user()">
+          </div>
+          <button type="button" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+        <div id="myDropdown" class="dropdown-content" style="width: 99%;height: 65%;z-index: 45;">
+
+
+          
+                
+          
+        </div>
+        
+        <div class="messages-box">               
+          <div class="list-group rounded-0" id='users_table'>
+
+            {% for i in user_message %}
+
+            <a href="#" class="list-group-item list-group-item-action list-group-item-light rounded-0"  id=user_{{i.id}} onclick="serch_mesage('{{i.id}}','{{i.role}}')" >
+              <div class="media"><img src="{% static 'media/photo_teacher/'%}{{i.img_users}}" alt="user" width="50" class="rounded-circle" style="height: 50px;">
+                <div class="media-body ml-4">
+                  <div class="d-flex align-items-center justify-content-between mb-1">
+                    <h6 class="mb-0"> {{i.first_name}} {{i.last_name}}</h6><small class="small font-weight-bold"> </small>
+                  </div>
+               
+                  {% if i.new_message != None %}
+                          {% if i.new_message.message != "" %}
+                             <p class="font-italic text-muted mb-0 text-small" id='text_mesage{{i.id}}' style=" color:  #000000 !important"><b> {{i.new_message.message}}</b> </p>
+                             <spam style="float: right;" id='message_all_notreeding{{i.id}}'><i class="far fa-comment-dots" > </i> {{i.new_message_number}}</spam>
+                            {% else %}
+                              <p class="font-italic text-muted mb-0 text-small" id='text_mesage{{i.id}}' style=" color:  #000000 !important"><b><i class="far fa-images">Foto</i></b> </p>
+                              <spam style="float: right;" id='message_all_notreeding{{i.id}}'><i class="far fa-comment-dots" > </i> {{i.new_message_number}}</spam>
+                        
+                          {% endif %} 
+                  {% else %}
+                  <p class="font-italic text-muted mb-0 text-small" id='text_mesage{{i.id}}' ><b>{{i.end_message}} </b> </p>
+       
+                  {% endif %}
+
+                
+                </div>
+              </div>
+            </a>
+            {% endfor %}
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Chat Box-->
+    <div class="col-7 px-0" id='body_chat'>
+      <div class="px-4 py-5 chat-box bg-white" id='chat_users'>
+        <!-- Sender Message-->
+        <!-- Reciever Message-->
+      
+        
+
+      </div>
+
+      <!-- Typing area -->
+    
+
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+   <div class="modal-content">
+       <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLabel1">{{edit_message}}
+               <!-- <p id="name_section1"></p>--> </h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+           </button>
+       </div>
+       
+          <input type="text" name="name1" class="form-control"  required="" id='edit_text_message'>
+          <input type="hidden" id='edit_text_message_id'>
+        
+
+           <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal" id='close_modal_edit'>{{edit_button.close_btn}}</button>
+               <button type="submit" class="btn btn-primary" onclick="save_edit_message(id)">{{edit_button.edit_btn}} </button>
+               <a id="add111" href=""></a>
+           </div>
+
+
+      
+
+
+   </div>
+</div>
+</div>
+<div class="modal fade" id="modal_delet_message" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel12"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+   <div class="modal-content" style="
+   width: 50%;
+   height: 50%;
+">
+       <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLabel12">{{delete_}}
+               <!-- <p id="name_section1"></p>--> </h5>
+           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+           </button>
+       </div>
+       
+       <button type="submit" class="btn btn-primary" onclick="save_delete_message('many')">{{delete_button.for_me}}<i class="fas fa-minus-circle"></i></button>
+       <button type="submit" class="btn btn-primary" onclick="save_delete_message('all')">{{delete_button.bor_both}}<i class="fas fa-minus-circle"></i></button>
+       <input type="hidden" id='delete_message_id'>
+        
+
+           <div class="modal-footer">
+               <button type="button" class="btn btn-secondary" data-dismiss="modal" id='close_modal_delete'>{{delete_button.close_btn2}}</button>
+         
+               <a id="add111" href=""></a>
+           </div>
+
+
+      
+
+
+   </div>
+</div>
+</div>
+<input type="hidden" value="{{type_message}}" id="type_message_leng">
+
+<script type="text/javascript" src="http://hacks.bluesmoon.info/strftime/strftime-min.js"></script>
+<script type="text/javascript" src="{% static 'js/chat.js' %}"></script>
+<!-- <script src="{% static 'js/dropzone.js' %}"></script> -->
+
+
+<script src="{% static 'js/jquery.emojipicker.js' %}"></script>
+<script src="{% static 'js/jquery.emojis.js' %}"></script>
+<script  src="{% static 'js/image-uploader.min.js' %}"></script>
+
+
+
+{% endblock %}

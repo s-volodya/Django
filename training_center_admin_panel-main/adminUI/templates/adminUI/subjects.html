@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+{% extends "adminUI/header.html" %}
+{% block title %}Subjects{% endblock %}
+{% block body %}
+{% load static %}
+
+<style>
+
+.table-bordered td{
+    max-width: 10% !important;
+    word-break: break-word;
+}
+.table-bordered td p{
+    width: 100% !important;
+    vertical-align: center !important;
+    font-size: 15px;
+}
+.description_lesons_edit_5{
+    width: 100%  !important;
+}
+.table>tbody>tr>td{
+    vertical-align: center !important;
+}
+.list-unstyled{
+    margin-top: 60px;
+    margin-left: -9px;
+    width: 99%;
+}
+
+.list-unstyled li div{
+    margin-top: 0px !important;
+}
+.list-unstyled li:first-child{
+    margin-top: -50px !important;
+}
+.btn-info{
+    border-color: rgba(53, 111, 48, 0) !important;
+    
+}
+.subjects_name{
+    margin-top: 7%;margin-left: 21%; font-size: 20px !important;
+}
+@media only screen and (min-width:1024px) and (max-width:1200px){
+#mainConut{
+    width: 113% !important;
+    margin-left: -17px;
+}
+#add{
+    margin-left: 269px !important;
+}
+}
+@media only screen and (min-width:1200px) and (max-width:1440px){
+      button#add{
+            margin-top: 87px !important;
+
+    }
+
+#mainConut>ul>li{
+        margin-left: -52px;
+}
+button#add{
+    margin-left: 298px !important;
+}
+.subjects_name{
+   margin-left: 22%;
+}
+
+  }
+  #add_subject_sidebar{
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+    text-decoration: underline;
+    padding-left: 0;
+}
+#add_subject_sidebar:hover{
+    background-color: rgba(0, 0, 0, 0);
+    border-color: rgba(0, 0, 0, 0);
+}
+</style>
+
+
+<div id=addtext>
+    <span class="subjects_name" >Subjects  </span>
+
+      {% if role != 'Teacher' %}
+    <button id="add" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal" name="button" style="    margin-left: 330px; padding:0 20px !important; width:auto; margin-top: 41px;font-size: 16px;">
+        <i class="fa fa-plus"></i> Add Subject
+    </button>
+      {% endif %}
+     
+
+
+</div>
+<br><br><br>
+<hr class="linia" style="width: 112% !important;">
+<div class="subjects_fayl">
+    <div id=mainConut style="width: 110%;">
+        
+        <ul >
+            <li>
+                <a href="#subjects_all1" data-toggle="collapse" aria-expanded="true" class="dropdown-toggle1" style="margin-left: 200px;"> {% for i in name %}<span class="span_name">{{i.name}}</span>{% endfor %}</a>
+
+                <ul class="list-unstyled collapse in show" id="subjects_all1" aria-expanded="true" >
+                    {% for i in leng %}
+                    <li class="section_id forli" id="section_id_li{{i.id}}" style="background-color: rgba(232, 232, 232, 0.26); border-radius: 4px; border:1px solid #e8e8e8; padding: 10px; padding-bottom: 0px; padding-top: 14px; margin-top: -11px;">
+
+                        <a href="#id_{{i.id}}"  data-toggle="collapse" aria-expanded="false" class="dropdown-toggle2 rotating"  onclick="rotate_arraw('{{i.id}}',this)"><span id="arraw{{i.id}}" aria-expanded="false"  class="caret cr_sub{{i.id}}" style="width: 9px; margin-left: 0;"></span><span id="sections_name_edit_{{i.id}}" class="section_class_name forp">{{i.name1}}</span></a>
+                        {% if role != 'Teacher' %}
+                        <div class="action">
+                            <a data-toggle="modal" data-target="#exampleModal1" id="{{i.id}}" onclick="give(this.id)"><img
+                                   src="{% static 'img/add (1).png' %}" class="add-1" style="margin-right: 10px;"></a>
+                          <a data-toggle="modal" data-target="#editModal"  onclick="edit_section('{{i.id}}')" name="{{i.name1}}"><i id="edit_" class="fas fa-edit"> </i></a>
+                           <a onclick="del('{{i.id}}')" ><i id="delete_" class="fas fa-trash-alt"></i></a>
+                           </div>
+                          {% endif %}
+
+                        <br>
+                           <br>
+                        <ul class="collapse list-unstyled" id="id_{{i.id}}">
+                            <li style="width: 101.8%; margin-left: -11px;">
+                                {% for j in component %}
+                                     {% if j.languages.id == i.id %}
+                                <div id='component_div{{j.id}}' style="background: white; border-radius: 0px; border: 1px solid #e8e8e8; margin-top: 10px; height: auto; padding-top: 20px; padding-bottom: 20px;margin-left: 25px;">
+                                    <span class="caret cr_sub2{{j.id}}" id="arraw_component{{j.id}}" aria-expanded="false"  style="margin-left: 15px; "></span>
+                                <a href="#id1_{{j.id}}" data-toggle="collapse" aria-expanded="false"
+                                   class="dropdown-toggle3 for_a" onclick="give1(this.name,'{{j.id}}',this)" name="{{j.id}}" id="component_name{{j.id}}" style="margin-left: 6px;">{{j.component_name}}</a>
+                                   <div style="float: right; margin-top: -7px; padding-right: 10px;">
+                                    <a data-toggle="modal" data-target="#exampleModalcomponent"  onclick="edit_component('{{j.id}}')" name="{{i.name1}}" ><i id="edit_" class="fas fa-edit"> </i></a>
+                                    <a onclick="del_component('{{j.id}}')"  ><i id="delete_" class="fas fa-trash-alt"></i></a>
+                                   </div>
+                                   
+                                <ul class="collapse list-unstyled" id="id1_{{j.id}}" style="margin-top: 7px;"><br>
+                                    <li>
+                                        <table class="table table-bordered" id="table" style="width: 98%; margin-left: 14px; max-width: 98%;">
+                                            <thead style="background: #e8e8e8;">
+
+                                            <tr>
+                                                <th scope="col">#</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Description</th>
+                                                <th scope="col">Upload files</th>
+                                                {% for comp_id_teacher in componet_teacher %}
+                                                    {% if j.id == comp_id_teacher %}
+                                                <th scope="col">Actions</th>
+                                                    {% endif %}
+                                                {% endfor  %}
+                                                {% if role != 'Teacher' %}
+                                                <th scope="col">Actions</th>
+  
+
+                                                {% endif %}
+                                                
+
+                                            </tr>
+                                            </thead>
+                                            <tbody id="table_bodi{{j.id}}">
+
+
+                                            {% for k in lesons %}
+                                            {% if k.language.id == j.id %}
+                                        
+
+                                            <form method="post" enctype="multipart/form-data" >
+                                            <tr id="tr_id_{{k.id}}">
+
+                                                <td scope="row">&nbsp;</td>
+                                                {% csrf_token %}
+                                                <td >
+
+                                                   
+                                                    <input  type="text" class="form-control"    name="id_lesons_edit" value="{{k.id}}"  hidden>
+                                                    <p class="name_lesons" style="display:block;white-space: pre-wrap;" id="id_lesons_edit_{{k.id}}">{{k.name}}</p>
+                                                    <textarea  type="text" class="form-control"  onclick="moveCursorToEnd('input_name_lesons{{k.id}}')"  id="input_name_lesons{{k.id}}" style="display:none;" name="edit_name_lesons" rows="5"></textarea>
+                                                </td>
+                                                <td>
+                                                    <p  style="display:block;" class="description_lesons_edit_5" id="description_lesons_edit_{{k.id}}">{{k.Description}}</p>
+                                                    <textarea  type="text" class="form-control"  onclick="moveCursorToEnd('input_Description_edit{{k.id}}')"  id="input_Description_edit{{k.id}}" style="display:none;" name="edit_description" rows="5"></textarea>
+
+                                                </td>
+                                                {% if k.file %}
+                                                <td>
+                                                    <a  style="display:block;" id="file_lesons_edit_{{k.id}}" href="{{k.file.url}}" target="_blank">{{k.file}}</a>
+
+                                                    <input type="image" src="{% static 'img/download@3x.png' %}" width="25px" style="display: none;margin-right: auto;margin-left:auto;" id="input_file_edit_{{k.id}}" onclick="clic_upload_input_edit({{k.id}}); return false;" >
+                                                     <input type="file"  class="form-control"  id="input_file_edit{{k.id}}" data-attribute="" hidden>
+                                                        <br><p style="text-align: center;display:none" id="id_title_upload_file_name1{{k.id}}"   >{{k.file.name}} </p>
+
+                                                </td>
+                                                {% else %}
+                                                <td>
+                                                    <a  style="display:block;" id="file_lesons_edit_{{k.id}}"  >No file</a>
+
+                                                    <input type="image" src="{% static 'img/download@3x.png' %}" width="25px" style="display: none;margin-right: auto;margin-left:auto;" id="input_file_edit_{{k.id}}" onclick="clic_upload_input_edit({{k.id}}); return false;" >
+                                                     <input type="file"  class="form-control"  id="input_file_edit{{k.id}}" data-attribute="" hidden>
+                                                        <br><p style="text-align: center;display:none" id="id_title_upload_file_name1{{k.id}}"   >No file</p>
+
+                                                </td>
+
+                                                {% endif %}
+                                                {% for comp_id_teacher in componet_teacher %}
+
+                                                {% if j.id == comp_id_teacher %}
+                                                            <td>
+                                                                <a  id="edit_hiden{{k.id}}" onclick="edit_table('{{k.id}}')">
+                                                                    <i id="edit_{{k.id}}" class="fas fa-edit" title="edit_i"></i>
+                                                                </a>
+                                                                <a id="delete_hiden_{{k.id}}" onclick=" Geeks('{{k.id}}')" >
+                                                                    <i id="delete_{{k.id}}" class="fas fa-trash-alt" title="delete_i"  ></i>
+                                                                </a>
+                                                                <button  class="btn btn-info btn-lg" id="edit_button{{k.id}}" type="button" style="display:none;" onclick="edit_lesons_table({{k.id}})">
+                                                                    <i id="12" class="fas fa-edit"></i>
+                                                                    Edit
+                                                                </button>
+                                                            </td>
+                                           
+
+                                                     {% endif %}
+
+                                                 {% endfor  %}
+                                                 {% if role != 'Teacher' %}
+
+                                                 <td style="width: 106px;">
+                                                    <a  id="edit_hiden{{k.id}}" onclick="edit_table({{k.id}})" style="margin-left: -1%;">
+
+                                                        <i id="edit_{{k.id}}" class="fas fa-edit" title="edit_i"></i>
+                                                    </a>
+                                                    <a id="delete_hiden_{{k.id}}" onclick=" Geeks('{{k.id}}')" >
+                                                        <i id="delete_{{k.id}}" class="fas fa-trash-alt" title="delete_i"  ></i>
+                                                    </a>
+                                                    <button  class="btn btn-info btn-lg" id="edit_button{{k.id}}" type="button" style="display:none;" onclick="edit_lesons_table({{k.id}})">
+                                                        <i id="12" class="fas fa-edit"></i>
+                                                        Edit
+                                                    </button>
+                                                </td>
+ 
+                                                 {% endif %}
+
+                                                </tr>
+
+                                                </form>
+                                            {% endif %}
+
+                                            {% endfor %}
+                                            </tbody>
+                                            
+                                            <tbody>
+                                                {% for comp_id_teacher in componet_teacher %}
+
+                                                {% if j.id == comp_id_teacher %}
+
+                                            <form method="post" enctype="multipart/form-data" id="forma_id_lesons_input{{j.id}}">
+
+                                            <tr>
+                                                <td scope="row"></td>
+
+                                                    {% csrf_token %}
+
+                                                    <input name="id_component" id='name_component{{j.id}}' hidden>
+                                                    <td id="td_name_add{{j.id}}">{{ form3.name}}</td>
+                                                    <td id="td_description_add{{j.id}}">{{form3.Description}}</td>
+                                                    <td><input type="image" src="{% static 'img/download@3x.png' %}" width="25px" style="display: block;margin-right: auto;margin-left:auto;" id="upload_files_image" onclick="clic_upload_input({{j.id}});return false;">
+                                                        <br><p style="text-align: center" id="id_title_upload_file_name{{j.id}}"   >Browse files </p>
+                                                        <a hidden>{{form3.file}}</a>
+                                                        </td>
+                                                    <td >
+                                                        <button class="btn btn-info btn-lg" id="add_lesons" type="button" onclick="add_lesons_tables({{j.id}})">
+
+                                                            <i id="" class="fa fa-plus"></i> Add
+                                                        </button>
+                                                    </td>
+                                            </tr>
+                                            </form>
+                                            {% endif %}
+
+                                            {% endfor  %}
+
+                                                     {% if role != 'Teacher' %}
+                                                     <form method="post" enctype="multipart/form-data" id="forma_id_lesons_input{{j.id}}">
+                                                    
+                                                       <tr>
+                                                           <td scope="row" style="    width: 5%;"></td>
+
+                                                               {% csrf_token %}
+
+                                                               <input name="id_component" id='name_component{{j.id}}' hidden>
+                                                               <td id="td_name_add{{j.id}}">{{ form3.name}}</td>
+                                                               <td id="td_description_add{{j.id}}">{{form3.Description}}</td>
+                                                               <td><input type="image" src="{% static 'img/download@3x.png' %}" width="25px" style="display: block;margin-right: auto;margin-left:auto;" id="upload_files_image" onclick="clic_upload_input({{j.id}});return false;">
+                                                                   <br><p style="text-align: center" id="id_title_upload_file_name{{j.id}}"   >Browse files </p>
+                                                                   <a hidden>{{form3.file}}</a>
+
+                                                                   </td>
+                                                               <td >
+                                                                   <button class="btn btn-info btn-lg" id="add_lesons" type="button" onclick="add_lesons_tables({{j.id}})">
+
+                                                                       <i id="" class="fa fa-plus"></i> Add
+                                                                   </button>
+                                                               </td>
+                                                       </tr>
+                                                       </form>
+
+                                                     {% endif %}
+                                                   
+                                            
+
+
+                                            </tbody>
+                                        </table>
+                                    </li>
+
+                                </ul>
+                                <br>
+                            </div>
+                                {% endif %}
+                           
+                                {% endfor %}
+                            </li>
+
+
+                        </ul>
+                    </li>
+
+                    {% endfor %}
+
+
+                </ul>
+            </li>
+
+
+        </ul>
+        <br>
+        {% if role != 'Teacher' %}
+        <a  data-toggle="modal" data-target="#exampleModal" class="add_nev_sections_class" style="cursor:pointer; margin-left: 287px; font-size: 120%;">+ Add new Sections</a>
+        {% endif %}
+
+
+
+
+        <div class="container">
+
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+
+                            <h4 class="modal-title" style="margin-left: 30%;">Add New Subject</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="features">
+                                <label for="">Subject Name</label>
+                                <form method="post" style="border:none">
+
+                                    {% csrf_token %}
+                                    {{form.name}}
+                                    <br>
+                                    <button class="btn btn-success" value="1" type="submit" id="add1" style="float: right; margin-top: 20px; width: 155px; background: #356f30;">Add</button>
+
+                                </form>
+                            </div>
+                            <!-- <div class="modal-footer"> -->
+                                <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+                            <!-- </div> -->
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- Modal section-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+            
+                        <h5 class="modal-title" id="exampleModalLabel">Add new Sections</h5>
+
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form method="post" class="form_class" >
+                        {% csrf_token %}
+                        {{form1.name1}}
+                        {{form1.parentSubject}}
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <a id="add11" href="/subjects/<id>/"></a>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- Modal elemnet-->
+        <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel1">Add new Element
+                            <!-- <p id="name_section1"></p>--> </h5>
+
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form method="post">
+
+                        {% csrf_token %}
+                        <input name="id" id='name_section1' hidden>
+                        {{form2.component_name }}
+                        {{form2.languages}}
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <a id="add111" href=""></a>
+                        </div>
+
+
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+                <!-- Modal edit section-->
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="edit sections">Edit  Sections Name</h5>
+
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form method="post" class="form_class" >
+                        <div class="modal-footer">
+                            {% csrf_token %}
+                            <input type="text" class="form-control" id="recipient-name" name="Edit_name_save" >
+                            <input type="text" class="form-control" id="id_Sections_model" name="id_sections_name" hidden >
+                            <input type="text" class="form-control" name="Edit_name" value="Edit_sections" hidden>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="edit_section_views()" data-dismiss="modal" >Save Edit</button>
+
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+<!-- modal component -->
+        <div class="modal fade" id="exampleModalcomponent" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+        aria-hidden="true">
+       <div class="modal-dialog" role="document">
+           <div class="modal-content">
+               <div class="modal-header">
+                   <h5 class="modal-title" id="exampleModalLabel1">Edit Component 
+                       <!-- <p id="name_section1"></p>--> </h5>
+
+
+                   <button type="button" class="close" data-dismiss="modal" aria-label="Close" id='close_modal_component_edit'>
+                       <span aria-hidden="true">&times;</span>
+                   </button>
+               </div>
+
+          
+
+                <input type="text" id='component_edit'>
+                <input type="hidden" id='component_id' >
+
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                       <button class="btn btn-primary" type="button"  data-dismiss="modal" aria-label="Close"  onclick="save_edit_component_name()">Save changes</button>
+                       <a id="add111" href=""></a>
+                   </div>
+
+
+  
+
+
+           </div>
+       </div>
+   </div>
+
+       
+
+
+    </div>
+
+
+
+
+    </div>
+
+<script type="text/javascript" src="{% static 'js/subjects_page_js.js' %}"></script>
+<!-- ____________________________________Popoxutyunner________________________________________________ -->
+<style>
+    .add_nev_sections_class {
+        margin-left: 46px;
+    }
+    .forp {
+        margin-left: 10px;
+        font-size: 16px;
+    }
+    .forli {
+        background: #e8e8e8;
+        /* height: 50px; */
+        padding: 20px;
+    }
+    tbody {
+        background:white;
+    }
+    .span_name {
+        font-size: 120%;
+        font-weight: bold;
+    }
+    .for_a{
+        font-size: 110%;
+    } 
+    tbody tr:nth-child(odd)
+    {       
+        background: white;
+    }   
+    tbody tr:nth-child(even)
+    {
+        
+        background:#f6fbff;
+    }     
+       
+</style>
+<script>
+ function rotate_arraw(id,this_a){
+     console.log($("#arraw"+id),this_a.getAttribute('aria-expanded'))
+     let open=this_a.getAttribute('aria-expanded')
+     if (open==='true'){
+         console.log('paka')
+         $("#arraw"+id).css('transition','0.5s')
+         $("#arraw"+id).css('transform','rotate(270deg)')
+
+     }
+     else {
+        console.log('paka111')
+        $("#arraw"+id).css('transition','0.5s')
+         $("#arraw"+id).css('transform','rotate(360deg)')
+     }
+    
+ }
+
+</script>
+
+<!-- Cursor go to end of  input line-->
+<script>
+function moveCursorToEnd(id) {
+  var el = document.getElementById(id) 
+  el.focus()
+  if (typeof el.selectionStart == "number") {
+      el.selectionStart = el.selectionEnd = el.value.length;
+  } else if (typeof el.createTextRange != "undefined") {           
+      var range = el.createTextRange();
+      range.collapse(false);
+      range.select();
+  }
+}
+</script>
+<!-- ______________________________________________________________________________________________________ -->
+{% endblock %}

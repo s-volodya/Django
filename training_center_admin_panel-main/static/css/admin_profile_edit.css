@@ -1,0 +1,116 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;   }
+
+#admin_profile{
+    border: 2px solid rgb(231, 231, 231);
+    margin-top: 100px;
+    padding: 0 0 100px 0;
+    margin-bottom: 100px;
+    margin-left: 20%;
+    width: 90%;
+}
+ #admin_profile_edit{
+    width: 100%;
+    height: 700px;
+    display: flex;
+ }
+ .profile{
+    /* width: 100%; */
+    padding: 20px 97% 20px 3% ;
+    /* height: 80px; */
+    font-size: 22px !important;
+    border: 2px solid rgb(231, 231, 231);
+    font-weight: bolder;
+    color: rgb(105, 105, 105);
+ }
+ .admin_profile_name{
+    margin-left: 32%;
+    width: 68%;
+ }
+ .admin_picture{
+    width: 8%;
+    height: auto;
+    border-radius: 50%;
+    position: absolute;
+ }
+ .input{
+    width: 100%;
+    padding: 10px 2px 10px 10px;
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 4px;
+ }
+ .admin_profile_left_section{
+    width: 40%;
+    padding: 30px 1% 30px 3%;
+ }
+ #admin_profie_save{
+    padding: 6px 45px 7px 46px;
+    border-radius: 4px;
+    background-color: #2586d1;
+    color: white;
+    border: none;
+ }
+ button{
+    cursor: pointer;
+ }
+ .admin_profile_right_section {
+    width: 20%;
+    height: 700px;
+    border-radius: 5px;
+    box-shadow: -1px 1px 16px 0 rgba(132, 132, 132, 0.24); 
+    margin: 30px 5%;
+
+ }
+ .free {
+    /* width: 100%; */
+    /* height: 55px; */
+    padding: 12px 40% 12px 45%;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+    background-color: #357127;
+    color: white;
+    text-transform: uppercase;
+    font-size: 20px !important;
+    font-weight: bolder;
+ }
+ .payment{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    background-color: #fafafa;
+ }
+ .payment>div{
+    width: 50%;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+ }
+ .lorem{
+    width: 100%;
+    height: 300px;
+    padding: 10px 35% 0 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+ }
+.change_plan{
+    background-color: #532057;
+    border-radius: 6px;
+    text-align: center;
+    padding: 10px 28%;
+    font-weight: bolder;
+    color: white;
+    margin-top: 104px;
+    margin-left: 5%;
+}
+#logo_company{
+   max-width: 40%;
+    max-height: 150px;
+    overflow: hidden;
+}

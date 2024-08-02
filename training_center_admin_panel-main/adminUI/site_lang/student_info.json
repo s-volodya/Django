@@ -1,0 +1,184 @@
+{
+    "en":{
+              "cont_info":"Contact Info",  		
+              "ph_n": "Phone Number",
+              "personal_info":"Personal Info",
+              "pers_info":{
+                  "birth_date":"Birth Date",
+                  "pass":"Passport",
+                  "address":"Address",
+                  "cont_num":"Contact Number",
+                  "cont_date":"Contract Date",
+                  "cont_mp":"Contract Monthly Price",
+                  "done_les":"Done Lessons",
+                  "com":"Comment",
+                  "com_btn":{
+                      "save":"Save Comment"
+                  }
+              },
+        
+          "view_sch":"View Schedule",
+          "view_pay":"View Payments",
+          "div2":{
+              "stud_plan":"Study Plan"
+          },
+        "cont_date":"Contract Date",
+		"ls_start_date": "Lesson Start Date",
+		"sch_les":"Scheduled Lessons",
+		"done_les":"Done Lessons",
+		"cal_view":"Calendar View",
+
+        "title":"View Payments",
+		"pay_sch":{
+			"payment_sch": "Payment Schedule",
+			"contract_d":"Contract Date",
+			"table":{
+				"date":"Date",
+				"paid_am":"Paid Amount",
+				"sale":"Sale (%)",
+				"fin_am":"Final Amount"
+			},
+			"tot_pay":"Total Payment"
+		},
+		"act_pay":{
+			"act_paymn": "Actual Payment",
+			"contract_d2":"Contract Date",
+			"table2":{
+				"date2":"Date",
+				"paid_am2":"Paid Amount",
+				"up_file":"File",
+				"com":"Comment",
+				"not":"Notification",
+				"action":"Actions",
+				"inn":{
+					"tod":"Today",
+					"btn":"+Add"
+				}
+			},
+			"tot_pay2":"Total Payment"
+		}
+
+        },
+    "ru":{
+      
+              "cont_info":"Контактная информация",  		
+              "ph_n":"Номер телефона",
+              "personal_info":"Личная информация",
+              "pers_info":{
+                  "birth_date":"Дата рождения",
+                  "pass":"Паспорт",
+                  "address":"Адрес",
+                  "cont_num":"Номер контракта",
+                  "cont_date":"Дата контракта",
+                  "cont_mp":"Ежемесячная цена контракта",
+                  "done_les":"Сделанные Урокы",
+                  "com":"Комментарий",
+                  "com_btn":{
+                      "save":"Сохранить комментарий"
+                  }
+              },
+      
+          "view_sch":"Посмотреть расписание",
+          "view_pay":"Просмотр платежей",
+          "div2":{
+              "stud_plan":"Учебный план"
+          },
+          "cont_date":"Дата контракта",
+          "ls_start_date": "Дата начала урока",
+          "sch_les":"Запланированные уроки",
+          "done_les":"Сделанные уроки",
+          "cal_view":"Просмотр календаря",
+          "title":"Просмотр платежей",
+          "pay_sch":{
+              "payment_sch": "График платежей",
+              "contract_d":"Дата контракта",
+              "table":{
+                  "date":"Дата",
+                  "paid_am":"Выплаченная сумма",
+                  "sale":"Скидка (%)",
+                  "fin_am":"Окончательная сумма"
+              },
+              "tot_pay":"Всего к оплате"
+          },
+          "act_pay":{
+              "act_paymn": "Фактическая оплата",
+              "contract_d2":"Дата контракта",
+              "table2":{
+                  "date2":"Дата",
+                  "paid_am2":"Выплаченная сумма",
+                  "up_file":"Файл",
+                  "com":"Комментарий",
+                  "not":"Уведомление",
+                  "action":"Действия",
+                  "inn":{
+                      "tod":"Сегодня",
+                      "btn":"Добавить"
+                  }
+              },
+              "tot_pay2":"Всего к оплате"
+          }
+
+      },
+    "arm":{	
+    
+              "cont_info":"Կոնտակտային տվյալներ",  		
+              "ph_n": "Հեռախոսահամար",
+             
+              "personal_info":"Անձնական տվյալներ",
+              "pers_info":{
+                  "birth_date":"Ծննդյան ամսաթիվ",
+                  "pass":"Անձնագիր",
+                  "address":"Հասցե",
+                  "cont_num":"Պայմանագրի համարը",
+                  "cont_date":"Պայմանագրի ամսաթիվը",
+                  "cont_mp":"Պայմանագրի ամսական արժեքը",
+                  "done_les":"Արված դասեր",
+                  "com":"Մեկնաբանություն",
+                  "com_btn":{
+                      "save":"Պահպանել մեկնաբանությունը"
+                  }
+              },
+              "cont_date":"Պայմանագրի ամսաթիվը",
+              "ls_start_date": "Դասի մեկնարկի ամսաթիվը",
+              "sch_les":"Պլանավորված դասեր",
+              "done_les":"Արված դասեր",
+              "cal_view":"Օրացույց",
+        
+          "view_sch":"Դիտել ժամանակացույցը",
+          "view_pay":"Դիտել վճարումները",
+          "div2":{
+              "stud_plan":"Ուսումնական պլան"
+          },
+          "title":"Դիտել վճարումները",
+          "pay_sch":{
+              "payment_sch": "Վճարման ժամանակացույց",
+              "contract_d":"Պայմանագրի ամսաթիվը",
+              "table":{
+                  "date":"Ամսաթիվ",
+                  "paid_am":"Վճարված գումար",
+                  "sale":"Զեղչ (%)",
+                  "fin_am":"Վերջնական գումար"
+              },
+              "tot_pay":"Վերջնական վճար"
+          },
+          "act_pay":{
+              "act_paymn": "Փաստացի վճարում",
+              "contract_d2":"Պայմանագրի ամսաթիվը",
+              "table2":{
+                  "date2":"Ամսաթիվ",
+                  "paid_am2":"Վճարված գումար",
+                  "up_file":"Ֆայլ",
+                  "com":"Մեկնաբանություն",
+                  "not":"Ծանուցում",
+                  "action":"Գործողություն",
+                  "inn":{
+                      "tod":"Այսօր",
+                      "btn":"Ավելացնել"
+                  }
+              },
+              "tot_pay2":"Վերջնական վճար"
+          }
+
+
+      }
+  }

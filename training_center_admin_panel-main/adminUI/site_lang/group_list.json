@@ -1,0 +1,30 @@
+{
+    "en":{
+            "title":"Groups",
+            "add_button":"Add Group",
+          "av_info":"All Available Information",
+          "more":{
+          "edit":"Edit",
+          "del":"Delete"
+          }
+    },
+    "ru":	{
+            "title":"Группы",
+            "add_button":"Добавить группу",
+          "av_info":"Вся доступная информация",
+          "more":{
+          "edit":"Редактировать",
+          "del":"Удалить"
+          }
+      },
+    "arm":{	
+        "title":"Խմբեր",
+            "add_button":"Ավելացնել խումբ",
+          "av_info":"Ամբողջ հասանելի տեղեկատվությունը",
+          "more":{
+          "edit":"Խմբագրել",
+          "del":"Ջնջել"
+          }
+    }
+  
+}

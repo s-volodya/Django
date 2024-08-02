@@ -1,0 +1,503 @@
+{% extends "adminUI/header.html" %}
+{% block title %}Student info{% endblock %}
+{% block head1 %}
+{% load static %}
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'css/dinamik_grups_page.css' %}" >
+<link rel="stylesheet" href="{% static 'css/style.css' %}" >
+<link rel="stylesheet" href="{% static 'css/student_info.css' %}" >
+
+<style>
+    *, div, a, p, div div, .lessons-count{
+        font-size: 15px !important;
+    }
+
+</style>
+{% endblock %}
+
+{% block body %}
+{% load static %}
+
+<div class="center" style="margin-left: 20%;">
+    <hr>
+    <div class = "left-part1" style="width:85%; margin-left: -85px;">
+        <div class="flex">
+            <p class = "arrow-left slaq" style="margin-left: 32%;margin-top: 7%; "><a href="/students/" style="text-decoration: none;    font-size: 42px !important;">‹</a></p>
+            <img src="{% static 'media/photos/'%}{{students.pictures_studnet}}" class="img rounded-circle" style="margin-left: 1%;margin-top: 8%; overflow: hidden; height: 60px;"> 
+            <p class = "name-surname" style="margin-top: 10%;margin-left: 1%; font-size: 17px !important"> {{students.first_name}} {{students.last_name}}</p>
+        </div>
+        <div class="left-content" style="margin-left: 32%;">
+            <div class="line-first" style="background-color:#e7eaec;">{{group.name}} <span class = "t-name">{{teacher.last_name}} {{teacher.first_name}} : {{students.first_name}} {{students.last_name}}</span></div>
+            <div class="line-second">{{cont_info}}</div>
+            <div class="line-third">
+                <div class="left-part-second">{{ph_n}}</div>
+                <div class="left-part-second" style="color: #7e7e7e;">{{students.phone_number_code}}{{students.phone_number}}</div>
+            </div>
+            {% if role != 'Teacher' %}           
+            <div class="line-second">{{personal_info}}</div>
+            <div class="line-third">
+                <div class="left-part-second">{{pers_info.birth_date}}</div>
+                <div class="left-part-second" style="color: #7e7e7e;">{{students.date_of_birth}}</div>
+            </div>
+            <div class="line-third">
+                <div class="left-part-second">{{pers_info.pass}}</div>
+                <div class="left-part-second" style="color: #7e7e7e;">{{students.passport_number}}</div>
+            </div>
+            <div class="line-third">
+                <div class="left-part-second">{{pers_info.address}}</div>
+                <div class="left-part-second" style="color: #7e7e7e;">{{students.address}}</div>
+            </div>
+            <div class="line-third">
+                <div class="left-part-second">{{pers_info.cont_num}}</div>
+                <div class="left-part-second" style="color: #7e7e7e;">{{students.contract_number}}</div>
+            </div>
+            <div class="line-third">
+                <div class="left-part-second">{{pers_info.cont_date}}</div>
+                <div class="left-part-second" style="color: #7e7e7e;">{{students.contract_start}} _ {{students.contract_end}}</div>
+            </div>
+
+
+            <div class="line-third">
+                <div class="left-part-second">{{pers_info.cont_mp}}</div>
+                <div class="left-part-second" style="color: #7e7e7e;">{{students.priceM_sale}} AMD</div>
+            </div>
+            {% endif %}
+            <div class="line-third">
+                <div class="left-part-second">{{pers_info.done_les}}</div>
+                <div class="left-part-second" style="color: #7e7e7e;">{{don_lesons_number}}:Lesons</div>
+            </div>
+            <hr>
+            <div class="line-third">
+                <div class="left-part-second">{{pers_info.com}}</div>
+                <div class="left-part-second"><textarea name="" id="commnet_studnet" cols="30" rows="10" style="margin-top: 0px;margin-left: -76px;height: 128px;margin-bottom: 0px;width: 126%;">{{students.comment}}</textarea></div>
+                
+            </div>
+            <div class="line-third">
+                <div class="left-part-second"></div>
+                <div class="left-part-second"style="margin-left: 57%;" ><button style="position: absolute; margin-left: -309px; margin-top: -14px;"  class="btn btn-outline-success" onclick="save_commnet('{{students.id}}')">{{pers_info.com_btn.save}}</button> </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class = "right-part1" style="width: 50%; margin-top: 105px;">
+        {% if role != 'Teacher' %}
+    <a style="float: right; margin-top: 5%;" data-toggle="modal" data-target="#editModal12" href="#0" ><img src='{% static "img/group1630.png" %}'>        {{view_pay}}</a>
+         {% endif %}
+         <a style="float: left; margin-top: 5%;" data-toggle="modal" data-target="#editModal" href="#0"><i class="far fa-calendar-alt"></i>      {{view_sch}} </a>
+
+        
+         <div class="left-content" style = "padding-bottom: 0px; margin-top: 8.95%;">
+            
+            <div class="line-first" style = "background-color:rgba(231, 234, 236, 1);">{{div2.stud_plan}}</div>
+
+            {% for i in component %}
+             <div class="first-lesson">
+                <div class="toggle-line">
+                    <div class="left-one"><span class = "arrow">▲</span><div class="lng-title">{{i.component_name}}</div></div>
+                    {% for numbers in component_numbers %}
+                        {% if i.id == numbers.id_component %}
+                            <div class="right-one" ><span class = "lessons-count" >{{numbers.numbers}} Lessons</span><div class="{{numbers.status}}">{{numbers.status}}</div></div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                 <div class="dropdown" style="width: 100%; border: none;">
+                     {% for j in lesons %}
+                
+                   
+
+                     {% if i.id == j.language_id %}
+                     <div class="underline" style="border-bottom: solid 0.5px #d3d3d3;">
+                         <p class="lesson-name" style="margin-bottom: 18px;"><a href = '#'>{{j.name}} :{{j.Description}}</a></p>
+                                 {% for k in lesons_student %}
+                                   
+                            
+                                 {% if k.id == j.id %}
+                              
+                                 <div class="right-one"><span class = "lessons-count" style="margin-left: 90px;">   {{k.number}}:Lessons</span><div class="{{k.status}}">{{k.status}}</div></div>
+
+                                 {% endif %}
+
+                                  {% endfor %}
+                     </div>
+                     {% endif %}
+
+                     {% endfor %}
+
+                     </div>
+                 </div>
+                 
+            
+            {% endfor %}
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="background-color: #532057;">         History Studenta</button>
+        </div>
+         </div>
+    </div>
+    {% if role != 'Teacher' %}
+
+    <div class="modal fade" id="editModal12" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style = "margin:0px;  margin-left: 415px;">
+            <div class="modal-content" style = "height: auto;width: min-content; margin-top: 27%;" >
+                
+                
+                <div class="popup_block_schedule">
+
+                          <div class="popup_head1">
+                              <div class="popup_name1">
+                                  <h2 style="font-size:150%; margin-top:8px;">{{title}}</h2>
+                              </div>
+
+                          </div>
+
+                          <div class="popup_choose1">
+                            <a class="fade1" onclick="openCity(event, 'London')" >
+                                <p>{{pay_sch.payment_sch}}</p>
+                            </a>
+                            <a class="fade2"  onclick="openCity(event, 'Paris')">
+                                <p>{{act_pay.act_paymn}}</p>
+                            </a>
+                        </div>
+                        <hr color="silver1">
+                        <div class="contract_date1">
+                            <i class="far fa-clock"></i>
+                            <span>{{pay_sch.contract_d}}</span><br><br>
+                            <div class="date1">
+                                <p>{{students.contract_start}} -- {{students.contract_end}}</p>
+                            </div>
+                        </div>
+
+
+                      
+                            <div id="London" class="tabcontent" style="display: block;">
+  
+                                <table class="table1">
+                                    <thead>
+                                        <th>{{pay_sch.table.date}}</th>
+                                        <th>{{pay_sch.table.paid_am}}</th>
+                                        <th>{{pay_sch.table.sale}}</th>
+                                        <th>{{pay_sch.table.fin_am}}</th>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in data_pay %}
+                                        <tr>
+                                            <td>{{i|date:"d.m.Y"}}</td>
+                                            <td>{{students.priceM}}դ</td>
+                                            <td>{{students.price_sale}} %</td>
+                                            <td>{{students.priceM_sale}} դ</td>
+                                            
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                <div class="total1">
+                                    <span>{{pay_sch.tot_pay}}</span>
+                                    <h2>{{payment}} AMD</h2>
+                                </div>
+
+
+                            
+                            </div>
+
+                            <div id="Paris" class="tabcontent">
+
+                                    <table class="table table-bordered" cellpadding='30'>
+                                        <thead>
+                                            <th>{{act_pay.table2.date2}}</th>
+                                            <th style="font-size:103%">{{act_pay.table2.paid_am2}}</th>
+                                            <th style="width: 120px;">{{act_pay.table2.up_file}}</th>
+                                            <th style="text-align:left">{{act_pay.table2.com}}</th>
+                                            <th>{{act_pay.table2.not}}</th>
+                                            <th>{{act_pay.table2.action}}</th>
+                                        
+                                        </thead>
+                                        <tbody id='tbody_show'>
+                                            {% for i in payment_studnet %}
+                                         
+                                            <tr id='id_row{{i.id}}'>
+                                                <td><p id='data_{{i.id}}'>{{i.data|date:"d-m-Y"}}</p><input class="comment_" id='input_data{{i.id}}' type="text" value='{{i.data|date:"d-m-Y"}}'  style="display: none;"></td>
+                                                <td><p id='point_{{i.id}}'>{{ i.paid_amount }} AMD</p><input class="comment_" id='input_point_{{i.id}}' type="text" value="{{ i.paid_amount }}" style="display: none;"> </td>
+                                                <td>
+                                                    <a href="" onclick="file_input_click1('{{i.id}}'); return false;"  style="display: none;" id='file_update_{{i.id}}'><i class="fas fa-upload" id="name_file{{i.id}}"><br></i></a>
+                                                    <input type="file" style="display: none;" id='file_payment{{i.id}}' onchange="updateValue1('{{i.id}}')" value="{% static 'media/'%}{{i.file_payment}}">
+
+                                                    <a href="{% static 'media/'%}{{i.file_payment}}" id='file_{{i.id}}' target="_blank">{{ i.file_payment }}</a>
+                                                    <p id="name_file_{{i.id}}" style="display: none;text-align: center;"></p>
+
+                                                </td>
+                                                <td>
+                                                    <p style="width: 400px;word-break: break-all;" id='comment_{{i.id}}'>{{ i.comment }}</p><input class="comment_" id='input_comment_{{i.id}}' type="text" value="{{ i.comment }}"  style="display: none;">
+                                                </td>
+                                                <td>
+                                                                                                   
+                                                {% if i.send_mail  %}
+                                                <i class="fas fa-paper-plane" style="color: green;"> </i>
+                                                <p style="text-align: center;"> Sent</p>
+
+                                                {% else %}
+                                             
+                                                <i class="fas fa-paper-plane" style="color: red;">   </i>
+                                                <p style="text-align: center;"> Not Sent</p>
+
+                                                {% endif %}
+                                                    
+                                                </td>
+ 
+
+                                                <td>
+                                                    <div class="btn">
+                                                      
+                                                        <button class="btn_edit"  onclick="edit('{{i.id}}');return false;" id='edit_button_{{i.id}}'>
+                                                            <i class="far fa-edit"></i>
+                                                            
+                                                        </button>
+                                                 
+                                                        <button class="btn_delet" id='delete_button_{{i.id}}' onclick="delete_row('{{i.id}}','{{students.id}}')">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </button>
+
+                                                        <button class="btn_add" onclick="edit_save('{{i.id}}','{{students.id}}')" id='edit_button_save{{i.id}}' style="display: none;background-color: #2284CB;"> <i class="far fa-edit">    Edit</i></button>
+                                                    </div>
+                                                </td>
+                    
+                                            </tr>
+                                            {% endfor %}
+                    
+                                           
+                    
+                 
+                    
+                                        </tbody>
+                                        <tbody>
+                                            <tr>
+                                                <td><input type="text" style="width: 70px;" id="date_input">
+                                                <a href="" onclick="tuday(); return false;" > {{act_pay.table2.inn.tod}} </a>
+                                                </td>
+                                                <td><input type="text" style="width: 70px;" id="paid_input"></td>
+                                                <td>
+                                                    <a href="" onclick="file_input_click(); return false;" ><i class="fas fa-upload" id="name_file"><br></i></a>
+                                                    <input type="file" style="display: none;" id='file_payment' onchange="updateValue()">
+
+                                                </td>
+                                                <td><input type="text" id="comment_input"></td>
+                                                <td>
+                                                    <input type="checkbox"  id='send_mail'>
+                                                </td>
+                                                <td>
+                                                    <button class="btn_add" onclick="add_payment('{{students.id}}')">{{act_pay.table2.inn.btn}}</button>
+                                                </td>
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                    <div class="total">
+                                        <span>{{act_pay.tot_pay2}}</span>
+                                        <h2 id="payment_number">200 000 AMD</h2>
+                                    </div>
+                    
+                           
+                                  </div>
+
+
+
+                            </div>
+
+                    </div>
+        <!-- ////////////////////////////////////////////////////////////////////// -->
+
+    </div>
+
+
+    {% endif %}
+
+</div>
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document" style = "margin:0px;  margin-left: 415px;">
+        <div class="modal-content" style = "height: auto;">
+            <div class="container">
+                <div class = "header-line">
+                    <div class = "left-part">
+                        <div class = "first-part">
+                            <p class = "text-contract" >{{cont_date}}</p>
+                            <div class = "contract-date">{{students.contract_start}}---{{students.contract_end}} </div>
+                        </div>
+                        <div class = "second-part" id='add_new_lesons_time'>
+                            <p class = "text-contract-second" >{{ls_start_date}}</p>
+                            <div class = "contract-date-start" id="lesons_start_time">15:00</div>
+                            <div class = "at">-</div>
+                            <div class = "contract-date-start" id="lesons_end_time">17:00</div>
+                            <div id='save_and_edit'>
+
+                            </div>
+
+
+                      
+                          
+                        </div>
+                        <div class = "second-part" id='add_new_lesons_time_comment'>
+ 
+                 
+                            
+                        </div>
+                        
+                    </div>
+                    <div class = "right-part">
+                        <div class = "first-part">
+                            <p class = "text-contract">{{sch_les}}</p>
+                            <div class = "without-check"></div>
+                        </div>
+                        <div class = "second-part">
+                            <p class = "text-contract-second">{{done_les}}</p>
+                            <div class = "check">✓</div>
+                        </div>
+                    </div>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="body">
+                    <div class = "body-line">
+                        <p class = "body-title-first">{{cal_view}}</p>
+                    </div>
+
+                
+                        </div>    
+                        <div class="calend">
+                            {% for i in c|get_range %}
+                            <div class = "obj">
+                                <div class = "month-title" id="year_title{{i}}"></div>
+                            <div class = "month" id="month_{{i}}">
+                                <div class="weekdays">
+                                    Mo 
+                                </div>
+                                <div class="weekdays">
+                                    Tu
+                                </div>
+                                <div class="weekdays">
+                                    We
+                                </div>
+                                <div class="weekdays">
+                                    Th
+                                </div>
+                                <div class="weekdays">
+                                    Fr
+                                </div>
+                                <div class="weekdays">
+                                    Sa
+                                </div>
+                                <div class="weekdays">
+                                    Su
+                                </div>
+                              </div>
+                            </div>
+                            {% endfor %}
+                            <div class="left" onclick="get_month_and_year('next',{{students.id}})"  ><</div>
+                            <div class="right" onclick="get_month_and_year('last',{{students.id}})" > ></div>
+                            
+                            <div id='modal_dabl_clic'></div>
+                        </div>
+                      
+                </div>
+    
+            </div>
+           
+    </div>
+</div>
+</div>
+<input value="{% for i in payment_studnet %} {{i.paid_amount}} {% endfor %}" id='payment_student_all' type="hidden">
+<!-- Button trigger modal -->
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="margin-top: 5%;/* height: 119%; */">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="width: auto;height: auto;">
+        <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Group Name</th>
+                <th scope="col">Start</th>
+                <th scope="col">End</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for i in history %}
+                <tr>
+                    <th scope="row">{{i.number}}</th>
+                    <td>{{students.last_name}} {{students.first_name}}</td>
+                    <td>{{i.group_name}}</td>
+                    <td>{{i.start}}</td>
+                    <td>{{i.end}}</td>
+                    {% if i.status %}
+                    <td><div class="In progress">In Progres</div></td>
+                    {% else %}
+                    <td><div class="Done">Done</div></td>
+                    {% endif %}
+                  </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript" src="{% static 'js/student_info.js' %}"></script>
+<script>
+    
+    
+
+
+  function openCity(evt, cityName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+create_calendar('{{students.id}}','cread',1)
+function save_commnet(id){
+    let comment=$('#commnet_studnet').val()
+
+    $.ajax({
+          method: "POST",
+          url: "/students/"+id+"/",
+          dataType: 'json',
+          data:{'comment_studneta':comment},
+          cache : false,
+          }).done(function(res){
+               
+
+
+          })
+
+
+
+}
+
+  
+  </script>
+  <style>
+      .date1 p {
+          top: 4px;
+          left: 20px;
+      }
+      .slaq:hover {
+        text-decoration: none;
+      }
+      *{
+          font-family: Open Sans;
+      }
+      .line-second {
+          font-size: 16px !important;
+      }
+  
+  </style>
+{% endblock %}

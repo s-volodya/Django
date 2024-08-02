@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+
+    <style>
+        *{
+            font-size: 16px !important;
+        }
+        .select_i{
+            color: rgb(255, 255, 255);
+            font-size: 29px !important;
+            cursor: pointer;
+        }
+        .select_page{
+            display: none;
+            width: 35%;
+            height: 150px;
+            box-shadow: -1px 1px 16px 0 rgba(132, 132, 132, 0.24);
+            background-color: var(--white);
+            float: right;
+            border-radius: 3px;
+        }
+        .select_page ul{
+        display: flex;
+        height: 139px;
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-left: 0;
+        }
+        .select_page ul li:last-child{
+            border-top: 1px solid #e8e8e8;
+        }
+        .select_page ul li{
+            padding-top: 20px;
+            list-style: none;
+        }
+        .select_page ul li a{
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .admin_profile_a{
+            margin-left: 9%;
+        }
+        .select_page ul li span{
+            margin-left: 9%;
+            color: rgb(122, 122, 122);
+        }
+        
+    </style>
+    <meta charset="UTF-8">
+    <title>{% block title %} {% endblock %}</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" >
+    <link rel="shortcut icon" href='{{url_logo}}' type="image/x-icon">
+    {% block head1 %} {% endblock %}
+
+</head>
+<body>
+   {% load static %}
+
+ 
+
+</nav>
+<div class="size">
+    <nav class="navbar-fixed-top" style="z-index: 9000000000000000000;background: #532057; height: 85px; display: flex; justify-content: space-between;">
+        <div class="navbar_left_logo" style="margin-left: 6%;cursor: pointer;">
+            <img src="{% static '/logo/logo(admin).svg' %}" alt="" class="img_logo" style="width: 39px;height: 40px;margin-top: 23px;margin-left: -23px;"><p style="margin-top: -37px;margin-left: 23px;color: white;font-size: 136% !important;">ADMIN PANEL</p>
+        </div>
+        <div class="navbar_right_profile" style="margin-top: 20px;margin-right: 6%;" id=user_name_login>
+            
+        </div>
+    </nav>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+   <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+   <!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+   {% include "adminUI/includes/sidebar.html" %}
+   {% include "adminUI/includes/load.html" %}
+   <script src="{% static 'js/header.js' %}"></script>
+
+   <style>
+    *{
+        font-family: Open sans;
+    }
+    #select_inp {
+        background: none;
+        border: none;
+        color: white;
+        outline: none;
+        cursor: pointer;
+        /* margin-left: 84%; */
+        /* margin-top: -30px; */
+        z-index: 999;
+        /* position: absolute;         */
+    }
+    #select_inp option{
+        color: black;
+        cursor: pointer;
+    }
+    .lang_opt {
+        color:black
+    }
+    .size {
+        width: 100%;
+        z-index: 999;
+    }
+    #main1{
+    margin-left: -15%;
+}
+</style>
+
+​
+<div id="main1">{% block body %} {% endblock %}</div>
+
+
+</body>
+</html>

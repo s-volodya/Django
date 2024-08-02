@@ -1,0 +1,47 @@
+{
+    "en":{
+          "recent":"Recent",
+          "type_message": "Type a Message",
+          "edit_message":"Edit Message",
+          "edit_button":{
+              "edit_btn":"Edit",
+              "close_btn":"Close"
+          },
+          "delete_":"Delete",
+          "delete_button":{
+              "for_me":"For Me",
+              "bor_both":"For Both",
+              "close_btn2":"Close"
+          }		  
+          },
+    "ru":{
+          "recent":"Недавний",
+          "type_message": "Напишите сообщение",
+          "edit_message":"Редактировать сообщение",
+          "edit_button":{		
+              "edit_btn":"Редактировать",		
+              "close_btn":"Закрыть"
+          },
+          "delete_":"Удалить",
+          "delete_button":{
+              "for_me":"Для меня",
+              "bor_both":"Для всех",
+              "close_btn2":"Закрыть"
+          }
+          },
+    "arm":{
+          "recent":"Վերջին",
+          "type_message": "Գրել հաղորդագրություն",
+          "edit_message":"Խմբագրել հաղորդագրությունը", 
+          "edit_button":{ 
+              "edit_btn":"Խմբագրել",
+              "close_btn":"Փակել"
+          },
+          "delete_":"Ջնջել",
+          "delete_button":{
+              "for_me":"Ինձ համար",
+              "bor_both":"Բոլորի համար",
+              "close_btn2":"Փակել"
+          }
+          }
+  }

@@ -1,0 +1,101 @@
+{
+    "en":{
+            "title":"Subjects",
+          "sub_add_btn":{
+              "btn":"Add Subject",
+                  "new":{
+                      "new_subj":"Add New Subject",
+                      "sub_name":"Subject Name",
+                      "sub_name_pl":"Subject Name",
+                      "btn_add":{
+                          "add":"Add"
+                      }
+                  }
+          },
+          "new_element":"Add New Element",
+          "el_name":"Element's Name",
+          "btns":{
+                  "close":"Close",
+                  "save_chan":"Save Changes"
+                  },
+          "table":{
+              "name":"Name",
+              "desc": "Description",
+              "up_file":"Upload File",
+              "act":"Actions",
+              "new":{
+                  "new_les":"New Lesson Name",
+                  "dsc":"Description",
+                  "bt":{
+                      "ad": "Add"
+                  }
+              }
+          }
+    },
+    "ru":{
+        "title":"Предметы",
+          "sub_add_btn":{
+              "btn":"Добавить предмет",
+                  "new":{
+                      "new_subj":"Добавить новый предмет",
+                      "sub_name":"Название предмета",
+                      "sub_name_pl":"Название предмета",
+                      "btn_add":{
+                          "add":"Добавить"
+                      }
+                  }
+          },
+          "new_element":"Добавить новый элемент",
+          "el_name":"Название элемента",
+          "btns":{
+                  "close":"Закрыть",
+                  "save_chan":"Сохранить изменения"
+                  },
+          "table":{
+              "name":"Название",
+              "desc": "Описание",
+              "up_file":"Загрузить файл",
+              "act":"Действия",
+              "new":{
+                  "new_les":"Название нового предмета",
+                  "dsc":"Описание",
+                  "bt":{
+                      "ad": "Добавить"
+                  }
+              }
+          }
+      },
+    "arm":{	
+       "title":"Առարկաներ",
+          "sub_add_btn":{
+              "btn":"Ավելացնել առարկա",
+                  "new":{
+                      "new_subj":"Ավելացնել նոր առարկա",
+                      "sub_name":"Առարկայի անունը",
+                      "sub_name_pl":"Առարկայի անունը",
+                      "btn_add":{
+                          "add":"Ավելացնել"
+                      }
+                  }
+          },
+          "new_element":"Ավելացնել նոր տարր",
+          "el_name":"Տարրի անունը",
+          "btns":{
+                  "close":"Փակել",
+                  "save_chan":"Պահպանել փոփոխությունները"
+                  },
+          "table":{
+              "name":"Անուն",
+              "desc": "Նկարագրություն",
+              "up_file":"Ներբեռնել ֆայլ",
+              "act":"Գործողություններ",
+              "new":{
+                  "new_les":"Նոր դասի անունը",
+                  "dsc":"Նկարագրություն",
+                  "bt":{
+                      "ad": "Ավելացնել"
+                  }
+              }
+          }
+    }
+  }

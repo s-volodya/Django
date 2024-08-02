@@ -1,0 +1,50 @@
+{
+    "en":{
+            "title":"Archive Details:Students",
+          "table":{
+          "name":"Name",
+          "surname": "Surname",
+          "phone_number":"Phone Number",
+          "email":"E-mail",
+          "current_language":"Current Language",
+          "monthly_fee":"Monthly Fee",
+          "view":"View",
+          "action":"Action",
+          "act_btn":{
+              "restore":"Restore"
+          }
+          }
+    },
+    "ru":
+      {"title":"Детали архива: Студенты",
+      "table":{
+          "name":"Имя",
+          "surname": "Фамиля",
+          "phone_number":"Номер телефона",
+          "email":"Эл. почта",
+          "current_language":"Текущий язык",
+          "monthly_fee":"Ежемесячная плата",
+          "view":"Просмотр",
+          "action":"Действие",
+          "act_btn":{
+              "restore":"Восстановить"
+          }
+          }
+      },
+    "arm":{	
+        "title":"Արխիվի մանրամասներ․ Ուսանողներ",
+      "table":{
+          "name":"Անուն",
+          "surname": "Ազգանուն",
+          "phone_number":"Հեռախոսահամար",
+          "email":"Էլ․ հասցե",
+          "current_language":"Ընթացիկ լեզու",
+          "monthly_fee":"Ամսավճար",
+          "view":"Դիտել",
+          "action":"Գործողություն",
+          "act_btn":{
+              "restore":"Վերականգնել"
+          }
+          }
+    }
+  }

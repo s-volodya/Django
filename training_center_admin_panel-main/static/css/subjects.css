@@ -1,0 +1,19 @@
+.table_td{
+    display: inline-block;
+
+}    
+
+.table_bodi1 td{
+    max-width: 10% !important;
+    word-break: break-word;
+}
+.table_bodi1 td p{
+    width: 100% !important;
+}
+.description_lesons_edit_5{
+    width: 100%  !important;
+}
+
+.name_lesons{
+    white-space: pre-wrap;
+}

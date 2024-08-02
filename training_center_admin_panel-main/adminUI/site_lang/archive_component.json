@@ -1,0 +1,35 @@
+{
+    "en":{
+            "title":"Archive Details:Components",
+          "table":{
+          "comp_name":"Component Name",
+          "rel_section": "Related Sections",
+          "action":"Action",
+          "act_btn":{
+              "restore":"Restore"
+          }
+          }
+    },
+    "ru":
+      {"title":"Детали архива: Компоненты",
+      "table":{
+          "comp_name":"Название компонента",
+          "rel_section": "Связанные разделы",
+          "action":"Действие",
+          "act_btn":{
+              "restore":"Восстановить"
+          }
+          }
+      },
+    "arm":{	
+        "title":"Արխիվի մանրամասներ․ Բաղադրիչներ",
+      "table":{
+          "comp_name":"Բաղադրիչի անվանումը",
+          "rel_section": "Փոխկապակցված բաժիններ",
+          "action":"Գործողություն",
+          "act_btn":{
+              "restore":"Վերականգնել"
+          }
+          }
+    }
+  }

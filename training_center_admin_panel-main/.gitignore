@@ -1,0 +1,8 @@
+adminUI/__pycache__
+adminUI/migrations/__pycache__/
+students/__pycache__
+.vscode
+adminUI/views.py
+students/
+
+

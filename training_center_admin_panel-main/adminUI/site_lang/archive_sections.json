@@ -1,0 +1,35 @@
+{
+    "en":{
+            "title":"Archive Details:Sections",
+          "table":{
+          "section_name":"Section Name",
+          "rel_sub": "Related Subject",
+          "action":"Action",
+          "act_btn":{
+              "restore":"Restore"
+          }
+          }
+    },
+    "ru":
+      {"title":"Детали архива: Разделы",
+      "table":{
+          "section_name":"Название раздела",
+          "rel_sub": "Связанный предмет",
+          "action":"Действие",
+          "act_btn":{
+              "restore":"Восстановить"
+          }
+          }
+      },
+    "arm":{	
+        "title":"Արխիվի մանրամասներ․ Բաժիններ",
+      "table":{
+          "section_name":"Բաժնի անվանումը",
+          "rel_sub": "Փոխկապակցված առարկա",
+          "action":"Գործողություն",
+          "act_btn":{
+              "restore":"Վերականգնել"
+          }
+          }
+    }
+  }
